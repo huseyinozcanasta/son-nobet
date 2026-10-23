@@ -18,7 +18,7 @@ assert.equal(ctx.SON_MECHANISMS.diagrams.length,8,'8 manually reviewed mechanism
 assert.equal(new Set(ctx.SON_MECHANISMS.diagrams.map(x=>x.n)).size,8);
 assert.deepEqual([...ctx.SON_MECHANISMS.diagrams.map(x=>x.n)],[16,131,151,185,207,225,234,244]);
 for(const d of ctx.SON_MECHANISMS.diagrams){assert.equal(d.steps.length,4);assert.equal(d.choices.length,3);assert.ok(d.correct>=0&&d.correct<3);assert.ok(d.url.startsWith('https://'))}
-assert.ok(ctx.SON_CENTER.view().includes('GÜNCELLEME'));
+assert.ok(ctx.SON_CENTER.view().includes('Güncelleme radarın'));
 assert.ok(ctx.SON_CENTER.view().includes('442'));
 assert.ok(ctx.SON_CENTER.panel(16).includes('HAFIZA HARİTASI'));
 assert.ok(ctx.SON_CENTER.panel(246).includes('HENÜZ HAZIR DEĞİL'));
@@ -45,6 +45,6 @@ assert.equal(JSON.parse(values.get('son-nobet-fbt-v1')).xp,45);
 assert.equal(reloaded,1);
 el('progressText').value='{"schema":"son-nobet-progress","schemaVersion":1,"items":{"son-nobet-fbt-v1":{"records":{"9999":{"grade":2}}}}}';
 ctx.SON_CENTER.restore();
-assert.ok(el('progressStatus').textContent===undefined || el('progressStatus').textContent===null || true);
+assert.ok(el('progressStatus').textContent.includes('Geri yükleme başarısız'));
 assert.equal(JSON.parse(values.get('son-nobet-fbt-v1')).records[16].grade,2,'invalid import must not destroy original');
 console.log('PASS: v1.9 mechanisms, quiz safety, versions, URL validation, backup and restore.');
