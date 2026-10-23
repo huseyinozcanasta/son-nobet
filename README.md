@@ -1,18 +1,18 @@
-# SON NÖBET v1.0 — Bütün FBT görev haritası
+# SON NÖBET 1.1 — Kaynak doğrulama ve öğretici notlar
 
-**443 numaralı FBT indeksi; 442 özgün kaynak sorusu.** Orijinal FBT belgesinde #358 numaralı soru bulunmuyor.
+Dahiliye FBT'nin **443 numaralı dizini (442 özgün soru)**, aktif hatırlama, XP, tekrar ve FBT #016 oyununu içeren çevrimdışı Android uygulaması.
 
-- Tam FBT arşivinde kaynak sorusu, transkripsiyon notu, sayfa numarası, arama ve alan filtresi.
-- 10 soruluk nöbet turları; kendi yanıtını söyle, kaynak notunu aç, kendini derecelendir.
-- Tekrar motoru: bilemedim (aynı gün), zorlandım (1 gün), bildim (3 gün), çok iyi (7 gün); yerel XP.
-- FBT #16'nın üç adet yaklaşık 11–12 dakika okunacak derinleştirilmiş dersi, dokuz klinik mini oyunu ve boss sınavı korunur.
-- **Diğer 441 sorunun üçer 8 dakikalık anlatımları henüz yazılmış değildir.** Bunlarda özgün not ve aktif hatırlama kartı vardır.
-- 166 soruda aktarım/çok kısa açıklama/belirsizlik bakımından kontrol uyarısı gösterilir. Bunlar doğrulanmış klinik öneri olarak kullanılmamalıdır.
-- API'siz / internet gerektirmeyen çalışma. İlerleme cihazdaki uygulama verilerinde saklanır; kaldırınca silinir.
+## 1.1 doğrulama kapsamı
+- **FBT #1–21:** orijinal PDF'nin **2–6. sayfalarının** el yazısı görselleri, dijital aktarım ile karşılaştırıldı. Bu, klinik doğruluk onayı değil kaynak aktarım denetimidir.
+- **FBT #22–443:** özgün PDF ile **henüz tek tek karşılaştırılmadı** (#358 kaynakta yok).
+- Tüm sorularda eski özgün yanıt korunur; ilk 21 soruya ayrı öğretici açıklama/uyarı ve mevcut olduğu yerde Akdeniz Üniversitesi ders slaytları veya klinik kılavuz bağlantısı eklenmiştir.
+- Önemli düzeltmeler: #10 DKA'da dehidratasyon olabilir, #15 RAAS blokerleri diüretik değildir, #18 Ranson ölçütü **BUN artışı >5 mg/dL**, #21 RRT için tek başına BUN/kreatinin eşiği yeterli değildir.
+- Kullandığımız dersler: Akdeniz Üniversitesi Kardiyovasküler Sistem, Abdomen Muayenesi, Sjögren, Sıvı-Elektrolit, Hipertansiyon ve ABH. Gerektiğinde KDIGO, OHSU Ranson ve AHA/ACC bilgileri.
+- 442 sorunun tamamının bilimsel doğrulaması yapıldı iddiasında bulunulmaz. 442 sorunun tamamına 8+ dakikalık ders de yazılmamıştır.
 
 ## Android
-APK: [v1.0.0 sürümü](https://github.com/huseyinozcanasta/son-nobet/releases/tag/v1.0.0).
-Uygulama kimliği: `com.huseyin.sonnobet.full`, böylece önceki v0.2 denemesinin yanına kurulur. Farklı paketler arasında ilerleme otomatik taşınmaz.
+[GitHub Release v1.1.0](https://github.com/huseyinozcanasta/son-nobet/releases/tag/v1.1.0).
+Paket: `com.huseyin.sonnobet.audit`; önceki 1.0 sürümünün yanına kurulur. **İlerleme otomatik aktarılmaz**. APK debug imzasıyla yayımlandığı için üstüne güncellemede kalıcı anahtar gerekir. Bağımsız ilk uygulama testleriyle yayınlanır.
 
-## Kaynak
-Kullanıcının `Dahiliye Sözlü Notu FBT (düzenlenmiş).pdf` ve `Dahiliye_Birlesik_Sayfa_001-109.docx` dijital aktarımı. Transkripsiyonun kendisi kaynak doğruluğu veya güncel kılavuz teyidi değildir; eğitim amaçlıdır.
+CI: Node veri/güvenilirlik testi, APK paketi/imza/hizalama kontrolü, Android 12 emülatör kurulumu ve açılış testi.
+Tıbbi eğitim amaçlıdır, gerçek hasta yönetiminde kullanılmaz.

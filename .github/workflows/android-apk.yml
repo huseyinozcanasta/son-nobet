@@ -29,6 +29,8 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.9'
+      - name: Check FBT audit integrity and study flow
+        run: node test/audit-smoke.cjs
       - name: Build debug APK
         run: gradle assembleDebug --no-daemon --stacktrace
       - name: Validate the APK before publishing
@@ -39,8 +41,9 @@ jobs:
           unzip -p "$APK" assets/game-v02.js | grep -Fq "gameOpen"
           unzip -p "$APK" assets/bank-10.js | grep -Fq "\"number\":443"
           unzip -p "$APK" assets/game-v1.js | grep -Fq "443 KAPI"
+          unzip -p "$APK" assets/audit-v11.js | grep -Fq "originalPdfCheckedRange"
           "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$APK" | tee /tmp/son-nobet-badging.txt
-          grep -Fq "application-label:'Son Nöbet 1.0'" /tmp/son-nobet-badging.txt
+          grep -Fq "application-label:'Son Nöbet 1.1'" /tmp/son-nobet-badging.txt
           "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs "$APK" | tee /tmp/son-nobet-signing.txt
           # apksigner skips v1 verification for packages with minSdk >= 24 even if JAR signatures exist.
           unzip -Z1 "$APK" | grep -Fq "META-INF/CERT.RSA"
@@ -59,9 +62,9 @@ jobs:
           disable-animations: true
           script: |
             adb install -r app/build/outputs/apk/debug/app-debug.apk
-            adb shell am start -W -n com.huseyin.sonnobet.full/com.huseyin.sonnobet.MainActivity
+            adb shell am start -W -n com.huseyin.sonnobet.audit/com.huseyin.sonnobet.MainActivity
             sleep 5
-            adb shell pidof com.huseyin.sonnobet.full
+            adb shell pidof com.huseyin.sonnobet.audit
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
@@ -72,9 +75,9 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          cp app/build/outputs/apk/debug/app-debug.apk SonNobet-v1.0.0-debug.apk
-          if gh release view v1.0.0 >/dev/null 2>&1; then
-            gh release upload v1.0.0 SonNobet-v1.0.0-debug.apk --clobber
+          cp app/build/outputs/apk/debug/app-debug.apk SonNobet-v1.1.0-debug.apk
+          if gh release view v1.1.0 >/dev/null 2>&1; then
+            gh release upload v1.1.0 SonNobet-v1.1.0-debug.apk --clobber
           else
-            gh release create v1.0.0 SonNobet-v1.0.0-debug.apk --target "$GITHUB_SHA" --title "Son Nöbet 1.0 — 443 FBT seviye haritası" --notes "FBT #016 oynanabilir MVP. Debug APK: Android telefon testleri henüz tamamlanmadı. İnternet bağlantısı veya AI API anahtarı gerektirmez." --prerelease
+            gh release create v1.1.0 SonNobet-v1.1.0-debug.apk --target "$GITHUB_SHA" --title "Son Nöbet 1.1 — PDF karşılaştırma ve klinik kaynak denetimi" --notes "FBT #016 oynanabilir MVP. Debug APK: Android telefon testleri henüz tamamlanmadı. İnternet bağlantısı veya AI API anahtarı gerektirmez." --prerelease
           fi

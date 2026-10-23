@@ -4,6 +4,9 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.graphics.Color;
+import android.content.Intent;
+import android.net.Uri;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -20,7 +23,18 @@ public class MainActivity extends Activity {
 
         view = new WebView(this);
         view.setBackgroundColor(Color.rgb(7, 11, 22));
-        view.setWebViewClient(new WebViewClient());
+        view.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView webView, WebResourceRequest request) {
+                Uri uri = request.getUrl();
+                if (uri != null && ("https".equals(uri.getScheme()) || "http".equals(uri.getScheme()))) {
+                    try { startActivity(new Intent(Intent.ACTION_VIEW, uri)); }
+                    catch (Exception ignored) { }
+                    return true;
+                }
+                return false;
+            }
+        });
         WebSettings settings = view.getSettings();
         settings.setJavaScriptEnabled(true);
         settings.setDomStorageEnabled(true);
