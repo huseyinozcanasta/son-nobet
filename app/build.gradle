@@ -5,11 +5,11 @@ android {
     compileSdk 35
 
     defaultConfig {
-        applicationId 'com.huseyin.sonnobet.audit3'
+        applicationId 'com.huseyin.sonnobet.audit4'
         minSdk 24
         targetSdk 34
-        versionCode 7
-        versionName '1.3.0'
+        versionCode 8
+        versionName '1.4.0'
     }
     signingConfigs {
         debug {

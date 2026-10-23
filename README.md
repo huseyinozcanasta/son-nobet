@@ -1,35 +1,23 @@
-# SON NÖBET v1.3 — FBT kaynak görüntüsü / klinik bilgi ayrımı
+# SON NÖBET v1.4 — FBT özgün PDF karşılaştırması
 
-**Kapsam:** Orijinal FBT 1–443 soru indeksinin 442 gerçek kaydı; #358 özgün belgede yok.
+**Durum:** 443 numaralı dizin; 442 özgün FBT sorusu (#358 kaynakta yok). **124 soru** özgün tarama görüntüleriyle karşılaştırıldı; **318 soru** hâlâ tek tek görsel denetim bekliyor. Bu sayılar metin aktarım kontrolünü ifade eder; 124 cevabın tamamının güncel tıbbi kılavuzla doğrulandığı anlamına gelmez.
 
-## Kaynak inceleme ilerlemesi
-- **442/442 kayıt:** dijital transkripsiyon üzerinden sayfa numarası, boş/kesilmiş cevap, metin kalite bayrakları ve arama/tekrar sistemi (bu klinik doğruluk anlamına gelmez).
-- **86/442 soru:** özgün el yazısı PDF'nin **2–14, 24, 53, 70, 88, 93 ve 107. sayfalarının ilgili kısımları** görsel olarak karşılaştırıldı. İncelenen soru numaraları: **1–49, 50–60, 99–103, 214–218, 275–277, 342–345, 372–375, 436–440**; bu listedeki 27–42 ve 50–60 karşılaştırması v1.3'te eklendi. **Not: sayfa 8–11 ve 13–14 bu sürümde incelendi.**
-- **356/442 soru:** özgün görseliyle henüz tek tek karşılaştırılmadı.
-- Otomatik ders slaytı adayları kullanıcıya **öneri** olarak sunuluyor; önerilmesi bilimsel doğrulama değildir.
-- Kaynak PDF metin katmanı bulunmayan el yazısı taramasıdır; el yazısı yorumlama belirsizlikleri olabilir.
+## v1.4: #61–98 (38 yeni soru)
+- Özgün PDF **15–23. sayfalar** elle görüntülenerek soru metni/numarası/cevapları dijital DOCX aktarımıyla karşılaştırıldı.
+- Ayrı `audit-v14.js` katmanında kaynak notuna dokunmadan kısa öğretici özet, gerektiğinde kritik hata uyarısı ve uygun referanslar eklendi.
+- Öncelikli düzeltmeler: #66 fetor hepaticus 'amonyak kokusu' basitleştirmesi; #68 stridorun üst hava yolu ilişkisi; #75 'PAC/PRA=10' sabit primer aldosteronizm tanı eşiği değil; #76 eski feokromositoma '%10' kuralı kalıtsal riskleri düşük gösterir; #81 'kretenizm' yerine konjenital hipotiroidi; #89 guatr tarihî evrelemesi; #94 sistemik skleroz 2013 ACR/EULAR; #96 akut gut IL-1 inhibitörleri birinci basamak değil; #97 Takayasu 1990/2022 ölçütleri ayrımı; #98 dev hücreli arterit 1990/2022 ölçütleri ayrımı.
+- #61–98 için özgün PDF sayfaları 15–23 kapsamındadır. #62 sorusundaki hepatomegali listesi PDF 15 ve 16'ya taşmaktadır.
 
-## v1.3 düzeltme örnekleri
-- #27: Gowers manevrası anlatımı özgün cevapta bulunmuyor.
-- #28: Heliotrop döküntü tipik olarak morumsu; kaynakta renk ifadesi yanıltıcı.
-- #30: Eski SLE listesi ile 2019 EULAR/ACR ANA giriş koşulu/puanlı sınıflandırma farklı.
-- #32: Febril nötropenide **ANC** ve 38,0°C'nin 1 saat sürmesi koşulu unutulmamalı.
-- #38: ADPKD karaciğer kisti doğrudan siroza götürür sonucu hatalı genelleme.
-- #42: Homans belirtisi tek başına DVT tanısı koydurmaz.
-- #50: Kussmaul solunumu daha çok metabolik asidozla ilişkilidir; KBH/KY özgül bulgusu değildir.
-- #54: Sadece CRP >3 mg/dL ile pnömoni tanısı koyulmaz.
-- #55: Kronik adrenal yetmezlikte '3 gün 3x steroid' her hastaya uygulanacak sabit tedavi değildir.
+## Kaynak şeffaflığı
+- Önceki incelemelerde #1–60, #99–103, #214–218, #275–277, #342–345, #372–375, #436–440 gibi seçili sorular incelenmişti; toplam görsel inceleme artık 124.
+- Ders slaytı eşleştirmeleri konu başlığından otomatik önerilir; **tıbbi doğrulama sayılmaz**.
+- Kaynak notu orijinal biçimde kalır; her düzeltme ayrı panelde gösterilir ve öğrenme amacıyla cevabı açana kadar gizlenir.
+- Uyarı ve kaynak linkleri: Akdeniz Üniversitesi muayene/romatoloji/endokrin dersleri, 2025 Endocrine Society primer aldosteronizm, 2022 ACR/EULAR Takayasu ve dev hücreli arterit, 2013 sistemik skleroz, 2020 ACR gut ve PPGL genetik kaynakları.
+- Aralıklı tekrar, 10 soruluk görev, XP ve FBT #016 üç uzun ders + dokuz RPG aşaması korunmuştur.
 
-**Tıbbi güvenlik:** Özellikle ilaç, doz, laboratuvar eşikleri ve eski sınıflandırmalar hasta yönetiminde kullanılmamalıdır. Kaynak aktarımının görsel onayı **klinik kanıt düzeyi veya rehber doğrulaması değildir**. Notların kendisi orijinal biçimiyle kalır; editoryal düzeltmeler ayrı panelde görünür.
+## APK
+[Son Nöbet v1.4.0 indirme sayfası](https://github.com/huseyinozcanasta/son-nobet/releases/tag/v1.4.0)
 
-## Uygulama
-- Arama, kategori filtreleme, 10 soruluk sözlü nöbet, kaynak cevabını açıp kendini değerlendirme, XP, aralıklı tekrar.
-- FBT #016 için 3 uzun ders + 9 oyun aşaması.
-- Kullanılan dosyalar: `app/src/main/assets/audit-v11.js`, `audit-v12.js`, `audit-v13.js`, `slide-candidates-v12.js`.
-- Android 12 emülatörü kurulum/açılış testi ve Node içerik/regresyon testleri GitHub Actions ile zorunlu.
+GitHub Actions, Node içerik/regresyon testi + APK paket/imza doğrulaması + Android 12 emülatör kurulum/açılış testi sonrasında **deneme sürümünü** yayımlar. Yeni paket: `com.huseyin.sonnobet.audit4`. Eski sürümün yanına kurulur; ilerleme eski uygulamadan yeniye otomatik taşınmaz. Debug sürümlerinde sabit yayın sertifikası yoktur.
 
-**APK:** https://github.com/huseyinozcanasta/son-nobet/releases/tag/v1.3.0
-
-Yeni paket `com.huseyin.sonnobet.audit3`, 1.2 uygulamasının yanına kurulur; önceki yerel ilerleme otomatik kopyalanmaz. Debug APK imzası üretim için sabit bir anahtar değildir.
-
-Yalnızca tıp eğitimi içindir.
+**Tıbbi tanı, reçete veya gerçek hasta yönetimi için kullanmayın.**
