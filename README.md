@@ -1,6 +1,14 @@
-# SON NÖBET v1.12 — 33 mekanizma haritası, 322/442 özgün PDF denetimi
+# SON NÖBET v1.13 — 57 mekanizma haritası, 322/442 özgün PDF görsel denetimi
 
 **Durum:** 442 mevcut FBT kaynak sorusu / 443 sıra numarası (#358 eksik; #124 iki alt soru içerir). El yazısı 109 sayfalık PDF ile **322/442** kaydın görsel karşılaştırması tamamlandı; **120** kayıt bekliyor. Bu sayılar v1.11'den beri **değişmedi**.
+
+## v1.13: Dijital belge kaynak eşlemesi (24 Ekim 2026)
+
+- Kullanıcının gönderdiği `Dahiliye_Birlesik_Sayfa_001-109.docx` dosyasının **özgün sayfa numaraları 78–87** içinde, **FBT #310–341'in 32 soru başlığı ve sayfa ataması** bulundu. Bu belge özgün el yazısı taraması **değil**, onun yeniden düzenlenmiş dijital transkripsiyonudur.
+- **24 yeni 4 aşamalı klinik mekanizma + önceki 33 = 57 kart.** Böylece #310–341'deki bütün 32 soruda hafıza haritası, neden→mekanizma→bulgu→ayırıcı ve aktif hatırlama vardır. Kaynak temelli ders kartları sınav hazırlığı içindir.
+- `FBT_DOCX_CROSSCHECK` 32 dijital kaynak bölümünü işaretler, **`FBT_AUDIT.reviewed` 322/442 olarak aynen kalır**. Yeni 32 kartın özgün el yazısı görsel denetimi yapılmış gibi gösterilmez.
+- Klinik kaynak şüpheleri korunur: #320 Budd–Chiari, #323 bilirubinüri ve bilirubin yolu, #324 pnömoperitoneum, #326 üremi, #328 PT/aPTT, #329 kayıtta eksik başlık, #338–341 eski vaskülit sınıflandırma ölçütleri ve #341 kesik yanıt.
+- Android `com.huseyin.sonnobet.audit13` uygulaması ayrı kurulur. v1.12 Sürüm Merkezi → **yedek kodu**; v1.13 → **geri yükle**. İlerlemenin otomatik aktarımı ve eski APK üzerine sessiz güncelleme **yoktur**.
 
 ## v1.12 değişiklikleri — PDF denetimi yerine GEÇMEZ
 
