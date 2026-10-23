@@ -1,4 +1,4 @@
-/* SON NOBET v1.9: update hub and source-based mechanism regression tests */
+/* SON NOBET v1.10: update hub and source-based mechanism regression tests */
 const fs=require('node:fs'),vm=require('node:vm'),path=require('node:path'),assert=require('node:assert/strict');
 const base=path.join(__dirname,'..','app','src','main','assets');
 const values=new Map(),elements={};
@@ -15,7 +15,7 @@ ctx.window=ctx;
 vm.createContext(ctx);
 for(const name of ['mechanisms-v19.js','mechanisms-v110.js','release-center-v19.js'])vm.runInContext(fs.readFileSync(path.join(base,name),'utf8'),ctx);
 assert.equal(ctx.SON_MECHANISMS.diagrams.length,16,'16 manually reviewed mechanism diagrams');
-assert.equal(new Set(ctx.SON_MECHANISMS.diagrams.map(x=>x.n)).size,8);
+assert.equal(new Set(ctx.SON_MECHANISMS.diagrams.map(x=>x.n)).size,16);
 assert.deepEqual([...ctx.SON_MECHANISMS.diagrams.map(x=>x.n)],[16,131,151,185,207,225,234,244,246,251,253,254,258,264,267,273]);
 for(const d of ctx.SON_MECHANISMS.diagrams){assert.equal(d.steps.length,4);assert.equal(d.choices.length,3);assert.ok(d.correct>=0&&d.correct<3);assert.ok(d.url.startsWith('https://'))}
 assert.ok(ctx.SON_CENTER.view().includes('Güncelleme radarın'));
