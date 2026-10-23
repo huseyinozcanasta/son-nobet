@@ -12,6 +12,10 @@ on:
       - '.github/workflows/android-apk.yml'
   workflow_dispatch:
 
+concurrency:
+  group: son-nobet-android-release
+  cancel-in-progress: true
+
 jobs:
   apk:
     runs-on: ubuntu-latest
@@ -50,7 +54,7 @@ jobs:
           unzip -p "$APK" assets/audit-v16.js | grep -Fq "originalVisualChecked"
           unzip -p "$APK" assets/audit-v17.js | grep -Fq "originalVisualChecked"
           unzip -p "$APK" assets/audit-v18.js | grep -Fq "originalVisualChecked"
-          unzip -p "$APK" assets/mechanisms-v19.js | grep -Fq "HAFIZA"
+          unzip -p "$APK" assets/mechanisms-v19.js | grep -Fq "\"diagrams\""
           unzip -p "$APK" assets/release-center-v19.js | grep -Fq "son-nobet-progress"
           unzip -p "$APK" assets/slide-candidates-v12.js | grep -Fq "topicHits"
           "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$APK" | tee /tmp/son-nobet-badging.txt
