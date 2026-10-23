@@ -1,28 +1,30 @@
-# SON NÖBET v1.7 — 234 FBT kaydı için orijinal kaynak denetimi
+# SON NÖBET v1.8 — FBT kaynak denetimi #219–245
 
-Sözlü hazırlığı için kaynak: taranmış 109 sayfalık özgün FBT PDF ve onun DOCX dijital aktarımı. **443 sıra numarası, 442 kayıt**; #358 kaynakta yok; #124'te kaynak üzerinde iki aynı sıra numaralı alt soru bulunuyor.
+**Kaynak:** 109 sayfalık özgün taranmış el yazısı FBT PDF'si ve `Dahiliye_Birlesik_Sayfa_001-109.docx` dijital aktarımı. Soru dizini **443 numara / 442 mevcut kayıt** (#358 kaynakta yok, #124 aynı numarayla iki farklı soru barındırıyor).
 
-## Denetim ilerlemesi
-- **234/442** soru özgün el yazısı PDF'nin ilgili sayfalarıyla manuel görsel karşılaştırıldı.
-- **208** soru için görsel kontrol henüz tamamlanmadı. Bu, daha önceki v1.6 aşamasına eklenen **#178–213 arasındaki 36 soru** anlamına gelir.
-- Yeni görsel kaynak: PDF **44–52. sayfalar**. Cushing/endokrin testlerinin görsel notlarında tarihsel/etkinlik dışı kesin sayılar görüldü; orijinal metin silinmedi.
-- **Kaynak karşılaştırması ile bilimsel doğrulama farklı şeylerdir.** 'PDF görüldü' etiketi orijinal sorunun görüntüsünü kontrol ettiğimizi ifade eder; bütün tıbbi ifadelerin güncel kılavuzlarda kesin doğrulandığını değil.
-- Uygulama orijinal notu ancak cevap açıldıktan sonra, ve ayrıca 'öğretici açıklama', 'kaynak uyarısı' ve uygun referansları gösterir.
+## Denetim durumu
+- **261 / 442** kaydın sorusu ve kaynak notu özgün el yazısı görüntülerine göre tek tek incelendi.
+- **181 soru** orijinal PDF ile görsel denetim bekliyor. Bu durum cevapların kılavuz doğrulamasından bağımsızdır.
+- Bu sürümde **#219–245 arasındaki 27 soru**, özgün PDF **54–59. sayfalar** üzerinde görüntülenip dijital aktarım ile karşılaştırıldı.
+- PDF'nin görsel olarak karşılaştırılmış olması tüm tıbbi ifadelerin klinik yönergelerle kanıtlanmış olduğu anlamına **gelmez**.
 
-## Bu sürümün önemli açıklamaları
-- **#185–186:** Cushing taramasında 1 mg DST, geç gece tükürük ve 24 saat idrar kortizolü; kaynakta yer alan '2/3 tanı' ve tek ACTH >500 ektopik lokasyon ezberleri yanlıştır. Endocrine Society.
-- **#187–189:** Tip 1 DM otoantikorları, açlık glukozu tanı eşiği, MODY'nin aile/genetik ipuçları; kaynakta 'MODY hep 25 yaş altı' sınırlaması hatalı olabilir.
-- **#191:** Hipoglisemide <70 mg/dL alarm, <54 mg/dL klinik anlamlı seviye; bilinci kapalı hastaya ağızdan glukoz verilmez.
-- **#198–202:** VKİ alt normal sınırı 18,5; Charcot ayağında nöropatiyle travma; diyabetik ayak Wagner 0–5 ve ABI'nin DM'de yalancı yüksek ölçülebilmesi.
-- **#205–207:** Adrenal yetmezlik testlerinde ölçüm yöntemine göre eşik değişir; **adrenal krizde sonuç bekleyerek tedavi geciktirilmez**; 100 mg IV/IM hidrokortizon, sonra 200 mg/24 saat ve izotonik sıvı, profesyonel acil tedavi gerektirir.
-- **#211:** Primer hiperparatiroidide 2022 Fifth Workshop cerrahi ölçütleri: Ca ULN +1 mg/dL, eGFR <60, taş/kırık, T skoru ≤−2,5, yaş <50 vb.
-- **#212:** Hirsutizm notundaki '17-OHP 2–10 mg/dL' birimi klinik testlerin tipik ng/dL/ng/mL birimleriyle karışmış görünüyor; not aynen saklanmış, uyarı eklenmiştir.
+## Bu sürümde özellikle önemli düzeltmeler
+- **#223** Kaynak paraziter hepatik yetmezlik listesinin eksik olduğu açıkça işaretlendi; Fasciola hepatica tek yaygın akut karaciğer yetmezliği sebebi olarak gösterilmedi.
+- **#224** Böbrek naklinde tek taraf zorunluluğu olmadığı, cerrahi/anatomik koşulların iliak fossa seçimini belirlediği vurgulandı.
+- **#225** Febril nötropenide vankomisinin rutin eklenmediği; kateter ilişkili infeksiyon, hemodinamik instabilite ve ilgili MRSA risklerinde değerlendirileceği belirtildi (IDSA).
+- **#228** Ağır akut hepatit ile akut karaciğer yetmezliği arasındaki INR/ensefalopati ayrımı (AASLD).
+- **#234** Miyelom CRAB: **C = hiperkalsemi**, notun 'kalsinozis (Ca 10↑)' açıklaması hatalı ve yetersiz. Modern IMWG tanımlayıcı kriterleri gösterildi.
+- **#235, #239, #244** ACG 2024 H. pylori: duyarlılık bilinmiyorsa **14 gün optimize bizmutlu dörtlü** bir tercih; klaritromisinli ampirik üçlü ve 5+5 gün eski şemaları güncel standart sayma; eradikasyon testi ≥4 hafta antibiyotik/bizmut sonrası ve ≥2 hafta PPI/PCAB kesildikten sonra yapılır.
+- **#242** ADA 2026 diyabetik ayak taramasında monofilament, ek duyu testi, nabız ve deri/deformite değerlendirmesi.
+- **#245** eski manometri basınç terimleri Chicago Classification v4.0 ile birebir aynı değil.
 
-## İçerik ve APK
-- Bütün 442 kaynak sorusu, 10 soruluk oyun, öz değerlendirme, tekrar planı, XP, FBT #16 üç ayrıntılı ders korunuyor.
-- Yeni dosya: `app/src/main/assets/audit-v17.js`.
-- Android paket adı `com.huseyin.sonnobet.audit7` eski sürümlerden farklıdır; ilerleme **otomatik taşınmaz**.
-- Android 12 emülatör kurulum/açılış testi, Node regresyon testi ve APK imza/hizalama denetimi GitHub Actions üzerinden yapılır.
-- [GitHub v1.7.0 sürümü](https://github.com/huseyinozcanasta/son-nobet/releases/tag/v1.7.0)
+## Oyun
+- Tüm 442 kaynak kartı, 10 soruluk nöbet, XP, tekrar ve FBT #16'nın üç uzun dersi ile RPG görevleri korunuyor.
+- Kaynaktaki özgün not **asla değiştirilmedi**; özet, klinik uyarı ve uygun referans **cevabı açınca ayrı panelde** görünür.
+- İnternet olmadan oynanabilir; dış bağlantıları açmak internet gerektirir.
 
-Yalnız tıp eğitimi için; hasta yönetimi veya reçete yazımı için kullanılmamalıdır.
+## Android
+[SON NÖBET v1.8.0](https://github.com/huseyinozcanasta/son-nobet/releases/tag/v1.8.0).
+`com.huseyin.sonnobet.audit8` ayrı paket adıdır. Eski 1.7 uygulamasını silmez; **kayıtlar otomatik aktarılmaz**. GitHub Actions Node/JS içerik testi, Android 12 emülatör kurulum/açılış, APK imza/bütünlük testleri koşar.
+
+**Eğitim amaçlı; gerçek hasta tedavisi için klinik karar destek yazılımı değildir.**
