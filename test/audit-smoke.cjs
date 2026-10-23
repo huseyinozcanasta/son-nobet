@@ -5,7 +5,7 @@ const ctx={console,Set,Date,Array,Object,Math,JSON,Number,String,Error,RegExp,
 document:{getElementById:(id)=>elements[id]||(elements[id]={innerHTML:'',id}),querySelector:()=>null},
 localStorage:{getItem:x=>values.get(x)||null,setItem:(k,v)=>values.set(k,v),removeItem:k=>values.delete(k)},
 s:{screen:'home',xp:0},renderHud:()=>{},h:x=>String(x).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])),save:()=>{},render:()=>{},home:()=>'',go:null,window:null};
-ctx.window=ctx;ctx.go=function(screen){ctx.s.screen=screen;ctx.render()};vm.createContext(ctx);
+ctx.window=ctx;ctx.scrollY=0;ctx.scrollTo=function(){};ctx.go=function(screen){ctx.s.screen=screen;ctx.render()};vm.createContext(ctx);
 for(let i=1;i<=10;i++)vm.runInContext(fs.readFileSync(path.join(base,'bank-'+String(i).padStart(2,'0')+'.js'),'utf8'),ctx);
 vm.runInContext(fs.readFileSync(path.join(base,'audit-v11.js'),'utf8'),ctx);
 vm.runInContext(fs.readFileSync(path.join(base,'game-v1.js'),'utf8'),ctx);
