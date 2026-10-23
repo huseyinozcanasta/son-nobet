@@ -26,6 +26,29 @@ button,textarea{font:inherit}button{cursor:pointer;-webkit-tap-highlight-color:t
 @media(prefers-reduced-motion:reduce){.reward,.btn{animation:none;transition:none}}
 @media(max-width:390px){.reading{font-size:16px}.panel{padding:17px}.wrap{padding-left:13px;padding-right:13px}}
 
+/* V1.0 full FBT index and spaced recall */
+.metricGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:18px 0}
+.metricGrid>div{background:#0c1b2d;border:1px solid #31485c;border-radius:12px;padding:10px 7px;text-align:center}
+.metricGrid strong{display:block;font-size:21px;color:#80f2bd}.metricGrid small{display:block;color:#93a9bd;font-size:10px}
+.filterScroll{display:flex;gap:7px;overflow-x:auto;padding:12px 0 6px;scrollbar-width:none}
+.filterPill{white-space:nowrap;border:1px solid #325267;border-radius:24px;background:#111e30;color:#bcd2df;font-weight:650;padding:9px 14px}
+.filterPill.on{background:#64ead8;color:#071820;border-color:#64ead8}
+.fbtSearch{width:100%;display:block;background:#0b1728;border:1px solid #477184;color:#eef9ff;padding:13px;border-radius:12px;margin:9px 0;font-size:16px;outline:none}
+.fbtSearch:focus{border-color:#64ead8}.selectBar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0}
+.selectBar select{background:#172738;border:1px solid #3e5666;padding:10px;border-radius:11px;color:#eaf2f8;max-width:72%;flex:1}
+.fbrow{width:100%;display:flex;align-items:center;text-align:left;gap:12px;padding:13px 11px;margin:8px 0;background:#111f30;border:1px solid #304759;border-radius:14px;color:#e6eff7;min-height:75px}
+.fbrow.noSource{opacity:.62;border-style:dashed}.fbrow b{display:block;font-size:14px;line-height:1.4}.fbrow .caption{display:block;margin-top:4px;font-size:11px}
+.fbNo{font-variant-numeric:tabular-nums;background:#113342;color:#6eeee2;padding:7px;font-weight:850;border-radius:9px;font-size:13px;min-width:55px;text-align:center}
+.pager{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:17px 0}.pager button{width:auto}
+.sourceChip{display:inline-block;font-size:10px;padding:5px 9px;background:#153c36;border:1px solid #367c6e;color:#a0e8c8;letter-spacing:1px;border-radius:20px;font-weight:750}
+.sourceChip.attention{background:#403018;border-color:#7c6a38;color:#ffe0a2}.sourceChip.missing{background:#472530;border-color:#943f5c;color:#ffb8cc}
+.sourcePanel{border-color:#66758e}.sourceText{white-space:pre-wrap;line-height:1.75;font-size:15px;color:#e6edf8;overflow-wrap:anywhere}
+.gradeGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.grade{min-height:73px;border:1px solid #375163;border-radius:15px;padding:12px 10px;font-size:14px;font-weight:800;color:#f6fdff;background:#172c40;text-align:left}
+.grade span{display:block;font-size:10px;color:#bed4dc;margin-top:4px;font-weight:500}
+.grade.bad{border-color:#874357;background:#412231}.grade.hard{border-color:#957944;background:#43351f}
+.grade.good{border-color:#3b8c76;background:#173c37}.grade.easy{border-color:#407ea0;background:#193447}
+@media(max-width:380px){.fbNo{min-width:49px;padding:6px 4px}.fbrow b{font-size:13px}.grade{font-size:13px}}
 </style></head><body><main class="wrap"><div class="top"><div class="logo">✚ SON <span>NÖBET</span></div><button id="sound" class="iconBtn" aria-label="Ses aç kapa" onclick="toggleSound()">♪</button></div><div id="hud"></div><div id="app" aria-live="polite"></div><div class="footer">FBT odaklı • Çevrimdışı • Veriler bu cihazda saklanır<br>Bu uygulama sınav hazırlığı içindir, klinik karar desteği değildir.</div></main>
 <script>
 "use strict";
@@ -85,4 +108,4 @@ function oral(){return '<button class="btn alt small" onclick="go(\'victory\')">
 function reset(){if(confirm("Bütün yerel XP, ders ve sınav ilerlemesini sıfırlamak istiyor musun?")){localStorage.removeItem(KEY);s=load();render()}}
 function render(){renderHud();var v=s.screen;document.getElementById("app").innerHTML=v==="intro"?intro():v==="map"?map():v==="quiz"?quizView():v==="victory"?victory():v==="oral"?oral():v.indexOf("lesson")===0?lesson(Number(v.replace("lesson",""))):home()}
 window.appBack=function(){go("home")};render();
-</script><script src="content-v02.js"></script><script src="game-v02.js"></script></body></html>
+</script><script src="content-v02.js"></script><script src="game-v02.js"></script><script src="bank-01.js"></script><script src="bank-02.js"></script><script src="bank-03.js"></script><script src="bank-04.js"></script><script src="bank-05.js"></script><script src="bank-06.js"></script><script src="bank-07.js"></script><script src="bank-08.js"></script><script src="bank-09.js"></script><script src="bank-10.js"></script><script src="game-v1.js"></script></body></html>
