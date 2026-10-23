@@ -31,7 +31,7 @@ jobs:
         with:
           gradle-version: '8.9'
       - name: Check FBT audit integrity and study flow
-        run: node test/audit-smoke.cjs
+        run: node test/audit-smoke.cjs && node test/upgrade-smoke.cjs
       - name: Build debug APK
         run: gradle assembleDebug --no-daemon --stacktrace
       - name: Validate the APK before publishing
@@ -50,9 +50,11 @@ jobs:
           unzip -p "$APK" assets/audit-v16.js | grep -Fq "originalVisualChecked"
           unzip -p "$APK" assets/audit-v17.js | grep -Fq "originalVisualChecked"
           unzip -p "$APK" assets/audit-v18.js | grep -Fq "originalVisualChecked"
+          unzip -p "$APK" assets/mechanisms-v19.js | grep -Fq "HAFIZA"
+          unzip -p "$APK" assets/release-center-v19.js | grep -Fq "son-nobet-progress"
           unzip -p "$APK" assets/slide-candidates-v12.js | grep -Fq "topicHits"
           "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$APK" | tee /tmp/son-nobet-badging.txt
-          grep -Fq "application-label:'Son Nöbet 1.8'" /tmp/son-nobet-badging.txt
+          grep -Fq "application-label:'Son Nöbet 1.9'" /tmp/son-nobet-badging.txt
           "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs "$APK" | tee /tmp/son-nobet-signing.txt
           # apksigner skips v1 verification for packages with minSdk >= 24 even if JAR signatures exist.
           unzip -Z1 "$APK" | grep -Fq "META-INF/CERT.RSA"
@@ -71,9 +73,9 @@ jobs:
           disable-animations: true
           script: |
             adb install -r app/build/outputs/apk/debug/app-debug.apk
-            adb shell am start -W -n com.huseyin.sonnobet.audit8/com.huseyin.sonnobet.MainActivity
+            adb shell am start -W -n com.huseyin.sonnobet.audit9/com.huseyin.sonnobet.MainActivity
             sleep 5
-            adb shell pidof com.huseyin.sonnobet.audit8
+            adb shell pidof com.huseyin.sonnobet.audit9
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
@@ -84,9 +86,9 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          cp app/build/outputs/apk/debug/app-debug.apk SonNobet-v1.8.0-debug.apk
-          if gh release view v1.8.0 >/dev/null 2>&1; then
-            gh release upload v1.8.0 SonNobet-v1.8.0-debug.apk --clobber
+          cp app/build/outputs/apk/debug/app-debug.apk SonNobet-v1.9.0-debug.apk
+          if gh release view v1.9.0 >/dev/null 2>&1; then
+            gh release upload v1.9.0 SonNobet-v1.9.0-debug.apk --clobber
           else
-            gh release create v1.8.0 SonNobet-v1.8.0-debug.apk --target "$GITHUB_SHA" --title "Son Nöbet 1.8 — 442 cevap için kalite taraması ve 261 görsel denetim" --notes "442 FBT kaynak sorusu ve 261 soruda el yazısı PDF görsel denetimi; 181 soruda inceleme bekliyor. Soru 16 uzun dersleri korunur. Debug APK, çevrimdışı, Android 12 emülatör testi." --prerelease
+            gh release create v1.9.0 SonNobet-v1.9.0-debug.apk --target "$GITHUB_SHA" --title "Son Nöbet 1.9 — 442 cevap için kalite taraması ve 261 görsel denetim" --notes "442 FBT kaynak sorusu ve 261 soruda el yazısı PDF görsel denetimi; 181 soruda inceleme bekliyor. Soru 16 uzun dersleri korunur. Debug APK, çevrimdışı, Android 12 emülatör testi." --prerelease
           fi
