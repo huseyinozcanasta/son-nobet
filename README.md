@@ -1,29 +1,35 @@
-# SON NÖBET v1.2 — Bütün FBT sorularında kaynak bütünlüğü taraması
+# SON NÖBET v1.3 — FBT kaynak görüntüsü / klinik bilgi ayrımı
 
-109 sayfalık özgün tarama ve 109 sayfalık DOCX aktarımındaki **442 gerçek FBT sorusu**, 1–443 arası tüm numaralarla birlikte erişilebilir. #358 kaynakta yoktur.
+**Kapsam:** Orijinal FBT 1–443 soru indeksinin 442 gerçek kaydı; #358 özgün belgede yok.
 
-## Kaynak denetimi kapsamı
-**Bütün 442 soru:** Özgün PDF sayfa numarası var mı ve kaynak cevap notu kesilmiş/şüpheli mi diye tarandı. 442/442 soru sayfa 2–108 arasında geçerli sayfalara eşleşiyor. 146 kayıtta `[?]`, 18 kayıtta `okunamadı`, 3 kayıtta `Kaynak notu kısaltıldı` var; #443 cevabına aktarım kalite raporu karışmıştı, ekranda cevap kısmından ayrıldı. Orijinal veri korunur.
+## Kaynak inceleme ilerlemesi
+- **442/442 kayıt:** dijital transkripsiyon üzerinden sayfa numarası, boş/kesilmiş cevap, metin kalite bayrakları ve arama/tekrar sistemi (bu klinik doğruluk anlamına gelmez).
+- **86/442 soru:** özgün el yazısı PDF'nin **2–14, 24, 53, 70, 88, 93 ve 107. sayfalarının ilgili kısımları** görsel olarak karşılaştırıldı. İncelenen soru numaraları: **1–49, 50–60, 99–103, 214–218, 275–277, 342–345, 372–375, 436–440**; bu listedeki 27–42 ve 50–60 karşılaştırması v1.3'te eklendi. **Not: sayfa 8–11 ve 13–14 bu sürümde incelendi.**
+- **356/442 soru:** özgün görseliyle henüz tek tek karşılaştırılmadı.
+- Otomatik ders slaytı adayları kullanıcıya **öneri** olarak sunuluyor; önerilmesi bilimsel doğrulama değildir.
+- Kaynak PDF metin katmanı bulunmayan el yazısı taramasıdır; el yazısı yorumlama belirsizlikleri olabilir.
 
-**59 soru:** Orijinal taramanın 2–7, 12, 24, 53, 70, 88, 93 ve 107. sayfalarındaki soruların el yazısı görselleri manuel incelendi (FBT #1–21, #22–26, #43–49, #99–103, #214–218, #275–277, #342–345, #372–375, #436–440).
+## v1.3 düzeltme örnekleri
+- #27: Gowers manevrası anlatımı özgün cevapta bulunmuyor.
+- #28: Heliotrop döküntü tipik olarak morumsu; kaynakta renk ifadesi yanıltıcı.
+- #30: Eski SLE listesi ile 2019 EULAR/ACR ANA giriş koşulu/puanlı sınıflandırma farklı.
+- #32: Febril nötropenide **ANC** ve 38,0°C'nin 1 saat sürmesi koşulu unutulmamalı.
+- #38: ADPKD karaciğer kisti doğrudan siroza götürür sonucu hatalı genelleme.
+- #42: Homans belirtisi tek başına DVT tanısı koydurmaz.
+- #50: Kussmaul solunumu daha çok metabolik asidozla ilişkilidir; KBH/KY özgül bulgusu değildir.
+- #54: Sadece CRP >3 mg/dL ile pnömoni tanısı koyulmaz.
+- #55: Kronik adrenal yetmezlikte '3 gün 3x steroid' her hastaya uygulanacak sabit tedavi değildir.
 
-**383 soru:** Orijinal el yazısıyla tek tek görsel karşılaştırma hâlâ bekleniyor. Bu sorular "PDF karşılaştırması bekliyor" etiketi taşır. Başlı başına sayfa referansının doğru aralıkta olması görsel karşılaştırma demek değildir.
+**Tıbbi güvenlik:** Özellikle ilaç, doz, laboratuvar eşikleri ve eski sınıflandırmalar hasta yönetiminde kullanılmamalıdır. Kaynak aktarımının görsel onayı **klinik kanıt düzeyi veya rehber doğrulaması değildir**. Notların kendisi orijinal biçimiyle kalır; editoryal düzeltmeler ayrı panelde görünür.
 
-## Tıbbi düzeltmeler
-- #43 ADA 2026 diabetes tanı ölçütleri **≥** eşikleri ve semptomlu rastgele PG ≥200 mg/dL.
-- #101 standart Phalen bilek fleksiyonu, ekstansiyon reverse Phalen.
-- #215 Whipple triadı sabit <50 mg/dL demek değildir.
-- #276 SIAD tanısında hipotoni/övolemik bulgular ve alternatif nedenlerin dışlanması esastır.
-- Önceki sürümdeki #10 (DKA dehidratasyonu), #15 (diüretik sınıflandırması), #18 (Ranson BUN artışı), #21 (renal replasman kararı) uyarıları korunur.
+## Uygulama
+- Arama, kategori filtreleme, 10 soruluk sözlü nöbet, kaynak cevabını açıp kendini değerlendirme, XP, aralıklı tekrar.
+- FBT #016 için 3 uzun ders + 9 oyun aşaması.
+- Kullanılan dosyalar: `app/src/main/assets/audit-v11.js`, `audit-v12.js`, `audit-v13.js`, `slide-candidates-v12.js`.
+- Android 12 emülatörü kurulum/açılış testi ve Node içerik/regresyon testleri GitHub Actions ile zorunlu.
 
-**Ders slaytları:** 30 kullanıcının Drive ders PDF'si metin üzerinden konu açısından tarandı. **100 soruda** güçlü ders *başlık* eşleşmesi bulundu ve "otomatik slayt önerisi — cevap doğrulaması değil" olarak gösterilir. Diğer sorulara alakasız slayt atanmamıştır. Derste öğrendiğin tedavi/ilaç ayrıntıları, güncel kılavuzlar ve hocanın sunumuyla ayrıca doğrulanmalıdır.
+**APK:** https://github.com/huseyinozcanasta/son-nobet/releases/tag/v1.3.0
 
-## Oyun
-10 soruluk nöbet, cevabı gizleyerek önce kendi kendini sınama, 4 dereceli öz değerlendirme, XP/tekrar, filtreler ve FBT #016'nın üç uzun dersi sürüyor. Açıklama ve kaynak düzeltmesi **cevap gösterilmeden önce açılmaz**.
+Yeni paket `com.huseyin.sonnobet.audit3`, 1.2 uygulamasının yanına kurulur; önceki yerel ilerleme otomatik kopyalanmaz. Debug APK imzası üretim için sabit bir anahtar değildir.
 
-## Yükleme
-[GitHub Releases v1.2.0](https://github.com/huseyinozcanasta/son-nobet/releases/tag/v1.2.0)
-
-Yeni paket kimliği `com.huseyin.sonnobet.audit2` ile v1.0 ve v1.1'in yanına kurulur. **Eski ilerlemeyi otomatik aktarmıyor**. Debug APK için kalıcı yayın imzası ayrıca gereklidir.
-
-Bu araç sözlü sınav hazırlığı içindir. 442 sorunun her birinin güncel klinik literatür doğrulamasından geçtiği iddia edilmez.
+Yalnızca tıp eğitimi içindir.
