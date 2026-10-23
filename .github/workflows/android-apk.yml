@@ -60,11 +60,13 @@ jobs:
           unzip -p "$APK" assets/mechanisms-v110.js | grep -Fq "source"
           unzip -p "$APK" assets/mechanisms-v111.js | grep -Fq "source"
           unzip -p "$APK" assets/mechanisms-v112.js | grep -Fq "sourceAuditPending"
+          unzip -p "$APK" assets/mechanisms-v113.js | grep -Fq "digitalDocxCompared"
+          unzip -p "$APK" assets/docx-crosscheck-v113.js | grep -Fq "originalHandwritingVisualChecked"
           unzip -p "$APK" assets/preflight-v112.js | grep -Fq "sourceVisualChecked"
           unzip -p "$APK" assets/release-center-v19.js | grep -Fq "son-nobet-progress"
           unzip -p "$APK" assets/slide-candidates-v12.js | grep -Fq "topicHits"
           "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$APK" | tee /tmp/son-nobet-badging.txt
-          grep -Fq "application-label:'Son Nöbet 1.12'" /tmp/son-nobet-badging.txt
+          grep -Fq "application-label:'Son Nöbet 1.13'" /tmp/son-nobet-badging.txt
           "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs "$APK" | tee /tmp/son-nobet-signing.txt
           # apksigner skips v1 verification for packages with minSdk >= 24 even if JAR signatures exist.
           unzip -Z1 "$APK" | grep -Fq "META-INF/CERT.RSA"
@@ -83,9 +85,9 @@ jobs:
           disable-animations: true
           script: |
             adb install -r app/build/outputs/apk/debug/app-debug.apk
-            adb shell am start -W -n com.huseyin.sonnobet.audit12/com.huseyin.sonnobet.MainActivity
+            adb shell am start -W -n com.huseyin.sonnobet.audit13/com.huseyin.sonnobet.MainActivity
             sleep 5
-            adb shell pidof com.huseyin.sonnobet.audit12
+            adb shell pidof com.huseyin.sonnobet.audit13
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
@@ -96,9 +98,9 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          cp app/build/outputs/apk/debug/app-debug.apk SonNobet-v1.12.0-debug.apk
-          if gh release view v1.12.0 >/dev/null 2>&1; then
-            gh release upload v1.12.0 SonNobet-v1.12.0-debug.apk --clobber
+          cp app/build/outputs/apk/debug/app-debug.apk SonNobet-v1.13.0-debug.apk
+          if gh release view v1.13.0 >/dev/null 2>&1; then
+            gh release upload v1.13.0 SonNobet-v1.13.0-debug.apk --clobber
           else
-            gh release create v1.12.0 SonNobet-v1.12.0-debug.apk --target "$GITHUB_SHA" --title "Son Nöbet 1.12 — 33 mekanizma haritası, 322 PDF görsel denetim" --notes "442 FBT kaydı; 322 özgün PDF görsel denetimi, 120 bekleyen. 8 yeni klinik kaynaklı kart özgün PDF görsel kontrolü yapılmamış olarak işaretlendi; toplam 33 kart. Soru 16 korundu. Debug APK, Android 12 emülatör testi." --prerelease
+            gh release create v1.13.0 SonNobet-v1.13.0-debug.apk --target "$GITHUB_SHA" --title "Son Nöbet 1.13 — 57 mekanizma haritası, 32 DOCX kaynak sayfa eşleştirmesi" --notes "442 FBT kaydı; 322 özgün PDF görsel denetimi, 120 bekleyen. 32 klinik kaynaklı kart özgün PDF görsel kontrolü yapılmamış olarak işaretlendi; toplam 57 kart. Soru 16 korundu. Debug APK, Android 12 emülatör testi." --prerelease
           fi
