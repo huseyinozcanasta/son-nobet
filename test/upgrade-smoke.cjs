@@ -14,8 +14,8 @@ const ctx={console,Date,JSON,Math,Number,Array,Object,Set,String,RegExp,
 ctx.window=ctx;
 vm.createContext(ctx);
 for(const name of ['mechanisms-v19.js','mechanisms-v110.js','mechanisms-v111.js','mechanisms-v112.js','release-center-v19.js'])vm.runInContext(fs.readFileSync(path.join(base,name),'utf8'),ctx);
-assert.equal(ctx.SON_MECHANISMS.diagrams.length,33,'25 manually reviewed mechanism diagrams');
-assert.equal(new Set(ctx.SON_MECHANISMS.diagrams.map(x=>x.n)).size,25);
+assert.equal(ctx.SON_MECHANISMS.diagrams.length,33,'33 source-referenced mechanism diagrams');
+assert.equal(new Set(ctx.SON_MECHANISMS.diagrams.map(x=>x.n)).size,33);
 assert.deepEqual([...ctx.SON_MECHANISMS.diagrams.map(x=>x.n)],[16,131,151,185,207,225,234,244,246,251,253,254,258,264,267,273,278,281,284,289,290,291,301,302,306,311,318,319,320,330,338,340,341]);
 for(const d of ctx.SON_MECHANISMS.diagrams){assert.equal(d.steps.length,4);assert.equal(d.choices.length,3);assert.ok(d.correct>=0&&d.correct<3);assert.ok(d.url.startsWith('https://'))}
 assert.ok(ctx.SON_CENTER.view().includes('Güncelleme radarın'));
