@@ -3,7 +3,7 @@
 
 İlk oynanabilir görev: FBT #016 — “Barsak seslerini azaltan elektrolit bozukluğu?” (kaynak FBT sözlü notu, s. 6).
 
-## Özellikler (v0.1.0)
+## Özellikler (v0.1.1)
 - Üç kısa ders: Sıvı/Elektrolit Dengesi, Paratiroid–Endokrin Hipertansiyon, Batın Muayenesi.
 - Her dersin sonunda aktif hatırlama kontrolü.
 - 5 soruluk final (en az 4 doğru), XP ve günlük çalışma serisi.
@@ -30,3 +30,9 @@ Java 17, Gradle 8.9 ve Android SDK 35 gerekir; GitHub Actions derleme ortamını
 FBT orijinal soru #016 (s. 6) ve kullanıcıya ait FBT16 ders çalışma notlarından hazırlanmış kısa derslerdir. Uygulama doğrudan Google Calendar/Drive API'sine **bağlanmaz**; içerik APK'ya önceden gömülüdür.
 
 Uygulama tıbbi eğitim içindir; hasta yönetimi amacıyla kullanılamaz.
+
+## Telefon uyumluluğu (v0.1.1)
+- Uygulama adı ve başlatıcı simgesi kaynaklardan derlenir.
+- Android debug APK v1 + v2 imzalama şemalarıyla hazırlanır.
+- Android 12 (API 31) emülatöründe kurulum ve başlatma testinden geçmeden yeni sürüm GitHub Releases'a aktarılmaz.
+- APK'yı GitHub Releases bağlantısından Chrome ile indir; dosyayı Android Dosyalar/İndirilenler üzerinden aç. Gelen e-posta eki gibi yeniden adlandırılmış/eksik dosyaları kurmayı deneme.

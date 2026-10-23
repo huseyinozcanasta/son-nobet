@@ -35,8 +35,11 @@ jobs:
         run: |
           APK="app/build/outputs/apk/debug/app-debug.apk"
           unzip -t "$APK" | tail -1
-          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$APK"
-          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs "$APK"
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$APK" | tee /tmp/son-nobet-badging.txt
+          grep -Fq "application-label:'Son Nöbet'" /tmp/son-nobet-badging.txt
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs "$APK" | tee /tmp/son-nobet-signing.txt
+          grep -Fq "Verified using v1 scheme (JAR signing): true" /tmp/son-nobet-signing.txt
+          grep -Fq "Verified using v2 scheme (APK Signature Scheme v2): true" /tmp/son-nobet-signing.txt
           "$ANDROID_HOME/build-tools/35.0.0/zipalign" -c -v 4 "$APK"
           sha256sum "$APK"
       - name: Enable Android emulator acceleration
@@ -64,9 +67,9 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          cp app/build/outputs/apk/debug/app-debug.apk SonNobet-v0.1.0-debug.apk
-          if gh release view v0.1.0 >/dev/null 2>&1; then
-            gh release upload v0.1.0 SonNobet-v0.1.0-debug.apk --clobber
+          cp app/build/outputs/apk/debug/app-debug.apk SonNobet-v0.1.1-debug.apk
+          if gh release view v0.1.1 >/dev/null 2>&1; then
+            gh release upload v0.1.1 SonNobet-v0.1.1-debug.apk --clobber
           else
-            gh release create v0.1.0 SonNobet-v0.1.0-debug.apk --target "$GITHUB_SHA" --title "Son Nöbet v0.1.0 — Android deneme sürümü" --notes "FBT #016 oynanabilir MVP. Debug APK: Android telefon testleri henüz tamamlanmadı. İnternet bağlantısı veya AI API anahtarı gerektirmez." --prerelease
+            gh release create v0.1.1 SonNobet-v0.1.1-debug.apk --target "$GITHUB_SHA" --title "Son Nöbet v0.1.1 — Android uyumluluk sürümü" --notes "FBT #016 oynanabilir MVP. Debug APK: Android telefon testleri henüz tamamlanmadı. İnternet bağlantısı veya AI API anahtarı gerektirmez." --prerelease
           fi
