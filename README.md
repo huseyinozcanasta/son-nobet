@@ -1,6 +1,16 @@
-# SON NÖBET v1.13 — 57 mekanizma haritası, 322/442 özgün PDF görsel denetimi
+# SON NÖBET v1.14 — 82 mekanizma haritası, 322/442 özgün PDF görsel denetimi
 
 **Durum:** 442 mevcut FBT kaynak sorusu / 443 sıra numarası (#358 eksik; #124 iki alt soru içerir). El yazısı 109 sayfalık PDF ile **322/442** kaydın görsel karşılaştırması tamamlandı; **120** kayıt bekliyor. Bu sayılar v1.11'den beri **değişmedi**.
+
+## v1.14: Onkoloji paketi (#346–357, #359–371; 25 soru)
+
+- **25 yeni aktif-hatırlama mekanizma kartı** eklendi: kemoterapi toksisiteleri (mukozit, diyare, kardiyovasküler, renal, nörolojik), febril nötropeni, MASCC, G-CSF, metastatik hormon tedavisi, epidemiyoloji/tarama, antineoplastik sınıfları, palyatif ağrı, hedef mutasyonlar, metastatik spinal kord basısı ve SVK sendromu.
+- **Toplam 82/442 kart.** 25 yeni kaynak sayfa eşleşmesi `FBT_DOCX_CROSSCHECK_114` içinde ayrı işlendi; v1.13'teki 32 ile **57 sayfa/başlık eşlemesi** var.
+- Kaynak `Dahiliye_Birlesik_Sayfa_001-109.docx`, dijital yeniden aktarım olup özgün el yazısı taraması **değildir**. Bu nedenle özgün el yazısı görüntüsü denetimi halen **322/442** ve **120 bekleyen**. **#358 belge/oyunda eksik** olduğu için kart uydurulmadı.
+- Önemli klinik düzeltmeler: #352 CIPN ile el-ayak sendromu ayrımı, #355 seçilmiş düşük riskli FN ayaktan tedavide tek florokinolon yerine kılavuz bazlı kombinasyon, #356 ASCO 2026 G-CSF primer profilaksi ≥yaklaşık %20, #361 FIT/kolonoskopi ve geçerli meme taraması, #368 tüm hedef mutasyonlarda immünoterapiyi kategorik dışlamama, #369–370 MSCC'de acil MRI ve nörolojik değerlendirme.
+- **Ayrı paket:** `com.huseyin.sonnobet.audit14`. v1.13 **Sürüm Merkezi → Yedek kodu oluştur/kopyala**; v1.14 **Yedeği geri yükle**. Sabit production imza/otomatik güncelleme henüz yok.
+- Bilimsel kaynaklar: [AGIHO FN](https://pmc.ncbi.nlm.nih.gov/articles/PMC11836497/), [ASCO G-CSF 2026](https://ascopubs.org/doi/full/10.1200/JCO-25-02938), [ASCO CIPN](https://ascopubs.org/doi/full/10.1200/JCO.20.01399), [ESC Kardiyo-Onkoloji](https://academic.oup.com/eurheartj/article/43/41/4229/6673995), [NICE NG234](https://www.nice.org.uk/guidance/ng234/chapter/recommendations), [IARC GLOBOCAN 2024](https://www.iarc.who.int/news-events/global-cancer-statistics-2024-globocan-estimates-of-incidence-and-mortality-worldwide-for-34-cancers-in-186-countries), [NCI Tarama](https://www.cancer.gov/about-cancer/screening/screening-tests).
+- Not: Klinik notlar sözlü sınav eğitim malzemesidir; hasta başında kişisel tedavi/ilaç uygulama talimatı değildir.
 
 ## v1.13: Dijital belge kaynak eşlemesi (24 Ekim 2026)
 

@@ -1,7 +1,7 @@
 /* SON NOBET 1.9 -- offline memory map and release manager */
 (function(){
 "use strict";
-const VERSION="1.13.0", BASE="https://github.com/huseyinozcanasta/son-nobet", STORE="son-nobet-mechanisms-v1";
+const VERSION="1.14.0", BASE="https://github.com/huseyinozcanasta/son-nobet", STORE="son-nobet-mechanisms-v1";
 const KEYS=["son-nobet-fbt-v1","son-nobet-v1","son-nobet-v2",STORE];
 const ITEMS=(window.SON_MECHANISMS||{}).diagrams||[];
 const BY={};ITEMS.forEach(x=>{BY[x.n]=x});
@@ -52,7 +52,7 @@ let links=ITEMS.map(d=>'<button class="memoryIndex" onclick="FBT.open('+d.n+')">
 return '<button class="btn small alt" onclick="go(&quot;home&quot;)">← ANA ÜS</button><div class="eyebrow" style="margin-top:22px">SON NÖBET · SÜRÜM MERKEZİ</div><h1>YENİ SÜRÜM.<br><span style="color:var(--cyan)">AYNI HEDEF.</span></h1><div class="panel hero"><div class="row"><span class="chip">KURULU v'+VERSION+'</span><span class="tag">GITHUB RELEASES</span></div><h2 style="margin-top:15px">Güncelleme radarın</h2><p class="mini">Yeni APK için GitHub sürümlerini kontrol et. İnternet yokken dersler çevrimdışı çalışır.</p><div id="releaseInfo">'+latestHTML()+'</div><button class="btn" onclick="SON_CENTER.check()">YENİ SÜRÜM KONTROLÜ ↗</button><a class="btn alt updateLink" target="_blank" href="'+BASE+'/releases">TÜM GITHUB SÜRÜMLERİ ↗</a><p class="caption">Debug imzaları/paket adları farklı olduğundan yeni APK otomatik olarak eskisinin üstüne kurulamaz.</p></div>'+
 '<div class="panel"><h2>💾 İlerlemeni koru</h2><p class="mini">v1.9 ve sonraki sürümlerde kayıtları yedek kodu ile taşı. Eski v1.8 uygulamasında bu özellik olmadığı için oradan otomatik aktarım yapılamaz.</p><button class="btn" onclick="SON_CENTER.backup()">YEDEK KODU OLUŞTUR / KOPYALA</button><textarea id="progressText" rows="4" placeholder="Buraya yedek kodunu yapıştırarak geri yükleyebilirsin."></textarea><button class="btn alt" onclick="SON_CENTER.restore()">YEDEĞİ GERİ YÜKLE</button><p class="caption" id="progressStatus" role="status">'+esc(message)+'</p></div>'+
 '<div class="panel"><div class="row"><h2>🧬 Hafıza haritası</h2><span class="chip">'+done()+'/'+ITEMS.length+'</span></div><p class="mini">Her soruda dört adımlı mekanizma zincirini aç, son kararı kendin ver.</p>'+links+'</div>'+
-'<div class="panel"><h3>🔬 Soru denetimi</h3><div class="progress"><div class="bar" style="width:'+(checked/442*100).toFixed(2)+'%"></div></div><div class="row mini"><b>'+checked+'/442 kaynak görseli incelendi</b><span>'+(442-checked)+' bekliyor</span></div><p class="caption">PDF karşılaştırması tek başına bilimsel doğrulama değildir. 57 kart oluşturuldu; 32 soru için dijital DOCX bölüm kontrolü yapıldı. Bunlar özgün PDF görsel denetimi değildir.</p></div>';
+'<div class="panel"><h3>🔬 Soru denetimi</h3><div class="progress"><div class="bar" style="width:'+(checked/442*100).toFixed(2)+'%"></div></div><div class="row mini"><b>'+checked+'/442 kaynak görseli incelendi</b><span>'+(442-checked)+' bekliyor</span></div><p class="caption">PDF karşılaştırması tek başına bilimsel doğrulama değildir. 82 kart oluşturuldu; 57 soru için dijital DOCX bölüm eşlemesi yapıldı. Bunlar özgün el yazısı PDF görsel denetimi değildir.</p></div>';
 }
 window.SON_CENTER={VERSION,view,panel,next,answer,check,onRelease,backup,restore,done,compare};
 })();
