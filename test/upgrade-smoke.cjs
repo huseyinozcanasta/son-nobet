@@ -9,19 +9,21 @@ const ctx={console,Date,JSON,Math,Number,Array,Object,Set,String,RegExp,
  localStorage:{getItem:k=>values.get(k)||null,setItem:(k,v)=>values.set(k,v),removeItem:k=>values.delete(k)},
  confirm:()=>true,location:{reload:()=>{reloaded++}},
  SonBridge:{copyText:t=>{copied=t},checkUpdates:()=>{}},
- FBT_AUDIT:{reviewed:Object.fromEntries(Array.from({length:261},(_,i)=>[i+1,{summary:'x'}]))},
+ FBT_AUDIT:{reviewed:Object.fromEntries(Array.from({length:290},(_,i)=>[i+1,{summary:'x'}]))},
  window:null};
 ctx.window=ctx;
 vm.createContext(ctx);
-for(const name of ['mechanisms-v19.js','release-center-v19.js'])vm.runInContext(fs.readFileSync(path.join(base,name),'utf8'),ctx);
-assert.equal(ctx.SON_MECHANISMS.diagrams.length,8,'8 manually reviewed mechanism diagrams');
+for(const name of ['mechanisms-v19.js','mechanisms-v110.js','release-center-v19.js'])vm.runInContext(fs.readFileSync(path.join(base,name),'utf8'),ctx);
+assert.equal(ctx.SON_MECHANISMS.diagrams.length,16,'16 manually reviewed mechanism diagrams');
 assert.equal(new Set(ctx.SON_MECHANISMS.diagrams.map(x=>x.n)).size,8);
-assert.deepEqual([...ctx.SON_MECHANISMS.diagrams.map(x=>x.n)],[16,131,151,185,207,225,234,244]);
+assert.deepEqual([...ctx.SON_MECHANISMS.diagrams.map(x=>x.n)],[16,131,151,185,207,225,234,244,246,251,253,254,258,264,267,273]);
 for(const d of ctx.SON_MECHANISMS.diagrams){assert.equal(d.steps.length,4);assert.equal(d.choices.length,3);assert.ok(d.correct>=0&&d.correct<3);assert.ok(d.url.startsWith('https://'))}
 assert.ok(ctx.SON_CENTER.view().includes('Güncelleme radarın'));
 assert.ok(ctx.SON_CENTER.view().includes('442'));
 assert.ok(ctx.SON_CENTER.panel(16).includes('HAFIZA HARİTASI'));
-assert.ok(ctx.SON_CENTER.panel(246).includes('HENÜZ HAZIR DEĞİL'));
+assert.ok(ctx.SON_CENTER.panel(246).includes('HAFIZA HARİTASI'));
+assert.equal(ctx.SON_CENTER.VERSION,'1.10.0');
+assert.ok(ctx.SON_CENTER.panel(278).includes('HENÜZ HAZIR DEĞİL'));
 for(let i=0;i<3;i++)ctx.SON_CENTER.next(16);
 ctx.SON_CENTER.answer(16,2);
 assert.equal(ctx.SON_CENTER.done(),0,'wrong answer must not unlock');

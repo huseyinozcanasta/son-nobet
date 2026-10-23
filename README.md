@@ -1,36 +1,25 @@
-# SON NÖBET v1.9 — Güncelleme merkezi, kayıt transferi ve mekanizma zincirleri
+# SON NÖBET v1.10.0 — 290 el yazısı denetimi + 16 mekanizma kartı
 
-Android çevrimdışı dahiliye FBT RPG. **442 kaynak soru** / 443 sıra numarası. **261** el yazısı PDF görüntüsüyle karşılaştırıldı; **181** soru hâlâ özgün PDF denetimi bekliyor. Kaynak aktarımının eşleştirilmesi **tıbbi doğrulama değildir**.
+FBT'nin 443 sıra numaralı, 442 mevcut soru kaydı (#358 kaynakta yok); #124'te kaynakta iki aynı numaralı soru vardır.
 
-## Yeni: Uygulama içi sürüm radarı
-- **Sürüm Merkezi → Yeni sürüm kontrolü** GitHub Releases API üzerinden mevcut en yeni sürümün doğrulanmış APK URL'sini alır ve resmi GitHub indirme sayfasını Android tarayıcısında açar.
-- İnternet gerektiren tek kısım sürüm sorgulaması ve dış referans bağlantılarıdır; FBT soruları ve mekanizma kartları **çevrimdışı** çalışır.
-- Uygulama yeni APK'yı sessizce indirmez veya kurmaz. Kullanıcı GitHub indirme bağlantısını açar.
-- Geçmiş debug APK'ları farklı **paket isimleri ve imza sertifikaları** taşır, otomatik üstüne yükseltme garanti edilmez; v1.9 `com.huseyin.sonnobet.audit9` önceki uygulamalardan bağımsızdır.
+## Denetim görev A: #246–274 — TAMAMLANDI
+- PDF **61–69. sayfalar** özgün görüntüler olarak tek tek açıldı, mevcut dijital bankanın soruları, cevapları ve sayfa geçişleriyle karşılaştırıldı.
+- **Yeni 29 kayıt** eklendi: toplam **290 / 442 (%65,6)** görsel kaynak incelemesi; **152 kayıt** hâlâ bekliyor.
+- Özgün not ve daha güncel/klinik kaynak açıklamaları iki ayrı paneldir. PDF'de görsel olarak eşlenmiş olmak tüm tıbbi ifadelerin klinik yönerge düzeyinde doğrulanmış olduğu anlamına gelmez.
+- Özellikle **#253** perianal fistül/apse daha çok Crohn, ÜK için tipik değil; **#258** ALT ve ALP'yi ULN ile normalize ederek R oranı hesabı, eski mutlak transaminaz eşikleri yanıltıcı; **#262** PSC hem intrahem de ekstrahepatik safra yollarını tutar; **#264** dekstrokardi yalnız sağ elektrik aksı demek değildir; **#269** lenfoid neoplazi cevabı özgün kaynakta kesilmiş/eksik; **#273** senkop ilk değerlendirmede ortostatik KB, EKG, öykü gerekir.
+- Kaynaklar: Rome Foundation Rome IV, NIH Toxic Megacolon, AASLD karaciğer testleri/PSC, Crohn's & Colitis Foundation, NCBI Dextrocardia, ESC hipertansiyon ve senkop. Her düzeltmenin ilgili kaynak bağlantısı karttadır.
 
-## Yeni: Soru ilerlemesini yedekle / içe aktar
-- **Yedek Kodu**: cihaz içi soru notları, öz-değerlendirme kayıtları, XP ve mekanizma madalyaları JSON olarak kopyalanır.
-- **Geri yükle**: kodu yeni uygulamanın Sürüm Merkezi'ne yapıştır, açık onayla yerel kayıtlar geri yüklenir.
-- **Önemli sınır:** v1.8 ve önceki sürümlerde dışa aktarma olmadığından eski uygulamadan ilerlemeyi otomatik almak **mümkün değil**. Bu mekanizma v1.9 ve daha yeni uyumlu sürümlerde kullanılabilir. Kod gizli kişisel öğrenme verileri içerebilir; herkesle paylaşma.
+## Yeni 8 hafıza şeması — toplam 16
+- Yeni: **#246** malabsorbsiyon bulgularının eksiklik mekanizması; **#251** Rome IV İBS; **#253** ÜK/Crohn duvar derinliği ve fistül; **#254** toksik megakolon Jalan kriterleri; **#258** karaciğer enzim R oranı; **#264** dekstrokardi anatomisi; **#267** anemi MCV→retikülosit yolu; **#273** senkop değerlendirme algoritması.
+- Önceki sekiz mekanizma, bütün soruların arşivi ve kayıtlar korunur. Her şema dört açılır basamak + klinik hafıza ipucu + test içerir. **Geri kalan sorular için otomatik/genel geçer şema uydurulmamıştır.**
+- Mekanizma madalyalarının `son-nobet-mechanisms-v1` anahtarında tutulması sürüm 1.9'dan aktarılan yedeklerle uyumludur.
 
-## Yeni: 8 kaynaklı mekanizma haritası
-Ayrıntıları dört adımda açılan, aktif hatırlama kontrolü içeren etkileşimli ders kartları:
-- FBT #16: hipokalemi ve hiperkalsemi → gastrointestinal hipomotilite
-- #131: SIAD ve hipotonik hiponatremi
-- #151: hiperkalemi → kardiyak membran korunması, hücre içi kaydırma, eliminasyon
-- #185: Cushing tarama → ACTH ayrımı
-- #207: adrenal kriz tanı/tedavi mantığı
-- #225: febril nötropenide seçici gram-pozitif antibiyotik kapsamı
-- #234: miyelom CRAB organ hasarı
-- #244: H. pylori direnç, tedavi seçimi ve eradikasyon kontrolü
+## Android ve yeni sürüm aktarımı
+- Uygulama içindeki **Sürüm Merkezi** GitHub Releases üzerinde gerçek bir APK bağlantısını kontrol eder; APK Android tarayıcısında indirilir (uygulama sessiz kurulum yapmaz).
+- v1.9'dan *Sürüm Merkezi → Yedek kodunu oluştur/kopyala*, v1.10'dan *geri yükle*. v1.8 ve eski sürümlerde yedekleme yoktu; geriye dönük otomatik veri aktarımı yapılamaz.
+- Android paket: `com.huseyin.sonnobet.audit10`. Eski debug uygulamaların farklı paket/sertifikalı olması nedeniyle ayrı kurulur.
+- İçerik/regresyon, mekanizma ve backup, imza/bütünlük, Android 12 emülatör kurulum/açılış testleri zorunlu.
+- [GitHub v1.10.0 APK ve sürüm notları](https://github.com/huseyinozcanasta/son-nobet/releases/tag/v1.10.0).
+- [Tüm kalan görevler](ROADMAP.md): sıradaki kaynak denetimi **#278–309**.
 
-İçerik kaynakları mekanizma panelinde bağlantılıdır. Tedavi algoritmaları aşırı basitleştirilmemiş ve gerçek klinik yönetim için amaçlanmamıştır. Diğer sorulara otomatik veya kanıtsız şemalar eklenmemiştir.
-
-## Geliştirme kontrolü
-- `test/audit-smoke.cjs`: eski 261 PDF eşleşmesi, 442 soru ve tekrar regresyonları
-- `test/upgrade-smoke.cjs`: yeni mekanizma veri bütünlüğü, sürüm karşılaştırması, yedekleme ve güvenilmeyen APK URL kontrolü
-- Android 12 emülatör APK kurulum/açılış, paket/sertifika doğrulama GitHub Actions tarafından gerçekleştirilir.
-
-[GitHub Releases v1.9.0](https://github.com/huseyinozcanasta/son-nobet/releases/tag/v1.9.0)
-
-**Sıradaki kaynak denetimi #246'dan sürer; tamamlanmamış 181 soruya görsel olarak bakıldı iddiasında bulunulmaz.**
+Eğitim içindir. Gerçek hasta yönetimi ve reçete için kullanılmaz.

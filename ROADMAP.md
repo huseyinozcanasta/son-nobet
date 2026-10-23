@@ -1,6 +1,6 @@
 # SON NÖBET — Kontrollü Gelişim Görevleri
 
-**Durum (v1.9):** FBT'de 443 sıra numarası / 442 mevcut indeks (kaynakta #358 yok; #124 iki farklı alt soru içeriyor). Orijinal taranmış PDF görüntüsüyle karşılaştırılan **261**; bekleyen **181**. Görsel transkripsiyon kontrolü, tıbbi kanıta dayalı doğrulama **değildir**.
+**Durum (v1.10):** FBT'de 443 sıra numarası / 442 mevcut indeks (kaynakta #358 yok; #124 iki farklı alt soru içeriyor). Orijinal taranmış PDF görüntüsüyle karşılaştırılan **290**; bekleyen **152**. Görsel transkripsiyon kontrolü, tıbbi kanıta dayalı doğrulama **değildir**.
 
 ## Birim görev / kabul kriteri
 
@@ -26,7 +26,7 @@ Her yeni FBT soru paketi için:
 
 ## Kalan görsel kaynak denetimi: sıralı görevler
 
-- [ ] **Bölüm A:** FBT #246–274 (29 soru)
+- [x] **Bölüm A:** FBT #246–274 (29 soru; v1.10; PDF s.61–69)
 - [ ] **Bölüm B:** FBT #278–309 (32 soru)
 - [ ] **Bölüm C:** FBT #310–341 (32 soru)
 - [ ] **Bölüm D:** FBT #346–357 ve #359–371 (25 soru; #358 yok)
@@ -34,11 +34,12 @@ Her yeni FBT soru paketi için:
 - [ ] **Bölüm F:** FBT #406–435 (30 soru)
 - [ ] **Bölüm G:** FBT #441–443 (3 soru)
 
-**Toplam kalan: 181 soru.** Önceden görsel denetimi yapılan #275–277, #342–345, #372–375 ve #436–440 bu tekrar listesine alınmaz.
+**Toplam kalan: 152 soru.** Önceden görsel denetimi yapılan #275–277, #342–345, #372–375 ve #436–440 bu tekrar listesine alınmaz.
 
 ## Mekanizma geliştirme
 
 - [x] #16 hipokalemi/hiperkalsemi, #131 SIAD, #151 hiperkalemi, #185 Cushing, #207 adrenal kriz, #225 febril nötropeni, #234 miyelom ve #244 H. pylori.
+- [x] v1.10: #246 malabsorbsiyon, #251 Rome IV İBS, #253 Crohn fistül, #254 toksik megakolon, #258 R oranı, #264 dekstrokardi, #267 anemi MCV, #273 senkop.
 - [ ] Her yeni kaynak denetim paketinin sınav açısından yüksek getirili en az 5 sorusunda mekanizma şeması; tüm mevcut eski sorular için ayrıca kaynaklı kartlar.
 - [ ] Neden → fizyoloji/patofizyoloji → klinik bulgu → ayırıcı tanı/sözlü anlatım zinciri; riskli konularda ilaç veya reçete talimatlarını kişisel klinik tavsiye gibi sunma.
 - [ ] Kartlarda yanlış cevap tekrar döngüsü ve ertesi gün aralıklı tekrar entegrasyonu.
