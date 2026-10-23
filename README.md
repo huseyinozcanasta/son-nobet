@@ -1,18 +1,29 @@
-# SON NÖBET 1.1 — Kaynak doğrulama ve öğretici notlar
+# SON NÖBET v1.2 — Bütün FBT sorularında kaynak bütünlüğü taraması
 
-Dahiliye FBT'nin **443 numaralı dizini (442 özgün soru)**, aktif hatırlama, XP, tekrar ve FBT #016 oyununu içeren çevrimdışı Android uygulaması.
+109 sayfalık özgün tarama ve 109 sayfalık DOCX aktarımındaki **442 gerçek FBT sorusu**, 1–443 arası tüm numaralarla birlikte erişilebilir. #358 kaynakta yoktur.
 
-## 1.1 doğrulama kapsamı
-- **FBT #1–21:** orijinal PDF'nin **2–6. sayfalarının** el yazısı görselleri, dijital aktarım ile karşılaştırıldı. Bu, klinik doğruluk onayı değil kaynak aktarım denetimidir.
-- **FBT #22–443:** özgün PDF ile **henüz tek tek karşılaştırılmadı** (#358 kaynakta yok).
-- Tüm sorularda eski özgün yanıt korunur; ilk 21 soruya ayrı öğretici açıklama/uyarı ve mevcut olduğu yerde Akdeniz Üniversitesi ders slaytları veya klinik kılavuz bağlantısı eklenmiştir.
-- Önemli düzeltmeler: #10 DKA'da dehidratasyon olabilir, #15 RAAS blokerleri diüretik değildir, #18 Ranson ölçütü **BUN artışı >5 mg/dL**, #21 RRT için tek başına BUN/kreatinin eşiği yeterli değildir.
-- Kullandığımız dersler: Akdeniz Üniversitesi Kardiyovasküler Sistem, Abdomen Muayenesi, Sjögren, Sıvı-Elektrolit, Hipertansiyon ve ABH. Gerektiğinde KDIGO, OHSU Ranson ve AHA/ACC bilgileri.
-- 442 sorunun tamamının bilimsel doğrulaması yapıldı iddiasında bulunulmaz. 442 sorunun tamamına 8+ dakikalık ders de yazılmamıştır.
+## Kaynak denetimi kapsamı
+**Bütün 442 soru:** Özgün PDF sayfa numarası var mı ve kaynak cevap notu kesilmiş/şüpheli mi diye tarandı. 442/442 soru sayfa 2–108 arasında geçerli sayfalara eşleşiyor. 146 kayıtta `[?]`, 18 kayıtta `okunamadı`, 3 kayıtta `Kaynak notu kısaltıldı` var; #443 cevabına aktarım kalite raporu karışmıştı, ekranda cevap kısmından ayrıldı. Orijinal veri korunur.
 
-## Android
-[GitHub Release v1.1.0](https://github.com/huseyinozcanasta/son-nobet/releases/tag/v1.1.0).
-Paket: `com.huseyin.sonnobet.audit`; önceki 1.0 sürümünün yanına kurulur. **İlerleme otomatik aktarılmaz**. APK debug imzasıyla yayımlandığı için üstüne güncellemede kalıcı anahtar gerekir. Bağımsız ilk uygulama testleriyle yayınlanır.
+**59 soru:** Orijinal taramanın 2–7, 12, 24, 53, 70, 88, 93 ve 107. sayfalarındaki soruların el yazısı görselleri manuel incelendi (FBT #1–21, #22–26, #43–49, #99–103, #214–218, #275–277, #342–345, #372–375, #436–440).
 
-CI: Node veri/güvenilirlik testi, APK paketi/imza/hizalama kontrolü, Android 12 emülatör kurulumu ve açılış testi.
-Tıbbi eğitim amaçlıdır, gerçek hasta yönetiminde kullanılmaz.
+**383 soru:** Orijinal el yazısıyla tek tek görsel karşılaştırma hâlâ bekleniyor. Bu sorular "PDF karşılaştırması bekliyor" etiketi taşır. Başlı başına sayfa referansının doğru aralıkta olması görsel karşılaştırma demek değildir.
+
+## Tıbbi düzeltmeler
+- #43 ADA 2026 diabetes tanı ölçütleri **≥** eşikleri ve semptomlu rastgele PG ≥200 mg/dL.
+- #101 standart Phalen bilek fleksiyonu, ekstansiyon reverse Phalen.
+- #215 Whipple triadı sabit <50 mg/dL demek değildir.
+- #276 SIAD tanısında hipotoni/övolemik bulgular ve alternatif nedenlerin dışlanması esastır.
+- Önceki sürümdeki #10 (DKA dehidratasyonu), #15 (diüretik sınıflandırması), #18 (Ranson BUN artışı), #21 (renal replasman kararı) uyarıları korunur.
+
+**Ders slaytları:** 30 kullanıcının Drive ders PDF'si metin üzerinden konu açısından tarandı. **100 soruda** güçlü ders *başlık* eşleşmesi bulundu ve "otomatik slayt önerisi — cevap doğrulaması değil" olarak gösterilir. Diğer sorulara alakasız slayt atanmamıştır. Derste öğrendiğin tedavi/ilaç ayrıntıları, güncel kılavuzlar ve hocanın sunumuyla ayrıca doğrulanmalıdır.
+
+## Oyun
+10 soruluk nöbet, cevabı gizleyerek önce kendi kendini sınama, 4 dereceli öz değerlendirme, XP/tekrar, filtreler ve FBT #016'nın üç uzun dersi sürüyor. Açıklama ve kaynak düzeltmesi **cevap gösterilmeden önce açılmaz**.
+
+## Yükleme
+[GitHub Releases v1.2.0](https://github.com/huseyinozcanasta/son-nobet/releases/tag/v1.2.0)
+
+Yeni paket kimliği `com.huseyin.sonnobet.audit2` ile v1.0 ve v1.1'in yanına kurulur. **Eski ilerlemeyi otomatik aktarmıyor**. Debug APK için kalıcı yayın imzası ayrıca gereklidir.
+
+Bu araç sözlü sınav hazırlığı içindir. 442 sorunun her birinin güncel klinik literatür doğrulamasından geçtiği iddia edilmez.
