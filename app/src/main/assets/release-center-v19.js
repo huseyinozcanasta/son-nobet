@@ -1,7 +1,7 @@
 /* SON NOBET 1.9 -- offline memory map and release manager */
 (function(){
 "use strict";
-const VERSION="1.11.0", BASE="https://github.com/huseyinozcanasta/son-nobet", STORE="son-nobet-mechanisms-v1";
+const VERSION="1.12.0", BASE="https://github.com/huseyinozcanasta/son-nobet", STORE="son-nobet-mechanisms-v1";
 const KEYS=["son-nobet-fbt-v1","son-nobet-v1","son-nobet-v2",STORE];
 const ITEMS=(window.SON_MECHANISMS||{}).diagrams||[];
 const BY={};ITEMS.forEach(x=>{BY[x.n]=x});
@@ -19,7 +19,7 @@ let nodes=d.steps.map((part,i)=>'<div class="memoryChunk '+(i<stage?"visible":"c
 let opts=d.choices.map((v,i)=>'<button class="option" onclick="SON_CENTER.answer('+n+','+i+')">'+String.fromCharCode(65+i)+'. '+esc(v)+'</button>').join("");
 return '<div class="memoryBoard '+esc(d.color)+'"><div class="memoryEyebrow">🧬 HAFIZA HARİTASI · FBT #'+n+'</div><h3>'+esc(d.title)+'</h3><p class="caption">'+esc(d.label)+'</p><div class="memoryHook">'+esc(d.hook)+'</div>'+nodes+
 (stage<d.steps.length?'<button class="btn alt" onclick="SON_CENTER.next('+n+')">SONRAKİ HALKAYI AÇ ↓</button>':passed?'<div class="success">✦ Mekanizma kristali kazanıldı. Zinciri kendi cümlenle yeniden kur.</div>':'<div class="memoryChallenge"><b>⚔️ AKTİF HATIRLAMA</b><h3>'+esc(d.check)+'</h3>'+opts+'<div id="memoryMessage-'+n+'"></div></div>')+
-'<p class="caption">Doğrulama kaynağı: <a target="_blank" href="'+esc(d.url)+'">'+esc(d.source)+'</a>. Eğitim amaçlı sadeleştirilmiş şemadır.</p></div>';
+(d.sourceAuditPending?'<p class="hint">⚠️ Bu mekanizma bilimsel referansla çalışılmıştır; bu FBT sorusu özgün el yazısı PDF ile henüz görsel olarak karşılaştırılmamıştır.</p>':'')+'<p class="caption">Bilimsel referans: <a target="_blank" href="'+esc(d.url)+'">'+esc(d.source)+'</a>. Eğitim amaçlı sadeleştirilmiş şemadır.</p></div>';
 }
 function panel(n){n=Number(n);return BY[n]?'<div id="memory-'+n+'">'+draw(n)+'</div>':'<div class="panel memoryPending"><span class="chip lock">MEKANİZMA KARTI HENÜZ HAZIR DEĞİL</span><p class="mini">Yanlış neden-sonuç zinciri oluşturmamak için bu soru kaynak kontrolü tamamlanana kadar bekliyor.</p></div>'}
 function next(n){n=Number(n);if(!BY[n]||mem.passed[n])return;mem.stage[n]=Math.min(BY[n].steps.length,(Number(mem.stage[n])||1)+1);save();let e=document.getElementById("memory-"+n);if(e)e.innerHTML=draw(n)}
@@ -52,7 +52,7 @@ let links=ITEMS.map(d=>'<button class="memoryIndex" onclick="FBT.open('+d.n+')">
 return '<button class="btn small alt" onclick="go(&quot;home&quot;)">← ANA ÜS</button><div class="eyebrow" style="margin-top:22px">SON NÖBET · SÜRÜM MERKEZİ</div><h1>YENİ SÜRÜM.<br><span style="color:var(--cyan)">AYNI HEDEF.</span></h1><div class="panel hero"><div class="row"><span class="chip">KURULU v'+VERSION+'</span><span class="tag">GITHUB RELEASES</span></div><h2 style="margin-top:15px">Güncelleme radarın</h2><p class="mini">Yeni APK için GitHub sürümlerini kontrol et. İnternet yokken dersler çevrimdışı çalışır.</p><div id="releaseInfo">'+latestHTML()+'</div><button class="btn" onclick="SON_CENTER.check()">YENİ SÜRÜM KONTROLÜ ↗</button><a class="btn alt updateLink" target="_blank" href="'+BASE+'/releases">TÜM GITHUB SÜRÜMLERİ ↗</a><p class="caption">Debug imzaları/paket adları farklı olduğundan yeni APK otomatik olarak eskisinin üstüne kurulamaz.</p></div>'+
 '<div class="panel"><h2>💾 İlerlemeni koru</h2><p class="mini">v1.9 ve sonraki sürümlerde kayıtları yedek kodu ile taşı. Eski v1.8 uygulamasında bu özellik olmadığı için oradan otomatik aktarım yapılamaz.</p><button class="btn" onclick="SON_CENTER.backup()">YEDEK KODU OLUŞTUR / KOPYALA</button><textarea id="progressText" rows="4" placeholder="Buraya yedek kodunu yapıştırarak geri yükleyebilirsin."></textarea><button class="btn alt" onclick="SON_CENTER.restore()">YEDEĞİ GERİ YÜKLE</button><p class="caption" id="progressStatus" role="status">'+esc(message)+'</p></div>'+
 '<div class="panel"><div class="row"><h2>🧬 Hafıza haritası</h2><span class="chip">'+done()+'/'+ITEMS.length+'</span></div><p class="mini">Her soruda dört adımlı mekanizma zincirini aç, son kararı kendin ver.</p>'+links+'</div>'+
-'<div class="panel"><h3>🔬 Soru denetimi</h3><div class="progress"><div class="bar" style="width:'+(checked/442*100).toFixed(2)+'%"></div></div><div class="row mini"><b>'+checked+'/442 kaynak görseli incelendi</b><span>'+(442-checked)+' bekliyor</span></div><p class="caption">PDF karşılaştırması tek başına bilimsel doğrulama değildir. Henüz denetlenmeyen soru için mekanizma uydurulmaz.</p></div>';
+'<div class="panel"><h3>🔬 Soru denetimi</h3><div class="progress"><div class="bar" style="width:'+(checked/442*100).toFixed(2)+'%"></div></div><div class="row mini"><b>'+checked+'/442 kaynak görseli incelendi</b><span>'+(442-checked)+' bekliyor</span></div><p class="caption">PDF karşılaştırması tek başına bilimsel doğrulama değildir. Yeni kartlarda literatür doğrulaması ve orijinal PDF görsel denetimi ayrı statülerdir.</p></div>';
 }
 window.SON_CENTER={VERSION,view,panel,next,answer,check,onRelease,backup,restore,done,compare};
 })();

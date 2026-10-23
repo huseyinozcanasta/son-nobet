@@ -1,26 +1,30 @@
-# SON NÖBET v1.11 — 322 özgün FBT PDF denetimi, 25 mekanizma haritası
+# SON NÖBET v1.12 — 33 mekanizma haritası, 322/442 özgün PDF denetimi
 
-**Kapsam:** 442 mevcut kaynak kaydı / 443 sıra numarası (#358 kaynakta eksik, #124'te aynı numaralı iki ayrı alt soru var).
+**Durum:** 442 mevcut FBT kaynak sorusu / 443 sıra numarası (#358 eksik; #124 iki alt soru içerir). El yazısı 109 sayfalık PDF ile **322/442** kaydın görsel karşılaştırması tamamlandı; **120** kayıt bekliyor. Bu sayılar v1.11'den beri **değişmedi**.
 
-## Denetim Bölüm B tamamlandı: #278–309
+## v1.12 değişiklikleri — PDF denetimi yerine GEÇMEZ
 
-- Özgün **109 sayfalık el yazısı PDF'nin 71–78. sayfaları** incelendi ve dijital aktarım ile #278–309 arasındaki **32 kayıt** karşılaştırıldı.
-- **322/442 (%72,9)** numaralı kayıt görsel denetimden geçti. **120 soru** bu kontrole hâlâ muhtaç.
-- Özgün kaynak yanıtı değiştirilmedi; yanında öğretici açıklama, gerektiğinde uyarı ve doğrulanmış dış kaynak linkleri vardır. 'PDF GÖRSELİ GÖRÜLDÜ' bir rehber/klinik onay işareti **değildir**.
-- Özellikle: #281 FAP riski tedavisiz klasik FAP'a ait, erken izlem ve cerrahiyle yönetilebilir; #284 McBurney simetriği tek güvenli parasentez noktası değil, ultrason önerilir; #289 tiroid malign US riskinde vaskülarite tek başına tanı değildir; #290 SAAG ≥1,1 g/dL portal hipertansiyon lehine; #291 asit PMN ≥250 ile SBP değerlendir; #297 böbrek de solunumla hareket eder; #299 hiperkalsemide kısalmış QT, 'geniş T' tipik değil; #302 yalancı hiperkalemi uzun turnike/yumruk sıkmayla gelişebilir.
-- Başlıca bilimsel kaynaklar: NCI SVK sendromu, GeneReviews APC/FAP, Society of Hospital Medicine ultrason-guided paracentesis, European Thyroid Association EU‑TIRADS 2023, AASLD 2021 Ascites/SBP, Merck Manual Hyperkalemia, ESC atriyal fibrilasyon.
+- Dijital FBT #310–341 bölümünden sekiz yüksek öncelikli soru için referanslı dört halkalı mekanizma haritası ve aktif hatırlama: #311 kabızlık (Rome IV), #318 peritonit ağrısı, #319 AAA rüptürü, #320 Budd–Chiari, #330 hipoglisemi, #338 Takayasu, #340 GPA, #341 EGPA.
+- Bu **8 kartın** güncel bilimsel referans bağlantıları ve kritik düzeltmeleri vardır, fakat **özgün el yazısı PDF sayfa görüntüleri bu sürümde görülmedi**. Soru ekranlarında açıkça *Kılavuz notu — PDF denetimi yapılmadı* uyarısı görünür.
+- Dijital FBT özgün yanıtları değişmedi. Önceki 25 harita korunarak toplam **33** yapıldı.
+- Önemli yanlış/eskimiş ifadeler: Rome IV kabızlık süre+belirti şartları, Budd–Chiari'nin hepatik venöz obstrüksiyon olması; Takayasu/GPA/EGPA'da 1990 sınıflandırma kriterlerinin tanı olarak kullanılmaması.
+- Sürüm Merkezi GitHub'dan yeni APK'yı kontrol eder; v1.9+ ilerleme yedeği/geri yükleme JSON koduyla sürdürülür. Eski sürümün üzerine imzalı otomatik kurulum henüz desteklenmez.
 
-## Dokuz yeni aktif mekanizma görevi — toplam 25
+## Kaynaklar
 
-FBT **#278** SVK, **#281** FAP, **#284** parasentez, **#289** tiroid US, **#290** SAAG ve asit, **#291** SBP, **#301** potasyum EKG, **#302** yalancı hiperkalemi, **#306** AF-pulsus defisit.
+- [Rome Foundation IV](https://theromefoundation.org/rome-iv/rome-iv-criteria/)
+- [Merck — Acute Abdominal Pain](https://www.merckmanuals.com/professional/gastrointestinal-disorders/acute-abdomen-and-surgical-gastroenterology/acute-abdominal-pain)
+- [NICE — AAA NG156](https://www.nice.org.uk/guidance/ng156/chapter/recommendations)
+- [Merck — Budd–Chiari](https://www.merckmanuals.com/professional/hepatic-and-biliary-disorders/vascular-disorders-of-the-liver/budd-chiari-syndrome)
+- [ADA — Hypoglycemia 2025](https://doi.org/10.2337/dc25-s006)
+- [2022 ACR/EULAR — Takayasu](https://ard.bmj.com/content/81/12/1654)
+- [2022 ACR/EULAR — GPA](https://pubmed.ncbi.nlm.nih.gov/35110333/)
+- [2022 ACR/EULAR — EGPA](https://pubmed.ncbi.nlm.nih.gov/35106968/)
 
-Her mekanizma 4 aşamalı açılır akış, hafıza kodu, 3 seçenekli aktif hatırlama ve güvenilir dış kaynak bağlantısı içerir. Diğer sorulara mekanizma oluşturuldu denmez.
+## Dağıtım ve veri güvenliği
 
-## Sürüm ve çalışma kaydı güvenliği
-- Sürüm Merkezi'nden GitHub Releases API üzerinden yeni APK kontrolü ve resmi indirme linki.
-- **v1.10 uygulamasında yedek kodunu al, v1.11 Sürüm Merkezi'nde geri yükle.** İlerleme ve daha önce kazanılan mekanizma madalyaları aynı `son-nobet-mechanisms-v1` yerel anahtarında tutulur.
-- Android paket `com.huseyin.sonnobet.audit11` eski sürümle yan yana kurulur; farklı debug imzalı eski paketlerin üzerine otomatik kurulmaz.
-- Github Actions Node FBT ve mekanizma/yedek regresyonları, APK imza/bütünlük, Android 12 emülatör kurulumu/açılışı ve başarılı test sonunda pre-release yayımlama gerçekleştirir.
-- [GitHub v1.11.0 indir](https://github.com/huseyinozcanasta/son-nobet/releases/tag/v1.11.0)
+Android APK debug/deneysel, çevrimdışı ders ve çevrimiçi sürüm kontrolü. **v1.11 -> v1.12**: Eski sürümde Sürüm Merkezi -> Yedek kodu oluştur/kopyala; yeni sürümü kurup aynı menüden geri yükle. Uygulama paketleri `com.huseyin.sonnobet.audit11` ve `.audit12` birbirinden bağımsızdır. Soru 16 uzun dersleri, oyun XP'si ve mekanizma ödülleri korunur (geri yüklemeden sonra).
 
-**Sonraki paket: FBT #310–341, 32 soru.** Kalan kaynak denetimi: **120 soru**. Klinik ve görsel doğrulama birbirinden ayrıdır. Eğitim amaçlıdır, gerçek hasta yönetimi için kullanılmaz.
+Uygulama eğitim içindir, hasta bakımı veya reçete talimatı değildir. Resmi APK yalnız başarılı CI sonrasında yayımlanır.
+
+**Sonraki gerçek görsel kontrol:** FBT #310–341, orijinal PDF s.78–87; doğrulama tamamlanmadan 322 sayısı artırılmayacak.
