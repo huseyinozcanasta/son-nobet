@@ -13,10 +13,10 @@ const ctx={console,Date,JSON,Math,Number,Array,Object,Set,String,RegExp,
  window:null};
 ctx.window=ctx;
 vm.createContext(ctx);
-for(const name of ['mechanisms-v19.js','mechanisms-v110.js','mechanisms-v111.js','mechanisms-v112.js','mechanisms-v113.js','release-center-v19.js'])vm.runInContext(fs.readFileSync(path.join(base,name),'utf8'),ctx);
-assert.equal(ctx.SON_MECHANISMS.diagrams.length,57,'57 source-referenced mechanism diagrams');
-assert.equal(new Set(ctx.SON_MECHANISMS.diagrams.map(x=>x.n)).size,57);
-assert.deepEqual([...ctx.SON_MECHANISMS.diagrams.map(x=>x.n)],[16,131,151,185,207,225,234,244,246,251,253,254,258,264,267,273,278,281,284,289,290,291,301,302,306,311,318,319,320,330,338,340,341,310,312,313,314,315,316,317,321,322,323,324,325,326,327,328,329,331,332,333,334,335,336,337,339]);
+for(const name of ['mechanisms-v19.js','mechanisms-v110.js','mechanisms-v111.js','mechanisms-v112.js','mechanisms-v113.js','mechanisms-v114.js','release-center-v19.js'])vm.runInContext(fs.readFileSync(path.join(base,name),'utf8'),ctx);
+assert.equal(ctx.SON_MECHANISMS.diagrams.length,82,'82 source-referenced mechanism diagrams');
+assert.equal(new Set(ctx.SON_MECHANISMS.diagrams.map(x=>x.n)).size,82);
+assert.deepEqual([...ctx.SON_MECHANISMS.diagrams.map(x=>x.n)],[16,131,151,185,207,225,234,244,246,251,253,254,258,264,267,273,278,281,284,289,290,291,301,302,306,311,318,319,320,330,338,340,341,310,312,313,314,315,316,317,321,322,323,324,325,326,327,328,329,331,332,333,334,335,336,337,339,346,347,348,349,350,351,352,353,354,355,356,357,359,360,361,362,363,364,365,366,367,368,369,370,371]);
 for(const d of ctx.SON_MECHANISMS.diagrams){assert.equal(d.steps.length,4);assert.equal(d.choices.length,3);assert.ok(d.correct>=0&&d.correct<3);assert.ok(d.url.startsWith('https://'))}
 assert.ok(ctx.SON_CENTER.view().includes('Güncelleme radarın'));
 assert.ok(ctx.SON_CENTER.view().includes('442'));
@@ -24,13 +24,19 @@ assert.ok(ctx.SON_CENTER.panel(16).includes('HAFIZA HARİTASI'));
 assert.ok(ctx.SON_CENTER.panel(246).includes('HAFIZA HARİTASI'));
 assert.ok(ctx.SON_CENTER.panel(290).includes('HAFIZA HARİTASI'));
 assert.ok(ctx.SON_CENTER.panel(306).includes('HAFIZA HARİTASI'));
-assert.ok(ctx.SON_CENTER.view().includes('57'));
+assert.ok(ctx.SON_CENTER.view().includes('82'));
 assert.ok(ctx.SON_CENTER.panel(311).includes('özgün el yazısı PDF ile henüz görsel olarak karşılaştırılmamıştır'));
 assert.ok(ctx.SON_CENTER.panel(338).includes('Takayasu'));
-assert.equal(ctx.SON_MECHANISMS.diagrams.filter(x=>x.sourceAuditPending).length,32);
-assert.equal(ctx.SON_CENTER.VERSION,'1.13.0');
+assert.equal(ctx.SON_MECHANISMS.diagrams.filter(x=>x.sourceAuditPending).length,57);
+assert.equal(ctx.SON_CENTER.VERSION,'1.14.0');
 assert.ok(ctx.SON_CENTER.panel(310).includes('HAFIZA HARİTASI'));
 for(let n=310;n<=341;n++)assert.ok(ctx.SON_CENTER.panel(n).includes('HAFIZA HARİTASI'),'missing mechanism '+n);
+for(const n of [...Array.from({length:12},(_,i)=>346+i),...Array.from({length:13},(_,i)=>359+i)]){assert.ok(ctx.SON_CENTER.panel(n).includes('HAFIZA HARİTASI'),'missing oncology '+n);assert.ok(ctx.SON_CENTER.panel(n).includes('özgün el yazısı PDF'))}
+assert.ok(ctx.SON_CENTER.panel(358).includes('HENÜZ HAZIR DEĞİL'));
+assert.ok(ctx.SON_CENTER.panel(368).includes('immünoterapi'));
+assert.ok(ctx.SON_CENTER.panel(356).includes('%20'));
+assert.ok(ctx.SON_CENTER.panel(355).includes('amoksisilin'));
+assert.equal(ctx.SON_MECHANISMS.diagrams.filter(d=>d.n>=346&&d.n<=371).length,25);
 for(let i=0;i<3;i++)ctx.SON_CENTER.next(16);
 ctx.SON_CENTER.answer(16,2);
 assert.equal(ctx.SON_CENTER.done(),0,'wrong answer must not unlock');
