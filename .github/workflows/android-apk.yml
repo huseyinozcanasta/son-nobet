@@ -31,6 +31,18 @@ jobs:
           gradle-version: '8.9'
       - name: Build debug APK
         run: gradle assembleDebug --no-daemon --stacktrace
+      - name: Add dual-signature compatibility for Xiaomi Android
+        run: |
+          APK="app/build/outputs/apk/debug/app-debug.apk"
+          "$ANDROID_HOME/build-tools/35.0.0/zipalign" -f -v 4 "$APK" "$RUNNER_TEMP/son-nobet-aligned.apk"
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" sign \
+            --ks "$HOME/.android/debug.keystore" \
+            --ks-key-alias androiddebugkey \
+            --ks-pass pass:android --key-pass pass:android \
+            --min-sdk-version 24 \
+            --v1-signing-enabled true --v2-signing-enabled true \
+            --out "$RUNNER_TEMP/son-nobet-dual-signed.apk" "$RUNNER_TEMP/son-nobet-aligned.apk"
+          cp "$RUNNER_TEMP/son-nobet-dual-signed.apk" "$APK"
       - name: Validate the APK before publishing
         run: |
           APK="app/build/outputs/apk/debug/app-debug.apk"
