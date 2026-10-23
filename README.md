@@ -1,32 +1,28 @@
-# SON NÖBET v1.6.0 — FBT #144–177 Kaynak Denetimi
+# SON NÖBET v1.7 — 234 FBT kaydı için orijinal kaynak denetimi
 
-**Kaynak:** 109 sayfalık taranmış FBT PDF ve onun `Dahiliye_Birlesik_Sayfa_001-109.docx` dijital aktarımı. 443 numaralı level haritasında **442 kaynak numaralı kayıt** vardır; #358 kaynağın kendisinde yoktur. #124 PDF'de iki kez numaralanmıştır ve ikinci alt soru #124 içinde ayrıca korunmuştur.
+Sözlü hazırlığı için kaynak: taranmış 109 sayfalık özgün FBT PDF ve onun DOCX dijital aktarımı. **443 sıra numarası, 442 kayıt**; #358 kaynakta yok; #124'te kaynak üzerinde iki aynı sıra numaralı alt soru bulunuyor.
 
-## Kaynak karşılaştırması
-- **198/442 numaralı kayıt** orijinal el yazısı PDF görselleriyle karşılaştırıldı.
-- **244/442 numaralı kayıt** henüz tek tek görüntü denetimi bekler.
-- Bu sürüm: **#144–177** (34 yeni kayıt), özgün PDF **36–43. sayfalar**.
-- Her kayıt: özgün kaynak cevabı değiştirmeden tutulur; sayfa, düzeltici öğretici açıklama, uyarı ve bazı kayıtlar için Akdeniz Üniversitesi slaytı veya güncel kılavuz bağlantısı gösterilir.
-- Kaynak karşılaştırması = transkripsiyon/soru eşleşmesinin görsel denetimi; **bu 198 cevabın tamamının güncel klinik kaynaklarla tek tek doğrulandığı anlamına gelmez**.
-- Otomatik slayt eşleştirmesi yalnız okuma önerisidir, bilimsel doğrulama değildir.
+## Denetim ilerlemesi
+- **234/442** soru özgün el yazısı PDF'nin ilgili sayfalarıyla manuel görsel karşılaştırıldı.
+- **208** soru için görsel kontrol henüz tamamlanmadı. Bu, daha önceki v1.6 aşamasına eklenen **#178–213 arasındaki 36 soru** anlamına gelir.
+- Yeni görsel kaynak: PDF **44–52. sayfalar**. Cushing/endokrin testlerinin görsel notlarında tarihsel/etkinlik dışı kesin sayılar görüldü; orijinal metin silinmedi.
+- **Kaynak karşılaştırması ile bilimsel doğrulama farklı şeylerdir.** 'PDF görüldü' etiketi orijinal sorunun görüntüsünü kontrol ettiğimizi ifade eder; bütün tıbbi ifadelerin güncel kılavuzlarda kesin doğrulandığını değil.
+- Uygulama orijinal notu ancak cevap açıldıktan sonra, ve ayrıca 'öğretici açıklama', 'kaynak uyarısı' ve uygun referansları gösterir.
 
-## Klinik güvenlik açısından öne çıkan düzeltmeler
-- #145: Diyaliz/renal replasman endikasyonunda BUN/kreatinin eşiklerini değişmez kural gibi kullanma.
-- #151: Kalsiyum kalp zarını stabilize eder, serum potasyumunu düşürmez. Bikarbonat akut hiperkalemide rutin değildir.
-- #152: Metformin bütün KBH hastalarında kontrendike değildir; **eGFR <30** için kontrendikasyon ve **eGFR 30–44** için yeni başlama uyarısı bulunur.
-- #153: Eski hepatit B/pnömokok aşılama şemalarını tüm hastalara uygulama.
-- #156: Amiloidoz genellikle glomerüler proteinüriyle ilişkilidir; klasik overflow hafif zincir/hemoglobin/miyoglobin proteinürisi ile ayrılır.
-- #159: 'Nefritik sendromda hematüri %100' evrensel tanı ölçütü değildir.
-- #163: *E. histolytica* tedavisinde invaziv evre ilacından sonra lüminal tedavi gerekir.
-- #167: AIN tüm hastalarda ateş–döküntü–eozinofili göstermeyebilir; tüm hastalar için biyopsi zorunlu değil.
-- #173: Basit sistit için eski rutin florokinolon reçetelerini güncel ilk seçenek tedavi gibi kullanma.
-- #176: Hipertansif acilde hedef organ hasarı ve duruma özgü KB düşürme hedefleri değerlendirilir.
+## Bu sürümün önemli açıklamaları
+- **#185–186:** Cushing taramasında 1 mg DST, geç gece tükürük ve 24 saat idrar kortizolü; kaynakta yer alan '2/3 tanı' ve tek ACTH >500 ektopik lokasyon ezberleri yanlıştır. Endocrine Society.
+- **#187–189:** Tip 1 DM otoantikorları, açlık glukozu tanı eşiği, MODY'nin aile/genetik ipuçları; kaynakta 'MODY hep 25 yaş altı' sınırlaması hatalı olabilir.
+- **#191:** Hipoglisemide <70 mg/dL alarm, <54 mg/dL klinik anlamlı seviye; bilinci kapalı hastaya ağızdan glukoz verilmez.
+- **#198–202:** VKİ alt normal sınırı 18,5; Charcot ayağında nöropatiyle travma; diyabetik ayak Wagner 0–5 ve ABI'nin DM'de yalancı yüksek ölçülebilmesi.
+- **#205–207:** Adrenal yetmezlik testlerinde ölçüm yöntemine göre eşik değişir; **adrenal krizde sonuç bekleyerek tedavi geciktirilmez**; 100 mg IV/IM hidrokortizon, sonra 200 mg/24 saat ve izotonik sıvı, profesyonel acil tedavi gerektirir.
+- **#211:** Primer hiperparatiroidide 2022 Fifth Workshop cerrahi ölçütleri: Ca ULN +1 mg/dL, eGFR <60, taş/kırık, T skoru ≤−2,5, yaş <50 vb.
+- **#212:** Hirsutizm notundaki '17-OHP 2–10 mg/dL' birimi klinik testlerin tipik ng/dL/ng/mL birimleriyle karışmış görünüyor; not aynen saklanmış, uyarı eklenmiştir.
 
-## Uygulama
-442 kaynak kartı, 10 soruluk nöbet, dört öğrenme öz değerlendirmesi, XP, aralıklı tekrar; FBT #016 için uzun anlatımlar ve oyun görevleri korunmuştur. Uygulama çevrimdışı çalışır. Dış kaynak bağlantılarını açmak internet gerektirir.
+## İçerik ve APK
+- Bütün 442 kaynak sorusu, 10 soruluk oyun, öz değerlendirme, tekrar planı, XP, FBT #16 üç ayrıntılı ders korunuyor.
+- Yeni dosya: `app/src/main/assets/audit-v17.js`.
+- Android paket adı `com.huseyin.sonnobet.audit7` eski sürümlerden farklıdır; ilerleme **otomatik taşınmaz**.
+- Android 12 emülatör kurulum/açılış testi, Node regresyon testi ve APK imza/hizalama denetimi GitHub Actions üzerinden yapılır.
+- [GitHub v1.7.0 sürümü](https://github.com/huseyinozcanasta/son-nobet/releases/tag/v1.7.0)
 
-[APK sürüm sayfası](https://github.com/huseyinozcanasta/son-nobet/releases/tag/v1.6.0)
-
-Android paket adı `com.huseyin.sonnobet.audit6`. Önceki sürümlerin yanına **ayrı uygulama** kurulur; eski uygulamanın yerel kayıtları otomatik aktarılamaz. APK deneysel/debug imzasıyla yayınlanır. Android 12 emülatör kurulum/açılış testi CI'da zorunludur.
-
-**Tıbbi eğitim içindir; gerçek hasta tedavisi veya reçete kaynağı olarak kullanılmamalıdır.**
+Yalnız tıp eğitimi için; hasta yönetimi veya reçete yazımı için kullanılmamalıdır.
