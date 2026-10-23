@@ -1,25 +1,26 @@
-# SON NÖBET v1.10.0 — 290 el yazısı denetimi + 16 mekanizma kartı
+# SON NÖBET v1.11 — 322 özgün FBT PDF denetimi, 25 mekanizma haritası
 
-FBT'nin 443 sıra numaralı, 442 mevcut soru kaydı (#358 kaynakta yok); #124'te kaynakta iki aynı numaralı soru vardır.
+**Kapsam:** 442 mevcut kaynak kaydı / 443 sıra numarası (#358 kaynakta eksik, #124'te aynı numaralı iki ayrı alt soru var).
 
-## Denetim görev A: #246–274 — TAMAMLANDI
-- PDF **61–69. sayfalar** özgün görüntüler olarak tek tek açıldı, mevcut dijital bankanın soruları, cevapları ve sayfa geçişleriyle karşılaştırıldı.
-- **Yeni 29 kayıt** eklendi: toplam **290 / 442 (%65,6)** görsel kaynak incelemesi; **152 kayıt** hâlâ bekliyor.
-- Özgün not ve daha güncel/klinik kaynak açıklamaları iki ayrı paneldir. PDF'de görsel olarak eşlenmiş olmak tüm tıbbi ifadelerin klinik yönerge düzeyinde doğrulanmış olduğu anlamına gelmez.
-- Özellikle **#253** perianal fistül/apse daha çok Crohn, ÜK için tipik değil; **#258** ALT ve ALP'yi ULN ile normalize ederek R oranı hesabı, eski mutlak transaminaz eşikleri yanıltıcı; **#262** PSC hem intrahem de ekstrahepatik safra yollarını tutar; **#264** dekstrokardi yalnız sağ elektrik aksı demek değildir; **#269** lenfoid neoplazi cevabı özgün kaynakta kesilmiş/eksik; **#273** senkop ilk değerlendirmede ortostatik KB, EKG, öykü gerekir.
-- Kaynaklar: Rome Foundation Rome IV, NIH Toxic Megacolon, AASLD karaciğer testleri/PSC, Crohn's & Colitis Foundation, NCBI Dextrocardia, ESC hipertansiyon ve senkop. Her düzeltmenin ilgili kaynak bağlantısı karttadır.
+## Denetim Bölüm B tamamlandı: #278–309
 
-## Yeni 8 hafıza şeması — toplam 16
-- Yeni: **#246** malabsorbsiyon bulgularının eksiklik mekanizması; **#251** Rome IV İBS; **#253** ÜK/Crohn duvar derinliği ve fistül; **#254** toksik megakolon Jalan kriterleri; **#258** karaciğer enzim R oranı; **#264** dekstrokardi anatomisi; **#267** anemi MCV→retikülosit yolu; **#273** senkop değerlendirme algoritması.
-- Önceki sekiz mekanizma, bütün soruların arşivi ve kayıtlar korunur. Her şema dört açılır basamak + klinik hafıza ipucu + test içerir. **Geri kalan sorular için otomatik/genel geçer şema uydurulmamıştır.**
-- Mekanizma madalyalarının `son-nobet-mechanisms-v1` anahtarında tutulması sürüm 1.9'dan aktarılan yedeklerle uyumludur.
+- Özgün **109 sayfalık el yazısı PDF'nin 71–78. sayfaları** incelendi ve dijital aktarım ile #278–309 arasındaki **32 kayıt** karşılaştırıldı.
+- **322/442 (%72,9)** numaralı kayıt görsel denetimden geçti. **120 soru** bu kontrole hâlâ muhtaç.
+- Özgün kaynak yanıtı değiştirilmedi; yanında öğretici açıklama, gerektiğinde uyarı ve doğrulanmış dış kaynak linkleri vardır. 'PDF GÖRSELİ GÖRÜLDÜ' bir rehber/klinik onay işareti **değildir**.
+- Özellikle: #281 FAP riski tedavisiz klasik FAP'a ait, erken izlem ve cerrahiyle yönetilebilir; #284 McBurney simetriği tek güvenli parasentez noktası değil, ultrason önerilir; #289 tiroid malign US riskinde vaskülarite tek başına tanı değildir; #290 SAAG ≥1,1 g/dL portal hipertansiyon lehine; #291 asit PMN ≥250 ile SBP değerlendir; #297 böbrek de solunumla hareket eder; #299 hiperkalsemide kısalmış QT, 'geniş T' tipik değil; #302 yalancı hiperkalemi uzun turnike/yumruk sıkmayla gelişebilir.
+- Başlıca bilimsel kaynaklar: NCI SVK sendromu, GeneReviews APC/FAP, Society of Hospital Medicine ultrason-guided paracentesis, European Thyroid Association EU‑TIRADS 2023, AASLD 2021 Ascites/SBP, Merck Manual Hyperkalemia, ESC atriyal fibrilasyon.
 
-## Android ve yeni sürüm aktarımı
-- Uygulama içindeki **Sürüm Merkezi** GitHub Releases üzerinde gerçek bir APK bağlantısını kontrol eder; APK Android tarayıcısında indirilir (uygulama sessiz kurulum yapmaz).
-- v1.9'dan *Sürüm Merkezi → Yedek kodunu oluştur/kopyala*, v1.10'dan *geri yükle*. v1.8 ve eski sürümlerde yedekleme yoktu; geriye dönük otomatik veri aktarımı yapılamaz.
-- Android paket: `com.huseyin.sonnobet.audit10`. Eski debug uygulamaların farklı paket/sertifikalı olması nedeniyle ayrı kurulur.
-- İçerik/regresyon, mekanizma ve backup, imza/bütünlük, Android 12 emülatör kurulum/açılış testleri zorunlu.
-- [GitHub v1.10.0 APK ve sürüm notları](https://github.com/huseyinozcanasta/son-nobet/releases/tag/v1.10.0).
-- [Tüm kalan görevler](ROADMAP.md): sıradaki kaynak denetimi **#278–309**.
+## Dokuz yeni aktif mekanizma görevi — toplam 25
 
-Eğitim içindir. Gerçek hasta yönetimi ve reçete için kullanılmaz.
+FBT **#278** SVK, **#281** FAP, **#284** parasentez, **#289** tiroid US, **#290** SAAG ve asit, **#291** SBP, **#301** potasyum EKG, **#302** yalancı hiperkalemi, **#306** AF-pulsus defisit.
+
+Her mekanizma 4 aşamalı açılır akış, hafıza kodu, 3 seçenekli aktif hatırlama ve güvenilir dış kaynak bağlantısı içerir. Diğer sorulara mekanizma oluşturuldu denmez.
+
+## Sürüm ve çalışma kaydı güvenliği
+- Sürüm Merkezi'nden GitHub Releases API üzerinden yeni APK kontrolü ve resmi indirme linki.
+- **v1.10 uygulamasında yedek kodunu al, v1.11 Sürüm Merkezi'nde geri yükle.** İlerleme ve daha önce kazanılan mekanizma madalyaları aynı `son-nobet-mechanisms-v1` yerel anahtarında tutulur.
+- Android paket `com.huseyin.sonnobet.audit11` eski sürümle yan yana kurulur; farklı debug imzalı eski paketlerin üzerine otomatik kurulmaz.
+- Github Actions Node FBT ve mekanizma/yedek regresyonları, APK imza/bütünlük, Android 12 emülatör kurulumu/açılışı ve başarılı test sonunda pre-release yayımlama gerçekleştirir.
+- [GitHub v1.11.0 indir](https://github.com/huseyinozcanasta/son-nobet/releases/tag/v1.11.0)
+
+**Sonraki paket: FBT #310–341, 32 soru.** Kalan kaynak denetimi: **120 soru**. Klinik ve görsel doğrulama birbirinden ayrıdır. Eğitim amaçlıdır, gerçek hasta yönetimi için kullanılmaz.
