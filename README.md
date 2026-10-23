@@ -1,38 +1,29 @@
-# SON NÖBET — Dahiliye RPG
-**Sınava yönelik, API anahtarsız ve çevrimdışı Android öğrenme oyunu.**
+# SON NÖBET — Dahiliye RPG (v0.2.0)
 
-İlk oynanabilir görev: FBT #016 — “Barsak seslerini azaltan elektrolit bozukluğu?” (kaynak FBT sözlü notu, s. 6).
+**Dahiliye FBT #016 soru odaklı, API'siz ve çevrimdışı Android çalışma oyunu.**
 
-## Özellikler (v0.1.1)
-- Üç kısa ders: Sıvı/Elektrolit Dengesi, Paratiroid–Endokrin Hipertansiyon, Batın Muayenesi.
-- Her dersin sonunda aktif hatırlama kontrolü.
-- 5 soruluk final (en az 4 doğru), XP ve günlük çalışma serisi.
-- İsteğe bağlı sözlü prova ve açık cevap taslağı.
-- İlerleme cihazda tutulur. İnternet ve Google hesabı gerekmez.
-- #017 ve #018 henüz kilitlidir. Bütün FBT ve sözlü anıları bu sürümde **bulunmaz**.
+## v0.2 özellikler
+- FBT #016 için her biri **en az 8 dakika** okumayı hedefleyen üç kaynaklı ders:
+  - Potasyum Alarmı — **1.639 kelime** (yaklaşık 11 dk).
+  - Kalsiyum Tuzağı — **1.566 kelime** (yaklaşık 11 dk).
+  - Batın Nöbeti — **1.701 kelime** (yaklaşık 12 dk).
+- Her ders **3 perde / klinik karar**: toplam 9 mini karşılaşma.
+- 7 soruluk final boss (6/7 geçme), combo, can, XP, madalyalar, günlük vaka, sözlü prova.
+- Okumayı gerçekten ölçtüğü iddia edilmez: **zorunlu bekleme sayacı yoktur**; mini sınavlarla aktif hatırlama ölçülür.
+- Kullanıcının daha önceki FBT16 çalışma notlarından odaklı bölümler; daha fazla konu gerekmedikçe FBT dışına genişlemez.
+- İnternet erişimi, Google giriş işlemi veya harici AI API anahtarı gerekmez. Kaydedilen bilgiler yalnız cihazdadır.
+- #017 ve #018 sonraki içerik güncellemeleri için **kilitlidir**, henüz oynanamaz.
 
-## APK edinme
-1. GitHub **Actions → Android APK** iş akışına git.
-2. Son başarılı çalışmayı aç.
-3. **Artifacts → son-nobet-debug-apk** içindeki ZIP'i indir.
-4. ZIP'i aç ve `app-debug.apk` dosyasını Android cihazında kur.
+## Kurulum
+[Releases → v0.2.0 APK](https://github.com/huseyinozcanasta/son-nobet/releases/tag/v0.2.0)
 
-Bu, otomatik test amaçlı **debug APK**'dır. Play Store üretim imzası yoktur. Yeni APK kurulumu önceki sürümden farklı imzayla gelirse önceden yüklü sürüm kaldırılmak zorunda kalabilir; yerel ilerleme kaybolabilir.
+**Not:** Önceki GitHub CI sürümleri farklı geçici Android debug imzaları kullanır. Bu nedenle v0.2 için geçici Android paket adı `com.huseyin.sonnobet.beta` seçildi. v0.1 cihazda korunurken v0.2 yanına kurulabilir; ilerleme iki uygulama arasında otomatik aktarılmaz. Sonraki sürümlerde sabit güvenli bir uygulama imzalama sistemi kurmadan otomatik üstüne güncelleme garanti edilmez.
 
-## Kod ve derleme
-```sh
-cd .
-gradle assembleDebug
-```
-Java 17, Gradle 8.9 ve Android SDK 35 gerekir; GitHub Actions derleme ortamını otomatik hazırlar.
+## Kaynak dosyaları
+- `app/src/main/assets/index.html`: temel çevrimdışı HTML/CSS.
+- `app/src/main/assets/content-v02.js`: üç ders, dokuz karşılaşma metni.
+- `app/src/main/assets/game-v02.js`: RPG mekanikleri, aktif hatırlama, boss ve günlük görev.
+- `app/src/main/java/com/huseyin/sonnobet/MainActivity.java`: native Android WebView kabuğu.
+- `.github/workflows/android-apk.yml`: APK üretimi, paket doğrulaması ve Android 12 emülatör kurulum testi.
 
-## Kaynak ve veri
-FBT orijinal soru #016 (s. 6) ve kullanıcıya ait FBT16 ders çalışma notlarından hazırlanmış kısa derslerdir. Uygulama doğrudan Google Calendar/Drive API'sine **bağlanmaz**; içerik APK'ya önceden gömülüdür.
-
-Uygulama tıbbi eğitim içindir; hasta yönetimi amacıyla kullanılamaz.
-
-## Telefon uyumluluğu (v0.1.1)
-- Uygulama adı ve başlatıcı simgesi kaynaklardan derlenir.
-- Android debug APK v1 + v2 imzalama şemalarıyla hazırlanır.
-- Android 12 (API 31) emülatöründe kurulum ve başlatma testinden geçmeden yeni sürüm GitHub Releases'a aktarılmaz.
-- APK'yı GitHub Releases bağlantısından Chrome ile indir; dosyayı Android Dosyalar/İndirilenler üzerinden aç. Gelen e-posta eki gibi yeniden adlandırılmış/eksik dosyaları kurmayı deneme.
+Android uygulaması klinik karar desteği veya hasta yönetimi aracı değildir.
