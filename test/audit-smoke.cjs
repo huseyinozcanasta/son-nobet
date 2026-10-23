@@ -17,6 +17,7 @@ vm.runInContext(fs.readFileSync(path.join(base,'audit-v17.js'),'utf8'),ctx);
 vm.runInContext(fs.readFileSync(path.join(base,'audit-v18.js'),'utf8'),ctx);
 vm.runInContext(fs.readFileSync(path.join(base,'audit-v110.js'),'utf8'),ctx);
 vm.runInContext(fs.readFileSync(path.join(base,'audit-v111.js'),'utf8'),ctx);
+vm.runInContext(fs.readFileSync(path.join(base,'preflight-v112.js'),'utf8'),ctx);
 vm.runInContext(fs.readFileSync(path.join(base,'slide-candidates-v12.js'),'utf8'),ctx);
 vm.runInContext(fs.readFileSync(path.join(base,'game-v1.js'),'utf8'),ctx);
 assert.equal(ctx.FBT_BANK.length,443);assert.equal(ctx.FBT_BANK.filter(q=>!q.missing).length,442);
@@ -110,6 +111,10 @@ ctx.FBT.open(297);ctx.FBT.reveal();assert.ok(elements.app.innerHTML.includes('b�
 ctx.FBT.open(302);ctx.FBT.reveal();assert.ok(elements.app.innerHTML.includes('Yalancı'));
 ctx.FBT.open(309);assert.ok(elements.app.innerHTML.includes('PDF GÖRSELİ GÖRÜLDÜ'));
 ctx.FBT.open(310);assert.ok(elements.app.innerHTML.includes('PDF KARŞILAŞTIRMASI BEKLİYOR'));
+ctx.FBT.open(311);assert.ok(elements.app.innerHTML.includes('PDF KARŞILAŞTIRMASI BEKLİYOR'));
+ctx.FBT.reveal();assert.ok(elements.app.innerHTML.includes('Kılavuz notu — PDF denetimi yapılmadı'));
+assert.ok(elements.app.innerHTML.includes('Rome IV'));
+assert.equal(ctx.FBT_AUDIT.reviewed[311],undefined,'provisional notes must not increase visual audit count');
 assert.equal(ctx.FBT_AUDIT.reviewed[278].page,71);
 assert.equal(ctx.FBT_AUDIT.reviewed[309].page,78);
 assert.ok(ctx.FBT_AUDIT.checkedSourcePages.includes(71));
@@ -134,4 +139,4 @@ ctx.FBT.open(16);ctx.FBT.reveal();assert.ok(elements.app.innerHTML.includes('Hip
 ctx.FBT.grade(2);assert.equal(JSON.parse(values.get('son-nobet-fbt-v1')).records[16].grade,2);
 ctx.FBT.open(443);ctx.FBT.reveal();assert.ok(elements.app.innerHTML.includes('109 sayfalık aktarım kalite raporu'));assert.ok(!elements.app.innerHTML.includes('Sayfa kontrolü ve belirsizlik listesi'));
 ctx.FBT.open(358);assert.ok(elements.app.innerHTML.includes('KAYNAKTA EKSİK'));
-console.log('PASSED: 443 records, 322 visual matches, 120 pending reviews.');
+console.log('PASSED: 443 records, 322 visual matches, 120 pending reviews; provisional clinical flags separate.');
