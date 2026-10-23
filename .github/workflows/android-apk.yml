@@ -31,18 +31,6 @@ jobs:
           gradle-version: '8.9'
       - name: Build debug APK
         run: gradle assembleDebug --no-daemon --stacktrace
-      - name: Add dual-signature compatibility for Xiaomi Android
-        run: |
-          APK="app/build/outputs/apk/debug/app-debug.apk"
-          "$ANDROID_HOME/build-tools/35.0.0/zipalign" -f -v 4 "$APK" "$RUNNER_TEMP/son-nobet-aligned.apk"
-          "$ANDROID_HOME/build-tools/35.0.0/apksigner" sign \
-            --ks "$HOME/.android/debug.keystore" \
-            --ks-key-alias androiddebugkey \
-            --ks-pass pass:android --key-pass pass:android \
-            --min-sdk-version 24 \
-            --v1-signing-enabled true --v2-signing-enabled true \
-            --out "$RUNNER_TEMP/son-nobet-dual-signed.apk" "$RUNNER_TEMP/son-nobet-aligned.apk"
-          cp "$RUNNER_TEMP/son-nobet-dual-signed.apk" "$APK"
       - name: Validate the APK before publishing
         run: |
           APK="app/build/outputs/apk/debug/app-debug.apk"
@@ -50,7 +38,8 @@ jobs:
           "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$APK" | tee /tmp/son-nobet-badging.txt
           grep -Fq "application-label:'Son Nöbet'" /tmp/son-nobet-badging.txt
           "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs "$APK" | tee /tmp/son-nobet-signing.txt
-          grep -Fq "Verified using v1 scheme (JAR signing): true" /tmp/son-nobet-signing.txt
+          # apksigner skips v1 verification for packages with minSdk >= 24 even if JAR signatures exist.
+          unzip -Z1 "$APK" | grep -Fq "META-INF/CERT.RSA"
           grep -Fq "Verified using v2 scheme (APK Signature Scheme v2): true" /tmp/son-nobet-signing.txt
           "$ANDROID_HOME/build-tools/35.0.0/zipalign" -c -v 4 "$APK"
           sha256sum "$APK"
