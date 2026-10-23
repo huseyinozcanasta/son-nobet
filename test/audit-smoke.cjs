@@ -18,11 +18,14 @@ vm.runInContext(fs.readFileSync(path.join(base,'audit-v18.js'),'utf8'),ctx);
 vm.runInContext(fs.readFileSync(path.join(base,'audit-v110.js'),'utf8'),ctx);
 vm.runInContext(fs.readFileSync(path.join(base,'audit-v111.js'),'utf8'),ctx);
 vm.runInContext(fs.readFileSync(path.join(base,'preflight-v112.js'),'utf8'),ctx);
+vm.runInContext(fs.readFileSync(path.join(base,'docx-crosscheck-v113.js'),'utf8'),ctx);
 vm.runInContext(fs.readFileSync(path.join(base,'slide-candidates-v12.js'),'utf8'),ctx);
 vm.runInContext(fs.readFileSync(path.join(base,'game-v1.js'),'utf8'),ctx);
 assert.equal(ctx.FBT_BANK.length,443);assert.equal(ctx.FBT_BANK.filter(q=>!q.missing).length,442);
 assert.ok(ctx.FBT_BANK.find(q=>q.number===358).missing);
 assert.equal(Object.keys(ctx.FBT_AUDIT.reviewed).length,322);
+assert.equal(Object.keys(ctx.FBT_DOCX_CROSSCHECK.entries).length,32);
+for(let n=310;n<=341;n++){assert.equal(ctx.FBT_DOCX_CROSSCHECK.entries[n].originalHandwritingVisualChecked,false);assert.equal(ctx.FBT_DOCX_CROSSCHECK.entries[n].sourcePage,ctx.FBT_BANK[n-1].sourcePage);}
 assert.ok(ctx.FBT_SLIDE_CANDIDATES.questions[16].length>0);
 assert.ok(ctx.FBT_AUDIT.reviewed[43].warning.includes('≥'));
 assert.ok(ctx.FBT_AUDIT.reviewed[101].warning.includes('Phalen'));
@@ -111,6 +114,11 @@ ctx.FBT.open(297);ctx.FBT.reveal();assert.ok(elements.app.innerHTML.includes('b�
 ctx.FBT.open(302);ctx.FBT.reveal();assert.ok(elements.app.innerHTML.includes('Yalancı'));
 ctx.FBT.open(309);assert.ok(elements.app.innerHTML.includes('PDF GÖRSELİ GÖRÜLDÜ'));
 ctx.FBT.open(310);assert.ok(elements.app.innerHTML.includes('PDF KARŞILAŞTIRMASI BEKLİYOR'));
+ctx.FBT.reveal();assert.ok(elements.app.innerHTML.includes('Dijital Word kaynağı eşleştirildi'));
+assert.ok(elements.app.innerHTML.includes('özgün el yazısı PDF sayfası görülmüş sayılmaz'));
+ctx.FBT.open(341);ctx.FBT.reveal();assert.ok(elements.app.innerHTML.includes('son cümle'));
+assert.ok(elements.app.innerHTML.includes('kaynak sayfa 87'));
+assert.equal(Object.keys(ctx.FBT_AUDIT.reviewed).length,322);
 ctx.FBT.open(311);assert.ok(elements.app.innerHTML.includes('PDF KARŞILAŞTIRMASI BEKLİYOR'));
 ctx.FBT.reveal();assert.ok(elements.app.innerHTML.includes('Kılavuz notu — PDF denetimi yapılmadı'));
 assert.ok(elements.app.innerHTML.includes('Rome IV'));
@@ -139,4 +147,4 @@ ctx.FBT.open(16);ctx.FBT.reveal();assert.ok(elements.app.innerHTML.includes('Hip
 ctx.FBT.grade(2);assert.equal(JSON.parse(values.get('son-nobet-fbt-v1')).records[16].grade,2);
 ctx.FBT.open(443);ctx.FBT.reveal();assert.ok(elements.app.innerHTML.includes('109 sayfalık aktarım kalite raporu'));assert.ok(!elements.app.innerHTML.includes('Sayfa kontrolü ve belirsizlik listesi'));
 ctx.FBT.open(358);assert.ok(elements.app.innerHTML.includes('KAYNAKTA EKSİK'));
-console.log('PASSED: 443 records, 322 visual matches, 120 pending reviews; provisional clinical flags separate.');
+console.log('PASSED: 443 records, 322 visual matches, 32 digital DOCX source concordances; 120 original scans pending.');
