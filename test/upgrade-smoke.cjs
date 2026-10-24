@@ -28,7 +28,7 @@ assert.ok(ctx.SON_CENTER.view().includes('82'));
 assert.ok(ctx.SON_CENTER.panel(311).includes('özgün el yazısı PDF ile henüz görsel olarak karşılaştırılmamıştır'));
 assert.ok(ctx.SON_CENTER.panel(338).includes('Takayasu'));
 assert.equal(ctx.SON_MECHANISMS.diagrams.filter(x=>x.sourceAuditPending).length,57);
-assert.equal(ctx.SON_CENTER.VERSION,'1.14.0');
+assert.equal(ctx.SON_CENTER.VERSION,'1.15.0');
 assert.ok(ctx.SON_CENTER.panel(310).includes('HAFIZA HARİTASI'));
 for(let n=310;n<=341;n++)assert.ok(ctx.SON_CENTER.panel(n).includes('HAFIZA HARİTASI'),'missing mechanism '+n);
 for(const n of [...Array.from({length:12},(_,i)=>346+i),...Array.from({length:13},(_,i)=>359+i)]){assert.ok(ctx.SON_CENTER.panel(n).includes('HAFIZA HARİTASI'),'missing oncology '+n);assert.ok(ctx.SON_CENTER.panel(n).includes('özgün el yazısı PDF'))}
