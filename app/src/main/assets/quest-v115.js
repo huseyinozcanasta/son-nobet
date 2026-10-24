@@ -73,7 +73,7 @@ render=function(){
  oldRender();
  var root=document.getElementById('app');if(!root)return;
  if(s.screen==='home'){
-   var locked=root.querySelector('.miniLevel');if(locked)locked.innerHTML='<h3>🆕 UZUN KLİNİK GÖREVLER</h3><p class="mini">FBT #017 ve #018 için 3 ders, 9 karar ve boss eklendi.</p>'+button('🫀 FBT #017 · DİRENÇLİ HT','NOBET115.open(17)')+button('🔥 FBT #018 · RANSON','NOBET115.open(18)',true);
+   var locked=root.querySelector('.miniLevel');var questLinks='<h3>🆕 UZUN KLİNİK GÖREVLER</h3><p class="mini">FBT #017 ve #018 için 3 ders, 9 karar ve boss eklendi.</p>'+button('🫀 FBT #017 · DİRENÇLİ HT','NOBET115.open(17)')+button('🔥 FBT #018 · RANSON','NOBET115.open(18)',true);if(locked)locked.innerHTML=questLinks;else root.innerHTML+='<div class="panel miniLevel">'+questLinks+'</div>';
  }
  if(s.screen==='fbt_card'){
    var state;
