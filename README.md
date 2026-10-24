@@ -1,3 +1,7 @@
+# SON NÖBET v1.18 — #021 diyaliz kararı
+
+Akut böbrek hasarında diyaliz değerlendirmesi için kaynaklı uzun görev eklendi. Kaynaktaki sayısal eşikler ile klinik karar ayrı gösterilir. **6/442** uzun macera hazır; **436** uzun görev ve **120** özgün el yazısı görsel denetimi bekliyor. 82 kısa mekanizma kartı ve 322/442 özgün PDF görsel denetimi korundu.
+
 # SON NÖBET v1.17 — Kardiyovasküler muayene
 
 FBT #019 mitral yüz ve #020 Musset belirtisi için kaynaklı uzun maceralar eklendi. Her görevde 3 ders, 9 karar, 7 boss, dört halkalı mekanizma ve sözlü prova var. Tüm yeni görevler ders başına en az 1.500, görev başına en az 4.906 kelime eşiğinden geçer. **5/442** uzun macera hazır; **437** uzun görev bekliyor. 82 kısa mekanizma kartı ve 322/442 özgün PDF görsel denetimi korundu. Kaynak bölüm adları ve referanslar görevde görünür.

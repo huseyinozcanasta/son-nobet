@@ -14,6 +14,8 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
   for(const n of numbers){
    await page.evaluate(n=>NOBET115.open(n),n);
    assert.ok((await page.locator('#app').innerText()).includes('0/9'));
+   const warning=await page.evaluate(n=>SON_QUESTS115.quests[n].warning||'',n);
+   if(warning)assert.ok((await page.locator('#app').innerText()).includes(warning),'Clinical source warning must be visible');
    await page.getByRole('button',{name:'🎙️ SÖZLÜ PROVA',exact:true}).click();
    assert.ok(await page.locator('details').count());
    await page.locator('summary').click();

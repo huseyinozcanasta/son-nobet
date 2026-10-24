@@ -1,9 +1,9 @@
 {
-  "version": "1.17.0",
-  "versionCode": 21,
-  "applicationId": "com.huseyin.sonnobet.audit17",
-  "label": "Son Nöbet 1.17",
-  "title": "Son Nöbet 1.17 — #19 ve #20 kardiyovasküler muayene",
+  "version": "1.18.0",
+  "versionCode": 22,
+  "applicationId": "com.huseyin.sonnobet.audit18",
+  "label": "Son Nöbet 1.18",
+  "title": "Son Nöbet 1.18 — #21 ABH ve diyaliz kararı",
   "notesFile": "release-notes.md",
   "minimumLessonWords": 1500,
   "minimumQuestWords": 4906

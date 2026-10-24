@@ -23,7 +23,7 @@ function store(n){
 }
 function wordCount(lesson){return lesson.segments.reduce(function(sum,z){return sum+z.paragraphs.join(" ").trim().split(/\s+/).filter(Boolean).length},0)}
 function completed(v){return v.done.reduce(function(t,n){return t+n},0)}
-function refs(q){return '<div class="panel"><h3>📎 Kullanılan kaynaklar</h3><p class="caption">Özgün FBT cevabı korunur. Ders PDF ve kılavuz yorumları eğitim amaçlıdır; birbirinin yerine geçmez.</p>'+(q.sourceSections?'<p class="caption">İncelenen ders bölümleri: '+q.sourceSections.map(e).join(' · ')+'</p>':'')+q.refs.map(function(x){return '<p class="mini"><a target="_blank" rel="noopener noreferrer" href="'+e(x.url)+'">'+e(x.name)+' ↗</a></p>'}).join('')+'</div>'}
+function refs(q){return (q.warning?'<div class="panel hint"><h3>Kaynak ve klinik yorum ayrımı</h3><p>'+e(q.warning)+'</p></div>':'')+'<div class="panel"><h3>📎 Kullanılan kaynaklar</h3><p class="caption">Özgün FBT cevabı korunur. Ders PDF ve kılavuz yorumları eğitim amaçlıdır; birbirinin yerine geçmez.</p>'+(q.sourceSections?'<p class="caption">İncelenen ders bölümleri: '+q.sourceSections.map(e).join(' · ')+'</p>':'')+q.refs.map(function(x){return '<p class="mini"><a target="_blank" rel="noopener noreferrer" href="'+e(x.url)+'">'+e(x.name)+' ↗</a></p>'}).join('')+'</div>'}
 function mechanism(q){return q.mechanism?'<div class="panel"><h3>🧬 Karar zinciri</h3><ol class="questChain">'+q.mechanism.map(function(x){return '<li>'+e(x)+'</li>'}).join('')+'</ol></div>':''}
 function button(text,action,secondary){return '<button class="btn '+(secondary?"alt":"")+'" onclick="'+action+'">'+text+'</button>'}
 function path(){var n=s.quest115num,q=Q[n],v=store(n);

@@ -6,8 +6,8 @@
 - [x] Bozuk görev kaydı, geçersiz seçenek, kilit ve tekrar XP kontrolleri.
 - [x] Sürüm alanlarını tek manifestten türet, yayımlanmış APK üzerine yazmayı engelle.
 - [x] v1.17: #019 ve #020 kardiyovasküler muayene maceraları.
-- [ ] #021 akut böbrek hasarında diyaliz kararı.
-- [ ] Diğer 436 kaynak sorusuna aynı derinlikte özgün görevler.
+- [x] v1.18: #021 akut böbrek hasarında diyaliz kararı.
+- [ ] #022 ve sonraki 436 kaynak sorusuna aynı derinlikte özgün görevler (#016–021 tamamlandı).
 - [ ] Eksik 120 özgün tarama görseliyle denetim; bu turda sayı artırılmadı.
 
 # SON NÖBET — Kontrollü Gelişim Görevleri
