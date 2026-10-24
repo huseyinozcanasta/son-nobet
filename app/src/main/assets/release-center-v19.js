@@ -1,7 +1,7 @@
 /* SON NOBET 1.9 -- offline memory map and release manager */
 (function(){
 "use strict";
-const VERSION="1.22.0", BASE="https://github.com/huseyinozcanasta/son-nobet", STORE="son-nobet-mechanisms-v1";
+const VERSION="1.23.0", BASE="https://github.com/huseyinozcanasta/son-nobet", STORE="son-nobet-mechanisms-v1";
 const KEYS=["son-nobet-fbt-v1","son-nobet-v1","son-nobet-v2",STORE];
 const ITEMS=(window.SON_MECHANISMS||{}).diagrams||[];
 const BY={};ITEMS.forEach(x=>{BY[x.n]=x});
@@ -30,13 +30,19 @@ function latestHTML(){if(!latest)return '<p class="mini">'+esc(error)+'</p>';let
 function showRelease(){let e=document.getElementById("releaseInfo");if(e)e.innerHTML=latestHTML()}
 function check(){error="GitHub kontrol ediliyor…";showRelease();if(window.SonBridge&&window.SonBridge.checkUpdates){window.SonBridge.checkUpdates()}else{error="Bağlantı kontrolü bu cihazda kullanılmıyor. GitHub sürüm sayfasını aç.";showRelease()}}
 function onRelease(s){try{let x=JSON.parse(s);if(x.error)throw Error(x.error);if(!/^v\d+\.\d+\.\d+$/.test(x.tag)||!/^https:\/\/github\.com\/huseyinozcanasta\/son-nobet\/releases\/download\//.test(x.apk))throw Error("Kaynak adresi doğrulanamadı");latest=x;error=""}catch(e){latest=null;error=String(e.message||e)}showRelease()}
-function backup(){
+function backupData(){
 let obj={schema:"son-nobet-progress",schemaVersion:1,date:new Date().toISOString(),items:{}};
 KEYS.forEach(k=>{try{let v=localStorage.getItem(k);if(v)obj.items[k]=JSON.parse(v)}catch(e){}});
-let data=JSON.stringify(obj);let el=document.getElementById("progressText");if(el){el.value=data;el.focus();el.select()}
+return JSON.stringify(obj);
+}
+function backup(){
+let data=backupData();let el=document.getElementById("progressText");if(el){el.value=data;el.focus();el.select()}
 message="Yedek kodu hazır ("+data.length+" karakter).";
 if(window.SonBridge&&window.SonBridge.copyText){window.SonBridge.copyText(data);message+=" Panoya kopyalandı."}status();
 }
+function exportFile(){cancelRestore();try{let data=backupData();if(!window.SonBridge||!SonBridge.exportProgress)throw Error('Dosyaya kaydetme Android uygulamasında kullanılabilir; yedek kodunu kopyalayabilirsin.');SonBridge.exportProgress(data);message='Dosyanın kaydedileceği yeri seç.'}catch(e){message=String(e.message||e)}status()}
+function importFile(){cancelRestore();if(window.SonBridge&&SonBridge.importProgress){message='JSON yedek dosyanı seç.';status();SonBridge.importProgress()}else{message='Dosyadan yükleme Android uygulamasında kullanılabilir; yedek kodunu alana yapıştırabilirsin.';status()}}
+function onNativeResult(raw){try{let result=JSON.parse(raw);if(result.error)throw Error(result.error);if(typeof result.text==='string'){let input=document.getElementById('progressText');if(!input){if(window.FBT)FBT.openUpdates();input=document.getElementById('progressText')}if(!input)throw Error('Yedek ekranını yeniden aç');input.value=result.text;inputChanged();restore();return}message=result.message||'Dosya işlemi tamamlandı.'}catch(e){message=String(e.message||e)}status()}
 function status(){let e=document.getElementById("progressStatus");if(e)e.textContent=message}
 function plain(v){return !!v&&typeof v==='object'&&!Array.isArray(v)}
 function number(v,min,max){return Number.isFinite(v)&&v>=min&&v<=max}
@@ -97,9 +103,9 @@ function view(){
 let checked=Object.keys((window.FBT_AUDIT||{}).reviewed||{}).length;
 let links=ITEMS.map(d=>'<button class="memoryIndex" onclick="FBT.open('+d.n+')"><span>#'+d.n+'</span><strong>'+esc(d.title)+'</strong><span>'+(mem.passed[d.n]?"✓":"›")+'</span></button>').join("");
 return '<button class="btn small alt" onclick="go(&quot;home&quot;)">← ANA ÜS</button><div class="eyebrow" style="margin-top:22px">SON NÖBET · SÜRÜM MERKEZİ</div><h1>YENİ SÜRÜM.<br><span style="color:var(--cyan)">AYNI HEDEF.</span></h1><div class="panel hero"><div class="row"><span class="chip">KURULU v'+VERSION+'</span><span class="tag">GITHUB RELEASES</span></div><h2 style="margin-top:15px">Güncelleme radarın</h2><p class="mini">Yeni APK için GitHub sürümlerini kontrol et. İnternet yokken dersler çevrimdışı çalışır.</p><div id="releaseInfo">'+latestHTML()+'</div><button class="btn" onclick="SON_CENTER.check()">YENİ SÜRÜM KONTROLÜ ↗</button><a class="btn alt updateLink" target="_blank" href="'+BASE+'/releases">TÜM GITHUB SÜRÜMLERİ ↗</a><p class="caption">Debug imzaları/paket adları farklı olduğundan yeni APK otomatik olarak eskisinin üstüne kurulamaz.</p></div>'+
-'<div class="panel"><h2>💾 İlerlemeni koru</h2><p class="mini">v1.9 ve sonraki sürümlerde kayıtları yedek kodu ile taşı. Eski v1.8 uygulamasında bu özellik olmadığı için oradan otomatik aktarım yapılamaz.</p><button class="btn" onclick="SON_CENTER.backup()">YEDEK KODU OLUŞTUR / KOPYALA</button><textarea id="progressText" rows="4" oninput="SON_CENTER.inputChanged()" placeholder="Eski uygulamadan aldığın kodun tamamını buraya yapıştır."></textarea><button class="btn alt" onclick="SON_CENTER.restore()">YEDEĞİ GERİ YÜKLE</button><button class="btn ghost" onclick="SON_CENTER.requestUndo()">SON AKTARIMI GERİ AL</button><div id="restorePreview"></div><p class="caption" id="progressStatus" role="status" aria-live="polite">'+esc(message)+'</p></div>'+
+'<div class="panel"><h2>💾 İlerlemeni koru</h2><p class="mini">v1.9 ve sonraki sürümlerde kayıtları yedek kodu ile taşı. Eski v1.8 uygulamasında bu özellik olmadığı için oradan otomatik aktarım yapılamaz.</p><button class="btn" onclick="SON_CENTER.backup()">YEDEK KODU OLUŞTUR / KOPYALA</button><button class="btn alt" onclick="SON_CENTER.exportFile()">YEDEĞİ DOSYAYA KAYDET</button><button class="btn alt" onclick="SON_CENTER.importFile()">YEDEK DOSYASI SEÇ</button><textarea id="progressText" rows="4" oninput="SON_CENTER.inputChanged()" placeholder="Eski uygulamadan aldığın kodun tamamını buraya yapıştır."></textarea><button class="btn alt" onclick="SON_CENTER.restore()">YEDEĞİ GERİ YÜKLE</button><button class="btn ghost" onclick="SON_CENTER.requestUndo()">SON AKTARIMI GERİ AL</button><div id="restorePreview"></div><p class="caption" id="progressStatus" role="status" aria-live="polite">'+esc(message)+'</p></div>'+
 '<div class="panel"><div class="row"><h2>🧬 Hafıza haritası</h2><span class="chip">'+done()+'/'+ITEMS.length+'</span></div><p class="mini">Her soruda dört adımlı mekanizma zincirini aç, son kararı kendin ver.</p>'+links+'</div>'+
 '<div class="panel"><h3>🔬 Soru denetimi</h3><div class="progress"><div class="bar" style="width:'+(checked/442*100).toFixed(2)+'%"></div></div><div class="row mini"><b>'+checked+'/442 kaynak görseli incelendi</b><span>'+(442-checked)+' bekliyor</span></div><p class="caption">PDF karşılaştırması tek başına bilimsel doğrulama değildir. 82 kart oluşturuldu; 57 soru için dijital DOCX bölüm eşlemesi yapıldı. Bunlar özgün el yazısı PDF görsel denetimi değildir.</p></div>';
 }
-window.SON_CENTER={VERSION,view,panel,next,answer,check,onRelease,backup,restore,parseBackup,inputChanged,commitRestore,cancelRestore,requestUndo,commitUndo,done,compare};
+window.SON_CENTER={VERSION,view,panel,next,answer,check,onRelease,backup,backupData,exportFile,importFile,onNativeResult,restore,parseBackup,inputChanged,commitRestore,cancelRestore,requestUndo,commitUndo,done,compare};
 })();

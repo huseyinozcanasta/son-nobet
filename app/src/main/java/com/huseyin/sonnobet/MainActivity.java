@@ -10,8 +10,11 @@ import org.json.JSONArray;
 import java.net.URL;
 import java.net.HttpURLConnection;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.ByteArrayOutputStream;
 import java.nio.charset.StandardCharsets;
+import java.nio.charset.CodingErrorAction;
+import java.nio.ByteBuffer;
 import android.app.Activity;
 import android.os.Bundle;
 import android.graphics.Color;
@@ -25,6 +28,9 @@ import android.webkit.WebChromeClient;
 
 public class MainActivity extends Activity {
     private WebView view;
+    static final int EXPORT_BACKUP = 41, IMPORT_BACKUP = 42;
+    private String pendingExport;
+    private boolean documentBusy;
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
@@ -60,8 +66,87 @@ public class MainActivity extends Activity {
     }
 
 
-    // Exposes only release metadata and clipboard export to the trusted bundled file:// page.
+    private void nativeResult(JSONObject result) {
+        String response = JSONObject.quote(result.toString());
+        runOnUiThread(() -> {
+            if (view != null && !isFinishing()) view.evaluateJavascript(
+                "window.SON_CENTER && window.SON_CENTER.onNativeResult(" + response + ")", null);
+        });
+    }
+
+    private void nativeMessage(String key, String value) {
+        JSONObject result = new JSONObject();
+        try { result.put(key, value); } catch (Exception ignored) { }
+        nativeResult(result);
+    }
+
+    @Override protected void onActivityResult(int request, int result, Intent data) {
+        super.onActivityResult(request, result, data);
+        if (request != EXPORT_BACKUP && request != IMPORT_BACKUP) return;
+        documentBusy = false;
+        String export = pendingExport; pendingExport = null;
+        if (result != RESULT_OK || data == null || data.getData() == null) {
+            nativeMessage("message", "Dosya işlemi iptal edildi; mevcut ilerleme korundu."); return;
+        }
+        Uri uri = data.getData();
+        new Thread(() -> {
+            try {
+                if (request == EXPORT_BACKUP) {
+                    if (export == null) throw new Exception("Yedek işlemi yeniden başlatılmalı");
+                    try (OutputStream out = getContentResolver().openOutputStream(uri, "wt")) {
+                        if (out == null) throw new Exception("Dosya yazılamadı");
+                        out.write(export.getBytes(StandardCharsets.UTF_8)); out.flush();
+                    }
+                    nativeMessage("message", "Yedek JSON dosyası kaydedildi.");
+                } else {
+                    ByteArrayOutputStream out = new ByteArrayOutputStream();
+                    try (InputStream in = getContentResolver().openInputStream(uri)) {
+                        if (in == null) throw new Exception("Dosya açılamadı");
+                        byte[] buffer = new byte[8192]; int count;
+                        while ((count = in.read(buffer)) != -1) {
+                            if (out.size() + count > 2000000) throw new Exception("Dosya 2 MB sınırını aşıyor");
+                            out.write(buffer, 0, count);
+                        }
+                    }
+                    String text = StandardCharsets.UTF_8.newDecoder().onMalformedInput(CodingErrorAction.REPORT)
+                        .onUnmappableCharacter(CodingErrorAction.REPORT).decode(ByteBuffer.wrap(out.toByteArray())).toString();
+                    nativeMessage("text", text);
+                }
+            } catch (Exception e) { nativeMessage("error", "Dosya işlemi tamamlanamadı: " + e.getMessage()); }
+        }).start();
+    }
+
+    // User-triggered backup actions for the trusted bundled page.
     private final class SonBridge {
+        @JavascriptInterface public void exportProgress(String payload) {
+            if (payload == null || payload.getBytes(StandardCharsets.UTF_8).length > 2000000) {
+                nativeMessage("error", "Yedek boş veya 2 MB sınırından büyük"); return;
+            }
+            runOnUiThread(() -> {
+                if (documentBusy) { nativeMessage("error", "Önce açık dosya işlemini tamamla"); return; }
+                try {
+                    JSONObject backup = new JSONObject(payload);
+                    if (!"son-nobet-progress".equals(backup.optString("schema"))) throw new Exception("Yedek biçimi geçersiz");
+                    pendingExport = payload; documentBusy = true;
+                    Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT).addCategory(Intent.CATEGORY_OPENABLE)
+                        .setType("application/json").putExtra(Intent.EXTRA_TITLE, "SonNobet-yedek-" + System.currentTimeMillis() + ".json");
+                    startActivityForResult(intent, EXPORT_BACKUP);
+                } catch (Exception e) { documentBusy = false; pendingExport = null; nativeMessage("error", "Dosya seçicisi açılamadı: " + e.getMessage()); }
+            });
+        }
+
+        @JavascriptInterface public void importProgress() {
+            runOnUiThread(() -> {
+                if (documentBusy) { nativeMessage("error", "Önce açık dosya işlemini tamamla"); return; }
+                try {
+                    documentBusy = true;
+                    Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT).addCategory(Intent.CATEGORY_OPENABLE)
+                        .setType("*/*").putExtra(Intent.EXTRA_MIME_TYPES, new String[]{"application/json", "text/plain", "application/octet-stream"});
+                    startActivityForResult(intent, IMPORT_BACKUP);
+                } catch (Exception e) { documentBusy = false; nativeMessage("error", "Dosya seçicisi açılamadı: " + e.getMessage()); }
+            });
+        }
+
         @JavascriptInterface
         public void copyText(String payload) {
             if (payload == null || payload.length() > 2000000) return;

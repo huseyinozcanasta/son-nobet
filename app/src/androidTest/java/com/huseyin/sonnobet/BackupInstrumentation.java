@@ -6,6 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.net.Uri;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
@@ -43,7 +47,19 @@ public final class BackupInstrumentation extends Instrumentation {
             runOnMainSync(() -> web.evaluateJavascript("SON_CENTER.commitRestore()", null));
             waitFor("window.s && s.xp===765 && s.quests115 && s.quests115[17].passed===true && window.SON_CENTER");
             if (!"true".equals(js("JSON.parse(localStorage.getItem('son-nobet-fbt-v1')).records[16].grade===2 && document.getElementById('progressStatus').textContent.indexOf('Aktarım tamamlandı')>=0"))) throw new Exception("Restored state or visible receipt is missing");
-            output.putString("stream", "SON_NOBET_ANDROID_BACKUP_PASS: preview, explicit confirmation, storage, reload, FBT and quest progress preserved\n");
+            // Feed a real UTF-8 file through the same native result handler used by Android's picker.
+            File backupFile = new File(target.getCacheDir(), "instrumentation-backup.json");
+            String fileBackup = "{\"schema\":\"son-nobet-progress\",\"schemaVersion\":1,\"items\":{\"son-nobet-v1\":{\"xp\":1234,\"chapter\":[3,2,1],\"passed\":false}}}";
+            try (FileOutputStream out = new FileOutputStream(backupFile)) { out.write(fileBackup.getBytes(StandardCharsets.UTF_8)); }
+            runOnMainSync(() -> ((MainActivity)target).onActivityResult(MainActivity.IMPORT_BACKUP, Activity.RESULT_OK, new Intent().setData(Uri.fromFile(backupFile))));
+            waitFor("document.getElementById('progressText').value.indexOf('1234')>=0 && document.getElementById('restorePreview').textContent.indexOf('AKTARIMI ONAYLA')>=0");
+            if (!"true".equals(js("s.xp===765"))) throw new Exception("File preview wrote progress before confirmation");
+            runOnMainSync(() -> web.evaluateJavascript("SON_CENTER.commitRestore()", null));
+            waitFor("window.SON_CENTER && window.s && s.xp===1234");
+            runOnMainSync(() -> ((MainActivity)target).onActivityResult(MainActivity.IMPORT_BACKUP, Activity.RESULT_CANCELED, null));
+            waitFor("document.getElementById('progressStatus').textContent.indexOf('iptal')>=0");
+            backupFile.delete();
+            output.putString("stream", "SON_NOBET_ANDROID_BACKUP_PASS: explicit confirmation, storage, reload, FBT, quest progress, native UTF-8 file import and cancellation\n");
             finish(Activity.RESULT_OK, output);
         } catch (Exception problem) {
             output.putString("stream", "SON_NOBET_ANDROID_BACKUP_FAIL: " + problem.toString() + "\n");
