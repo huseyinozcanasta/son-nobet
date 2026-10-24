@@ -1,3 +1,3 @@
-Kullanıcının düğmeye dokunmasıyla panodaki yedek alınır ve önizlenir. Arka planda pano okunmaz. Boş pano ve iptal durumları açıklanır.
+FBT #022 hipertiroidi kliniği için ders kaynağına dayalı klinik karşılaşmalar, mekanizma, sözlü prova ve boss eklenir.
 
-Önceki FBT içerikleri, özgün soru bankası ve PDF görsel kontrol sayacı korunur. Hazır uzun ders ile öğrenilmiş soru ayrı gösterilir. Ayrı audit24 debug APK; eski uygulamadan alınan yedek yeni sürümde kontrol edilip AKTARIMI ONAYLA ile yüklenir. Klinik eğitim içindir. Gerçek Redmi cihazında kullanıcı testi ayrıca gereklidir.
+Önceki FBT içerikleri, özgün soru bankası ve PDF görsel kontrol sayacı korunur. Hazır uzun ders ile öğrenilmiş soru ayrı gösterilir. Ayrı audit25 debug APK; eski uygulamadan alınan yedek yeni sürümde kontrol edilip AKTARIMI ONAYLA ile yüklenir. Klinik eğitim içindir. Gerçek Redmi cihazında kullanıcı testi ayrıca gereklidir.

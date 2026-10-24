@@ -11,7 +11,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
   assert.ok((await page.locator('body').innerText()).includes('FBT #017'));
   assert.ok((await page.locator('body').innerText()).includes('FBT #018'));
   await page.getByRole('button',{name:'442 SORUNUN DURUMUNU GÖR →',exact:true}).click();
-  assert.ok((await page.locator('#app').innerText()).includes('6/442'));
+  assert.ok((await page.locator('#app').innerText()).includes('7/442'));
   await page.locator('#courseSearch').fill('358');
   assert.ok((await page.locator('#courseResults').innerText()).includes('0 kaynak sorusu'));
   await page.locator('#courseSearch').fill('021');

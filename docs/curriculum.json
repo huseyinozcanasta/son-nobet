@@ -1,11 +1,11 @@
 {
-  "version": "1.24.0",
+  "version": "1.25.0",
   "scope": "Preparation only; no user learning data.",
   "stats": {
     "total": 442,
-    "long": 6,
+    "long": 7,
     "short": 81,
-    "base": 355,
+    "base": 354,
     "scanCompared": 322,
     "scanPending": 120
   },
@@ -270,8 +270,8 @@
       "title": "Hiper tiroidi kliniği",
       "sourcePage": 7,
       "category": "Endokrinoloji",
-      "preparation": "base",
-      "words": 0,
+      "preparation": "long",
+      "words": 5005,
       "originalScanCompared": true,
       "sourceNoteNeedsReview": false,
       "candidateSlideCount": 3,
