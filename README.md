@@ -1,3 +1,23 @@
+# SON NÖBET v1.15 — FBT #017 ve #018 için yeni klinik RPG görevleri (ilk içerik paketi)
+
+**Durum:** FBT #016 uzun macerası korundu; iki yeni soru için **3'er ders / 9'ar klinik karşılaşma / 7'şer boss sorusu** kaynaklı, çevrimdışı yeni oyun motoruna eklendi. Her yeni görevin ilk metni yaklaşık **1.405 kelime**; bu bir **pilot**, #016'nın 4.906 kelimelik derinliğine henüz eşit değildir. Oyun yapısı ortak, içeriklerin genişletilmesi açıktır.
+
+- **#017 Dirençli hipertansiyon:** Kaynak Akdeniz Üniversitesi Dr. Funda Sarı'nın *Hipertansiyon Tanı ve Tedavisi* dersi; ESC 2024 / AHA 2025 bağlamı. Üçlü rejim, ofis dışı ölçüm, yalancı direnç, sekonder neden, hedef organ hasarı, tedavi güvenliği.
+- **#018 Akut pankreatit / Ranson:** Kaynak Dr. Bülent Yıldırım'ın *Akut Pankreatit* dersi, OHSU Ranson tablosu ve ACG 2024. **BUN >5 mg/dL ifadesi mutlak düzey değildir; 48 saat içinde >5 mg/dL artış** şeklinde öğretilir. Geleneksel slayt yaklaşımı ile güncel kılavuz ayrılır.
+- **Kaynak bağlantıları:** GitHub'daki `content-v115.js` içinde 2 sorunun her biri için PDF ve klinik referanslar yer alır. Kullanıcı kaynakların paylaşılmasına izin verdi; içerik yazarların slaytlarından kopyalanmamış, özgün açıklamalarla düzenlenmiştir.
+- **Kaydetme:** Yeni görevler `son-nobet-v1` kaydında `quests115` alanında saklanır; var olan Sürüm Merkezi'nin yedek/geri yükleme akışına dahildir. Önceki FBT #016 XP ve 442 soru verisi korunur. v1.14 ve v1.15 uygulama kimlikleri ayrı olduğu için eski uygulamadan yedek kopyalanıp yeni sürüme yüklenmesi gerekir.
+- **Korunan durum:** 442 kaynak sorusu / #358 eksik; 82 mekanizma kartı; 322/442 özgün PDF görüntü denetimi. Yeni görev hazırlamak bu denetim sayısını artırmaz.
+- **Test:** `node test/quest115-smoke.cjs` ile aşama kilitleri, yanlış kararlar, bir kere XP verme, 7 soru boss, görev bazında ayrı ilerleme ve mevcut yedek biçimi sınanır; CI Android 12 emülatörü ve APK bütünlük testleri sürdürülür.
+
+## Geliştirme sıradaki işleri
+
+- [ ] #017 ve #018 derslerini #016'nın 8+ dakikalık **ders başına** anlatım standardına yükselt.
+- [ ] Kullanıcının sağladığı 114 PDF ile diğer FBT sorularını sistematik eşleştir; kaynak içeriklerini konu başlığı ve ilgili slayt düzeyinde gerçekten kontrol et.
+- [ ] Klinik tutarlılık/dönemsel kılavuz uyarılarını genişlet; sözlü anısı görevleri ekle.
+- [ ] Sabit imza ve cihazlar arasında güvenli güncelleme/ilerleme aktarımı.
+
+---
+
 # SON NÖBET v1.14 — 82 mekanizma haritası, 322/442 özgün PDF görsel denetimi
 
 **Durum:** 442 mevcut FBT kaynak sorusu / 443 sıra numarası (#358 eksik; #124 iki alt soru içerir). El yazısı 109 sayfalık PDF ile **322/442** kaydın görsel karşılaştırması tamamlandı; **120** kayıt bekliyor. Bu sayılar v1.11'den beri **değişmedi**.
