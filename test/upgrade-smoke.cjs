@@ -13,7 +13,7 @@ const ctx={console,Date,JSON,Math,Number,Array,Object,Set,String,RegExp,
  window:null};
 ctx.window=ctx;
 vm.createContext(ctx);
-for(const name of ['mechanisms-v19.js','mechanisms-v110.js','mechanisms-v111.js','mechanisms-v112.js','mechanisms-v113.js','mechanisms-v114.js','release-center-v19.js'])vm.runInContext(fs.readFileSync(path.join(base,name),'utf8'),ctx);
+for(const name of ['restore-storage.js','mechanisms-v19.js','mechanisms-v110.js','mechanisms-v111.js','mechanisms-v112.js','mechanisms-v113.js','mechanisms-v114.js','release-center-v19.js'])vm.runInContext(fs.readFileSync(path.join(base,name),'utf8'),ctx);
 assert.equal(ctx.SON_MECHANISMS.diagrams.length,82,'82 source-referenced mechanism diagrams');
 assert.equal(new Set(ctx.SON_MECHANISMS.diagrams.map(x=>x.n)).size,82);
 assert.deepEqual([...ctx.SON_MECHANISMS.diagrams.map(x=>x.n)],[16,131,151,185,207,225,234,244,246,251,253,254,258,264,267,273,278,281,284,289,290,291,301,302,306,311,318,319,320,330,338,340,341,310,312,313,314,315,316,317,321,322,323,324,325,326,327,328,329,331,332,333,334,335,336,337,339,346,347,348,349,350,351,352,353,354,355,356,357,359,360,361,362,363,364,365,366,367,368,369,370,371]);

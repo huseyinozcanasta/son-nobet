@@ -1,7 +1,7 @@
 /* SON NOBET 1.9 -- offline memory map and release manager */
 (function(){
 "use strict";
-const VERSION="1.21.0", BASE="https://github.com/huseyinozcanasta/son-nobet", STORE="son-nobet-mechanisms-v1";
+const VERSION="1.22.0", BASE="https://github.com/huseyinozcanasta/son-nobet", STORE="son-nobet-mechanisms-v1";
 const KEYS=["son-nobet-fbt-v1","son-nobet-v1","son-nobet-v2",STORE];
 const ITEMS=(window.SON_MECHANISMS||{}).diagrams||[];
 const BY={};ITEMS.forEach(x=>{BY[x.n]=x});
@@ -9,6 +9,7 @@ let mem;try{mem=JSON.parse(localStorage.getItem(STORE)||"{}")||{}}catch(e){mem={
 mem.stage=mem.stage||{};mem.passed=mem.passed||{};
 let latest=null,error="Sürüm henüz kontrol edilmedi.",message="",pendingRestore=null;
 try{let receipt=JSON.parse(localStorage.getItem("son-nobet-transfer-receipt")||"null");if(receipt&&receipt.message)message=receipt.message}catch(e){}
+if(window.SON_STORAGE&&SON_STORAGE.notice)message=SON_STORAGE.notice;
 const esc=t=>String(t===undefined?"":t).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&#39;"}[c]));
 const save=()=>localStorage.setItem(STORE,JSON.stringify(mem));
 const done=()=>Object.keys(mem.passed).filter(n=>mem.passed[n]&&BY[n]).length;
@@ -81,24 +82,24 @@ function commitRestore(){
 if(!pendingRestore){message="Önce yedek kodunu kontrol et.";status();return false}
 let plan=pendingRestore,input=document.getElementById("progressText");
 if(!input||input.value!==plan.raw){cancelRestore();message="Yedek kodu değişti; yeniden kontrol et.";status();return false}
-let before={};try{
-plan.found.forEach(k=>{before[k]=localStorage.getItem(k)});
-plan.found.forEach(k=>{let value=JSON.parse(JSON.stringify(plan.items[k]));if(k==='son-nobet-v1')value.screen='fbt_updates';let text=JSON.stringify(value);localStorage.setItem(k,text);if(localStorage.getItem(k)!==text)throw Error("Kayıt yazımı doğrulanamadı")});
+try{
+let values=SON_STORAGE.snapshot();
+plan.found.forEach(k=>{let value=JSON.parse(JSON.stringify(plan.items[k]));if(k==='son-nobet-v1')value.screen='fbt_updates';values[k]=JSON.stringify(value)});
 message="Aktarım tamamlandı. "+plan.found.length+" kayıt seti geri yüklendi.";
-localStorage.setItem('son-nobet-transfer-receipt',JSON.stringify({message,date:new Date().toISOString()}));pendingRestore=null;status();location.reload();return true;
-}catch(e){
-try{Object.keys(before).forEach(k=>localStorage.removeItem(k));Object.keys(before).forEach(k=>{if(before[k]!==null)localStorage.setItem(k,before[k])});message="Aktarım tamamlanamadı; önceki kayıtlar korundu: "+String(e.message||e)}catch(rollback){message="Aktarım hatası: "+String(e.message||e)+". Yedek kodunu sakla ve yeniden dene."}
-status();return false;
+values['son-nobet-transfer-receipt']=JSON.stringify({message,date:new Date().toISOString()});
+SON_STORAGE.apply(values,false);pendingRestore=null;status();location.reload();return true;
+}catch(e){message="Aktarım tamamlanamadı; koruma yedeği devrede: "+String(e.message||e);status();return false}
 }
-}
+function requestUndo(){if(!SON_STORAGE.canUndo()){message='Geri alınacak aktarım yok.';status();return}pendingRestore=null;let el=document.getElementById('restorePreview');if(el)el.innerHTML='<div class="panel"><h3>Son aktarımı geri al</h3><p>Aktarımdan hemen önceki kayıtlarına dönersin. Aktarımdan sonra bu sürümde yaptığın çalışma geri alınır.</p><button class="btn" onclick="SON_CENTER.commitUndo()">GERİ ALMAYI ONAYLA</button><button class="btn alt" onclick="SON_CENTER.cancelRestore()">VAZGEÇ</button></div>'}
+function commitUndo(){try{SON_STORAGE.undo();location.reload();return true}catch(e){message='Geri alma tamamlanamadı: '+String(e.message||e);status();return false}}
 
 function view(){
 let checked=Object.keys((window.FBT_AUDIT||{}).reviewed||{}).length;
 let links=ITEMS.map(d=>'<button class="memoryIndex" onclick="FBT.open('+d.n+')"><span>#'+d.n+'</span><strong>'+esc(d.title)+'</strong><span>'+(mem.passed[d.n]?"✓":"›")+'</span></button>').join("");
 return '<button class="btn small alt" onclick="go(&quot;home&quot;)">← ANA ÜS</button><div class="eyebrow" style="margin-top:22px">SON NÖBET · SÜRÜM MERKEZİ</div><h1>YENİ SÜRÜM.<br><span style="color:var(--cyan)">AYNI HEDEF.</span></h1><div class="panel hero"><div class="row"><span class="chip">KURULU v'+VERSION+'</span><span class="tag">GITHUB RELEASES</span></div><h2 style="margin-top:15px">Güncelleme radarın</h2><p class="mini">Yeni APK için GitHub sürümlerini kontrol et. İnternet yokken dersler çevrimdışı çalışır.</p><div id="releaseInfo">'+latestHTML()+'</div><button class="btn" onclick="SON_CENTER.check()">YENİ SÜRÜM KONTROLÜ ↗</button><a class="btn alt updateLink" target="_blank" href="'+BASE+'/releases">TÜM GITHUB SÜRÜMLERİ ↗</a><p class="caption">Debug imzaları/paket adları farklı olduğundan yeni APK otomatik olarak eskisinin üstüne kurulamaz.</p></div>'+
-'<div class="panel"><h2>💾 İlerlemeni koru</h2><p class="mini">v1.9 ve sonraki sürümlerde kayıtları yedek kodu ile taşı. Eski v1.8 uygulamasında bu özellik olmadığı için oradan otomatik aktarım yapılamaz.</p><button class="btn" onclick="SON_CENTER.backup()">YEDEK KODU OLUŞTUR / KOPYALA</button><textarea id="progressText" rows="4" oninput="SON_CENTER.inputChanged()" placeholder="Eski uygulamadan aldığın kodun tamamını buraya yapıştır."></textarea><button class="btn alt" onclick="SON_CENTER.restore()">YEDEĞİ GERİ YÜKLE</button><div id="restorePreview"></div><p class="caption" id="progressStatus" role="status" aria-live="polite">'+esc(message)+'</p></div>'+
+'<div class="panel"><h2>💾 İlerlemeni koru</h2><p class="mini">v1.9 ve sonraki sürümlerde kayıtları yedek kodu ile taşı. Eski v1.8 uygulamasında bu özellik olmadığı için oradan otomatik aktarım yapılamaz.</p><button class="btn" onclick="SON_CENTER.backup()">YEDEK KODU OLUŞTUR / KOPYALA</button><textarea id="progressText" rows="4" oninput="SON_CENTER.inputChanged()" placeholder="Eski uygulamadan aldığın kodun tamamını buraya yapıştır."></textarea><button class="btn alt" onclick="SON_CENTER.restore()">YEDEĞİ GERİ YÜKLE</button><button class="btn ghost" onclick="SON_CENTER.requestUndo()">SON AKTARIMI GERİ AL</button><div id="restorePreview"></div><p class="caption" id="progressStatus" role="status" aria-live="polite">'+esc(message)+'</p></div>'+
 '<div class="panel"><div class="row"><h2>🧬 Hafıza haritası</h2><span class="chip">'+done()+'/'+ITEMS.length+'</span></div><p class="mini">Her soruda dört adımlı mekanizma zincirini aç, son kararı kendin ver.</p>'+links+'</div>'+
 '<div class="panel"><h3>🔬 Soru denetimi</h3><div class="progress"><div class="bar" style="width:'+(checked/442*100).toFixed(2)+'%"></div></div><div class="row mini"><b>'+checked+'/442 kaynak görseli incelendi</b><span>'+(442-checked)+' bekliyor</span></div><p class="caption">PDF karşılaştırması tek başına bilimsel doğrulama değildir. 82 kart oluşturuldu; 57 soru için dijital DOCX bölüm eşlemesi yapıldı. Bunlar özgün el yazısı PDF görsel denetimi değildir.</p></div>';
 }
-window.SON_CENTER={VERSION,view,panel,next,answer,check,onRelease,backup,restore,parseBackup,inputChanged,commitRestore,cancelRestore,done,compare};
+window.SON_CENTER={VERSION,view,panel,next,answer,check,onRelease,backup,restore,parseBackup,inputChanged,commitRestore,cancelRestore,requestUndo,commitUndo,done,compare};
 })();

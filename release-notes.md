@@ -1,3 +1,3 @@
-Yapıştırılan kod boşluk, BOM, kod bloğu veya JSON metni biçiminde gelirse anlaşılır. Eksik, kesilmiş ve desteklenmeyen yedeklerde açık hata gösterilir. Önizlemede hangi kayıtların bulunduğu açıklanır.
+Aktarım öncesinde cihazdaki kayıtlar koruma yedeğine alınır. Yazma kesintisi ve depolama hatasında eski kayıtlar korunur; son aktarımdan geri dönme eklenir.
 
-Önceki FBT içerikleri, özgün soru bankası ve PDF görsel kontrol sayacı korunur. Hazır uzun ders ile öğrenilmiş soru ayrı gösterilir. Ayrı audit21 debug APK; eski uygulamadan alınan yedek yeni sürümde kontrol edilip AKTARIMI ONAYLA ile yüklenir. Klinik eğitim içindir. Gerçek Redmi cihazında kullanıcı testi ayrıca gereklidir.
+Önceki FBT içerikleri, özgün soru bankası ve PDF görsel kontrol sayacı korunur. Hazır uzun ders ile öğrenilmiş soru ayrı gösterilir. Ayrı audit22 debug APK; eski uygulamadan alınan yedek yeni sürümde kontrol edilip AKTARIMI ONAYLA ile yüklenir. Klinik eğitim içindir. Gerçek Redmi cihazında kullanıcı testi ayrıca gereklidir.
