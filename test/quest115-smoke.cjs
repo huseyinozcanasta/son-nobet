@@ -45,6 +45,7 @@ ctx.NOBET115.stage(0,1);
 assert.equal(ctx.s.quest115view,'map','Future stage must stay locked');
 ctx.NOBET115.stage(0,0);
 assert.equal(ctx.s.quest115view,'stage');
+assert.ok(main.innerHTML.includes("FBT&#39;nin"), "Turkish apostrophes must render correctly");
 const first=q[17].lessons[0].segments[0].challenge;
 const wrong=(first.correct+1)%3;
 ctx.NOBET115.pick(0,0,wrong);

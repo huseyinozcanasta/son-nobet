@@ -4,7 +4,7 @@
 var payload=window.SON_QUESTS115;
 if(!payload||!payload.quests||!window.FBT)throw Error("1.15 gorev verileri veya FBT motoru eksik");
 var Q=payload.quests;
-function e(t){return String(t==null?"":t).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function e(t){return String(t==null?"":t).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
 function valid(n){return Object.prototype.hasOwnProperty.call(Q,String(n))}
 function integer(n,min,max){return Number.isInteger(n)&&n>=min&&n<=max}
 function plain(v){return !!v&&typeof v==='object'&&!Array.isArray(v)}
