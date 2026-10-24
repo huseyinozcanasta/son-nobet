@@ -1,11 +1,11 @@
 {
-  "version": "1.25.0",
+  "version": "1.26.0",
   "scope": "Preparation only; no user learning data.",
   "stats": {
     "total": 442,
-    "long": 7,
+    "long": 8,
     "short": 81,
-    "base": 354,
+    "base": 353,
     "scanCompared": 322,
     "scanPending": 120
   },
@@ -282,8 +282,8 @@
       "title": "Tuber sufl? plevral sufl? nedir? [?]",
       "sourcePage": 7,
       "category": "Göğüs Hastalıkları",
-      "preparation": "base",
-      "words": 0,
+      "preparation": "long",
+      "words": 4966,
       "originalScanCompared": true,
       "sourceNoteNeedsReview": true,
       "candidateSlideCount": 0,

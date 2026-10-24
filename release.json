@@ -1,11 +1,11 @@
 {
-  "version": "1.25.0",
-  "versionCode": 29,
-  "applicationId": "com.huseyin.sonnobet.audit25",
-  "label": "Son Nöbet 1.25",
-  "title": "Son Nöbet 1.25 — Hipertiroidi klinik görev paketi",
+  "version": "1.26.0",
+  "versionCode": 30,
+  "applicationId": "com.huseyin.sonnobet.audit26",
+  "label": "Son Nöbet 1.26",
+  "title": "Son Nöbet 1.26 — Solunum sesleri klinik görev paketi",
   "notesFile": "release-notes.md",
   "minimumLessonWords": 1500,
   "minimumQuestWords": 4906,
-  "contentVersion": "1.25.0"
+  "contentVersion": "1.26.0"
 }
