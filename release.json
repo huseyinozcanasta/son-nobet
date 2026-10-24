@@ -1,10 +1,11 @@
 {
-  "version": "1.18.0",
-  "versionCode": 22,
-  "applicationId": "com.huseyin.sonnobet.audit18",
-  "label": "Son Nöbet 1.18",
-  "title": "Son Nöbet 1.18 — #21 ABH ve diyaliz kararı",
+  "version": "1.19.0",
+  "versionCode": 23,
+  "applicationId": "com.huseyin.sonnobet.audit19",
+  "label": "Son Nöbet 1.19",
+  "title": "Son Nöbet 1.19 — 442 soruluk müfredat radarı",
   "notesFile": "release-notes.md",
   "minimumLessonWords": 1500,
-  "minimumQuestWords": 4906
+  "minimumQuestWords": 4906,
+  "contentVersion": "1.18.0"
 }

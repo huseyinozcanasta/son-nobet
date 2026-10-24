@@ -23,7 +23,7 @@ for(const [n,q] of Object.entries(all)){
  for(const ref of q.refs){const u=new URL(ref.url);assert.equal(u.protocol,'https:');assert.ok(ref.name);}
  console.log('PASS curriculum:',n,total+' words',q.lessons.map(l=>l.segments.reduce((t,z)=>t+wc(z.paragraphs),0)).join('/'));
 }
-assert.equal(ctx.window.SON_QUESTS115.version,meta.version);
+assert.equal(ctx.window.SON_QUESTS115.version,meta.contentVersion||meta.version);
 const baseline=JSON.parse(fs.readFileSync(path.join(root,'test/content-baseline.json'),'utf8'));
 for(const [file,expected] of Object.entries(baseline))assert.equal(crypto.createHash('sha256').update(fs.readFileSync(path.join(base,file))).digest('hex'),expected,'Original content changed: '+file);
 assert.ok(html.indexOf('content-v116.js')<html.indexOf('quest-v115.js'));

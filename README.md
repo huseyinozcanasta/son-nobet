@@ -1,3 +1,9 @@
+# SON NÖBET v1.19 — Müfredat Radarı
+
+**442 sorunun tamamının hazırlık durumu görünür:** 6 uzun macera, 81 yalnız kısa mekanizma, 355 temel kart. Öğrenme ilerlemesi ve kaynak denetimi ayrı gösterilir. 436 uzun görev ve 120 özgün tarama denetimi bekler. Otomatik slayt adayları doğrulanmış kaynak sayılmaz.
+
+Tüm kayıtların makineyle denetlenen kapsamı [docs/CURRICULUM.md](docs/CURRICULUM.md) ve [docs/curriculum.json](docs/curriculum.json) içindedir.
+
 # SON NÖBET v1.18 — #021 diyaliz kararı
 
 Akut böbrek hasarında diyaliz değerlendirmesi için kaynaklı uzun görev eklendi. Kaynaktaki sayısal eşikler ile klinik karar ayrı gösterilir. **6/442** uzun macera hazır; **436** uzun görev ve **120** özgün el yazısı görsel denetimi bekliyor. 82 kısa mekanizma kartı ve 322/442 özgün PDF görsel denetimi korundu.

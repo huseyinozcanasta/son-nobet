@@ -10,6 +10,15 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
   await page.evaluate(()=>go('home'));
   assert.ok((await page.locator('body').innerText()).includes('FBT #017'));
   assert.ok((await page.locator('body').innerText()).includes('FBT #018'));
+  await page.getByRole('button',{name:'442 SORUNUN DURUMUNU GÖR →',exact:true}).click();
+  assert.ok((await page.locator('#app').innerText()).includes('6/442'));
+  await page.locator('#courseSearch').fill('358');
+  assert.ok((await page.locator('#courseResults').innerText()).includes('0 kaynak sorusu'));
+  await page.locator('#courseSearch').fill('021');
+  assert.ok((await page.locator('#courseResults').innerText()).includes('1 kaynak sorusu'));
+  await page.getByRole('button',{name:'🎮 MACERAYI AÇ',exact:true}).click();
+  assert.equal(await page.evaluate(()=>s.quest115num),21);
+  await page.evaluate(()=>go('home'));
   const numbers=await page.evaluate(()=>Object.keys(SON_QUESTS115.quests).map(Number));
   for(const n of numbers){
    await page.evaluate(n=>NOBET115.open(n),n);
@@ -55,6 +64,11 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
   await page.getByRole('button',{name:'YEDEĞİ GERİ YÜKLE',exact:true}).click();
   await page.waitForLoadState('load');
   assert.ok(await page.evaluate(()=>Object.values(s.quests115).every(q=>q.passed)));
+  await page.evaluate(()=>SON_COURSE.show());
+  assert.equal(await page.evaluate(()=>SON_COURSE.snapshot().stats.bossPassed),numbers.length);
+  await page.locator('#courseSearch').fill('');
+  await page.getByRole('button',{name:'Boss geçildi',exact:true}).click();
+  assert.ok((await page.locator('#courseResults').innerText()).includes(numbers.length+' kaynak sorusu'));
   assert.deepEqual(errors,[],'Browser runtime errors');
   if(process.env.QA_SCREENSHOT){await page.evaluate(()=>go('home'));await page.screenshot({path:process.env.QA_SCREENSHOT,fullPage:true});}
   console.log('PASS browser backup restore and mobile layout; zero runtime errors.');

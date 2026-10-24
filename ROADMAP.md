@@ -1,3 +1,10 @@
+## v1.19 — Tüm kayıtlar için ölçülebilir kapsam
+
+- [x] 442 kaynak kaydını hazırlık, kaynak denetimi ve kullanıcı öğrenmesi olarak ayrı izle.
+- [x] Eksik #358 için soru veya macera uydurma; arama/filtre/paginasyon ve özgün FBT erişimi.
+- [x] Gerçek kapsamı JSON ve Markdown olarak üret, CI ile kaynak kodla eşleştir.
+- [ ] Kalan 436 soru için kaynak PDF içerikleri gerçekten okunarak uzun maceralar üret.
+
 ## 24 Ekim 2026 — v1.16 içerik derinliği paketi
 
 - [x] #017 ve #018 için görev başına en az 4.906 kelime, ders başına en az 1.500 kelime.

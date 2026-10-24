@@ -9,6 +9,7 @@ on:
       - 'scripts/**'
       - 'release.json'
       - 'release-notes.md'
+      - 'docs/**'
       - 'settings.gradle'
       - 'build.gradle'
       - 'gradle.properties'
@@ -47,7 +48,7 @@ jobs:
         with:
           gradle-version: '8.9'
       - name: Check FBT audit integrity and study flow
-        run: node test/audit-smoke.cjs && node test/upgrade-smoke.cjs && node test/quest115-smoke.cjs && node test/curriculum-smoke.cjs
+        run: node test/audit-smoke.cjs && node test/upgrade-smoke.cjs && node test/quest115-smoke.cjs && node test/curriculum-smoke.cjs && node test/curriculum-catalog.cjs && node scripts/generate-curriculum.cjs --check
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
