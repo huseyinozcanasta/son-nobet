@@ -118,6 +118,20 @@ public class MainActivity extends Activity {
 
     // User-triggered backup actions for the trusted bundled page.
     private final class SonBridge {
+        @JavascriptInterface public void pasteProgress() {
+            // Called only by the visible paste button; never during launch or resume.
+            runOnUiThread(() -> {
+                try {
+                    ClipboardManager cm = (ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE);
+                    ClipData clip = cm == null ? null : cm.getPrimaryClip();
+                    CharSequence text = clip == null || clip.getItemCount() == 0 ? null : clip.getItemAt(0).getText();
+                    if (text == null || text.toString().trim().isEmpty()) throw new Exception("Pano boş. Önce eski uygulamada yedek kodunu kopyala.");
+                    if (text.length() > 2000000) throw new Exception("Panodaki metin yedek boyutu sınırını aşıyor");
+                    nativeMessage("text", text.toString());
+                } catch (Exception e) { nativeMessage("error", e.getMessage()); }
+            });
+        }
+
         @JavascriptInterface public void exportProgress(String payload) {
             if (payload == null || payload.getBytes(StandardCharsets.UTF_8).length > 2000000) {
                 nativeMessage("error", "Yedek boş veya 2 MB sınırından büyük"); return;

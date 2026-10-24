@@ -3,6 +3,9 @@ package com.huseyin.sonnobet;
 import android.app.Activity;
 import android.app.Instrumentation;
 import android.content.Intent;
+import android.content.Context;
+import android.content.ClipboardManager;
+import android.content.ClipData;
 import android.os.Bundle;
 import android.view.ViewGroup;
 import android.webkit.WebView;
@@ -58,8 +61,19 @@ public final class BackupInstrumentation extends Instrumentation {
             waitFor("window.SON_CENTER && window.s && s.xp===1234");
             runOnMainSync(() -> ((MainActivity)target).onActivityResult(MainActivity.IMPORT_BACKUP, Activity.RESULT_CANCELED, null));
             waitFor("document.getElementById('progressStatus').textContent.indexOf('iptal')>=0");
+            runOnMainSync(() -> {
+                ClipboardManager cm = (ClipboardManager)target.getSystemService(Context.CLIPBOARD_SERVICE);
+                cm.setPrimaryClip(ClipData.newPlainText("test backup", fileBackup.replace("1234", "2468")));
+                web.evaluateJavascript("SON_CENTER.pasteClipboard()", null);
+            });
+            waitFor("document.getElementById('progressText').value.indexOf('2468')>=0 && document.getElementById('restorePreview').textContent.indexOf('AKTARIMI ONAYLA')>=0");
+            if (!"true".equals(js("s.xp===1234"))) throw new Exception("Clipboard preview wrote progress early");
+            runOnMainSync(() -> web.evaluateJavascript("SON_CENTER.commitRestore()", null));
+            waitFor("window.SON_CENTER && window.s && s.xp===2468");
+            runOnMainSync(() -> web.evaluateJavascript("SON_CENTER.requestUndo();SON_CENTER.commitUndo()", null));
+            waitFor("window.SON_CENTER && window.s && s.xp===1234");
             backupFile.delete();
-            output.putString("stream", "SON_NOBET_ANDROID_BACKUP_PASS: explicit confirmation, storage, reload, FBT, quest progress, native UTF-8 file import and cancellation\n");
+            output.putString("stream", "SON_NOBET_ANDROID_BACKUP_PASS: explicit confirmation, storage, reload, FBT, quest progress, native UTF-8 file, cancellation, clipboard paste and undo\n");
             finish(Activity.RESULT_OK, output);
         } catch (Exception problem) {
             output.putString("stream", "SON_NOBET_ANDROID_BACKUP_FAIL: " + problem.toString() + "\n");
