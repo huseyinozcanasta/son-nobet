@@ -1,9 +1,9 @@
 {
-  "version": "1.16.0",
-  "versionCode": 20,
-  "applicationId": "com.huseyin.sonnobet.audit16",
-  "label": "Son Nöbet 1.16",
-  "title": "Son Nöbet 1.16 — #17 ve #18 uzun ders paketi",
+  "version": "1.17.0",
+  "versionCode": 21,
+  "applicationId": "com.huseyin.sonnobet.audit17",
+  "label": "Son Nöbet 1.17",
+  "title": "Son Nöbet 1.17 — #19 ve #20 kardiyovasküler muayene",
   "notesFile": "release-notes.md",
   "minimumLessonWords": 1500,
   "minimumQuestWords": 4906

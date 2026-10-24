@@ -1,3 +1,7 @@
+# SON NÖBET v1.17 — Kardiyovasküler muayene
+
+FBT #019 mitral yüz ve #020 Musset belirtisi için kaynaklı uzun maceralar eklendi. Her görevde 3 ders, 9 karar, 7 boss, dört halkalı mekanizma ve sözlü prova var. Tüm yeni görevler ders başına en az 1.500, görev başına en az 4.906 kelime eşiğinden geçer. **5/442** uzun macera hazır; **437** uzun görev bekliyor. 82 kısa mekanizma kartı ve 322/442 özgün PDF görsel denetimi korundu. Kaynak bölüm adları ve referanslar görevde görünür.
+
 # SON NÖBET v1.16 — #017 ve #018 uzun dersleri
 
 #017 **4.995**, #018 **4.907 kelime**: her birinde 3 uzun ders, 9 klinik karar, 7 boss sorusu, karar zinciri ve sözlü prova bulunur. Kaynak ders PDF bölümleri okunarak özgün anlatım genişletildi. Ders başına 1.500 ve görev başına 4.906 kelime alt sınırı CI içinde denetlenir; kelime sayısı tek başına klinik kalite kanıtı değildir.

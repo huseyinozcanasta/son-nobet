@@ -5,7 +5,7 @@
 - [x] Mevcut #016 anlatımı ile 10 kaynak banka dosyasının değişmediğini SHA-256 ile kontrol et.
 - [x] Bozuk görev kaydı, geçersiz seçenek, kilit ve tekrar XP kontrolleri.
 - [x] Sürüm alanlarını tek manifestten türet, yayımlanmış APK üzerine yazmayı engelle.
-- [ ] #019 ve #020 kardiyovasküler muayene maceraları.
+- [x] v1.17: #019 ve #020 kardiyovasküler muayene maceraları.
 - [ ] #021 akut böbrek hasarında diyaliz kararı.
 - [ ] Diğer 436 kaynak sorusuna aynı derinlikte özgün görevler.
 - [ ] Eksik 120 özgün tarama görseliyle denetim; bu turda sayı artırılmadı.
