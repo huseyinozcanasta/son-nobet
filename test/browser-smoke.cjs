@@ -62,8 +62,11 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
   const backup=await page.locator('#progressText').inputValue();
   assert.ok(JSON.parse(backup).items['son-nobet-v1'].quests115[numbers[0]].passed);
   await page.getByRole('button',{name:'YEDEĞİ GERİ YÜKLE',exact:true}).click();
+  await page.getByRole('button',{name:'AKTARIMI ONAYLA',exact:true}).click();
   await page.waitForLoadState('load');
   assert.ok(await page.evaluate(()=>Object.values(s.quests115).every(q=>q.passed)));
+  assert.ok((await page.locator('#progressStatus').innerText()).includes('Aktarım tamamlandı'));
+
   await page.evaluate(()=>SON_COURSE.show());
   assert.equal(await page.evaluate(()=>SON_COURSE.snapshot().stats.bossPassed),numbers.length);
   await page.locator('#courseSearch').fill('');

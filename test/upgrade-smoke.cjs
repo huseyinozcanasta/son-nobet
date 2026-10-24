@@ -7,7 +7,7 @@ let copied='',reloaded=0;
 const ctx={console,Date,JSON,Math,Number,Array,Object,Set,String,RegExp,
  document:{getElementById:el},
  localStorage:{getItem:k=>values.get(k)||null,setItem:(k,v)=>values.set(k,v),removeItem:k=>values.delete(k)},
- confirm:()=>true,location:{reload:()=>{reloaded++}},
+ confirm:()=>{throw Error("Native confirmation must not be needed for restore")},location:{reload:()=>{reloaded++}},
  SonBridge:{copyText:t=>{copied=t},checkUpdates:()=>{}},
  FBT_AUDIT:{reviewed:Object.fromEntries(Array.from({length:322},(_,i)=>[i+1,{summary:'x'}]))},
  window:null};
@@ -56,6 +56,9 @@ assert.ok(copied.includes('"16"'));
 values.delete('son-nobet-fbt-v1');
 el('progressText').value=copied;
 ctx.SON_CENTER.restore();
+assert.equal(values.get("son-nobet-fbt-v1"),undefined,"Preview never writes progress");
+assert.ok(el("restorePreview").innerHTML.includes("AKTARIMI ONAYLA"));
+ctx.SON_CENTER.commitRestore();
 assert.equal(JSON.parse(values.get('son-nobet-fbt-v1')).xp,45);
 assert.equal(reloaded,1);
 el('progressText').value='{"schema":"son-nobet-progress","schemaVersion":1,"items":{"son-nobet-fbt-v1":{"records":{"9999":{"grade":2}}}}}';

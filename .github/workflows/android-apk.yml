@@ -17,7 +17,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: son-nobet-android-release
+  group: son-nobet-android-${{ github.sha }}
   cancel-in-progress: false
 
 jobs:
@@ -48,7 +48,7 @@ jobs:
         with:
           gradle-version: '8.9'
       - name: Check FBT audit integrity and study flow
-        run: node test/audit-smoke.cjs && node test/upgrade-smoke.cjs && node test/quest115-smoke.cjs && node test/curriculum-smoke.cjs && node test/curriculum-catalog.cjs && node scripts/generate-curriculum.cjs --check
+        run: node scripts/test-all.cjs
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -67,7 +67,7 @@ jobs:
           path: /tmp/son-nobet-mobile.png
           if-no-files-found: error
       - name: Build debug APK
-        run: gradle assembleDebug --no-daemon --stacktrace
+        run: gradle assembleDebug assembleDebugAndroidTest --no-daemon --stacktrace
       - name: Validate the APK before publishing
         run: |
           APK="app/build/outputs/apk/debug/app-debug.apk"
@@ -123,6 +123,9 @@ jobs:
             adb shell am start -W -n "$RELEASE_APP_ID/com.huseyin.sonnobet.MainActivity"
             sleep 5
             adb shell pidof "$RELEASE_APP_ID"
+            adb install -r app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+            adb shell am instrument -w "$RELEASE_APP_ID.test/com.huseyin.sonnobet.BackupInstrumentation" | tee /tmp/son-nobet-native-backup.txt
+            grep -Fq "SON_NOBET_ANDROID_BACKUP_PASS" /tmp/son-nobet-native-backup.txt
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:

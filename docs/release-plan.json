@@ -1,0 +1,12 @@
+{
+  "20": {"title":"Android yedek geri yükleme düzeltmesi","notes":"Android WebView'de görünmeyen JavaScript confirm penceresine bağlı sessiz geri dönüş kaldırıldı. Yedek kontrolü, sayfa içi AKTARIMI ONAYLA düğmesi, iptal ve yeniden açılışta görünen başarı bilgisi eklendi. Gerçek Android WebView üzerinde FBT kaydı, XP ve görev ilerlemesi aktarımı sınanır."},
+  "21": {"title":"Yedek kodu tanıma ve doğrulama","notes":"Yapıştırılan kod boşluk, BOM, kod bloğu veya JSON metni biçiminde gelirse anlaşılır. Eksik, kesilmiş ve desteklenmeyen yedeklerde açık hata gösterilir. Önizlemede hangi kayıtların bulunduğu açıklanır."},
+  "22": {"title":"Geri alınabilen ve kesintiye dayanıklı aktarım","notes":"Aktarım öncesinde cihazdaki kayıtlar koruma yedeğine alınır. Yazma kesintisi ve depolama hatasında eski kayıtlar korunur; son aktarımdan geri dönme eklenir."},
+  "23": {"title":"Android dosyadan yedek alma ve yükleme","notes":"Yedek JSON dosyası Android belge seçicisiyle dışa ve içe aktarılır. İptal, dosya boyutu ve okuma hataları görünür biçimde ele alınır."},
+  "24": {"title":"Panodan tek dokunuşla aktarım","notes":"Kullanıcının düğmeye dokunmasıyla panodaki yedek alınır ve önizlenir. Arka planda pano okunmaz. Boş pano ve iptal durumları açıklanır."},
+  "25": {"title":"Hipertiroidi klinik görev paketi","notes":"FBT #022 hipertiroidi kliniği için ders kaynağına dayalı klinik karşılaşmalar, mekanizma, sözlü prova ve boss eklenir."},
+  "26": {"title":"Solunum sesleri klinik görev paketi","notes":"FBT #023 tübüler ve plevral üfürüm ayrımı için kaynaklı klinik görev, muayene örüntüleri ve ayırıcı kararlar eklenir."},
+  "27": {"title":"Romatoid artrit laboratuvar görev paketi","notes":"FBT #024 için RF/ACPA, akut faz yanıtı ve klinik bağlamı birleştiren kaynaklı görev eklenir; seroloji tek başına tanı kabul edilmez."},
+  "28": {"title":"İlerlemeyi birleştirerek içe aktar","notes":"Yedek aktarımında mevcut başarıları koruyan birleştirme seçeneği eklenir. XP toplanarak şişirilmez; tamamlanan görevler ve kayıtlar çakışmada korunur."},
+  "29": {"title":"Aktarım özeti ve sürümler arası son kontrol","notes":"Aktarım öncesi/sonrası XP, FBT ve görev özeti gösterilir. On sürümün kayıt uyumluluğu, Android dosya/pano akışı ve son içerik kapsamı yeniden denetlenir."}
+}

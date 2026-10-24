@@ -1,4 +1,4 @@
-# SON NÖBET 1.19.0 — Gerçek içerik kapsamı
+# SON NÖBET 1.20.0 — Gerçek içerik kapsamı
 
 442 mevcut kaynak kaydı; 6 uzun macera, 81 kısa mekanizma, 355 temel kart. 322 özgün PDF görüntüsü karşılaştırıldı; 120 bekliyor. Kaynakta eksik numara: 358.
 
