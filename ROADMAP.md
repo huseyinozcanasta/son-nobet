@@ -1,3 +1,15 @@
+## 24 Ekim 2026 — v1.16 içerik derinliği paketi
+
+- [x] #017 ve #018 için görev başına en az 4.906 kelime, ders başına en az 1.500 kelime.
+- [x] Her görev için dört halkalı karar zinciri ve sözlü prova.
+- [x] Mevcut #016 anlatımı ile 10 kaynak banka dosyasının değişmediğini SHA-256 ile kontrol et.
+- [x] Bozuk görev kaydı, geçersiz seçenek, kilit ve tekrar XP kontrolleri.
+- [x] Sürüm alanlarını tek manifestten türet, yayımlanmış APK üzerine yazmayı engelle.
+- [ ] #019 ve #020 kardiyovasküler muayene maceraları.
+- [ ] #021 akut böbrek hasarında diyaliz kararı.
+- [ ] Diğer 436 kaynak sorusuna aynı derinlikte özgün görevler.
+- [ ] Eksik 120 özgün tarama görseliyle denetim; bu turda sayı artırılmadı.
+
 # SON NÖBET — Kontrollü Gelişim Görevleri
 
 **Durum (v1.14):** FBT'de 443 sıra numarası / 442 mevcut indeks (kaynakta #358 yok; #124 iki farklı alt soru içeriyor). Orijinal taranmış PDF görüntüsüyle karşılaştırılan **322**; bekleyen **120**. Görsel transkripsiyon kontrolü, tıbbi kanıta dayalı doğrulama **değildir**.

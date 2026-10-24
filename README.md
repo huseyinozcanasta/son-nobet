@@ -1,3 +1,13 @@
+# SON NÖBET v1.16 — #017 ve #018 uzun dersleri
+
+#017 **4.995**, #018 **4.907 kelime**: her birinde 3 uzun ders, 9 klinik karar, 7 boss sorusu, karar zinciri ve sözlü prova bulunur. Kaynak ders PDF bölümleri okunarak özgün anlatım genişletildi. Ders başına 1.500 ve görev başına 4.906 kelime alt sınırı CI içinde denetlenir; kelime sayısı tek başına klinik kalite kanıtı değildir.
+
+**Gerçek kapsam:** #016 ile birlikte **3/442** uzun macera; 439 soru için uzun görev hâlâ açık. 82 mekanizma kartı ve **322/442** özgün el yazısı görsel denetimi korunur. #358 kaynakta eksiktir.
+
+**İlerleme:** Mevcut `son-nobet-v1` ve `quests115` kayıtları korunur. Sürüm Merkezi ile yedek kodu aktarılır; ayrı `audit16` paketi önceki APK üzerine kurulmaz. Bozuk kayıtlarda kilit ve seçenek kontrolleri eklendi.
+
+**Yayın:** `release.json` tek sürüm kaynağıdır; `node scripts/set-version.cjs` sürüm alanlarını eşler. İçerik, ilerleme, APK imzası ve Android 12 emülatör kontrolleri geçmeden APK yayımlanmaz. Yayımlanan APK üzerine başka derleme yazılmaz; her APK ile SHA-256 dosyası yayımlanır. Gerçek telefon testi ayrıca gereklidir.
+
 # SON NÖBET v1.15 — FBT #017 ve #018 için yeni klinik RPG görevleri (ilk içerik paketi)
 
 **Durum:** FBT #016 uzun macerası korundu; iki yeni soru için **3'er ders / 9'ar klinik karşılaşma / 7'şer boss sorusu** kaynaklı, çevrimdışı yeni oyun motoruna eklendi. Her yeni görevin ilk metni yaklaşık **1.405 kelime**; bu bir **pilot**, #016'nın 4.906 kelimelik derinliğine henüz eşit değildir. Oyun yapısı ortak, içeriklerin genişletilmesi açıktır.

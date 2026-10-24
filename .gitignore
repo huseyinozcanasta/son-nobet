@@ -4,3 +4,6 @@
 *.iml
 local.properties
 .DS_Store
+.playwright/
+node_modules/
+test-results/

@@ -6,6 +6,9 @@ on:
     paths:
       - 'app/**'
       - 'test/**'
+      - 'scripts/**'
+      - 'release.json'
+      - 'release-notes.md'
       - 'settings.gradle'
       - 'build.gradle'
       - 'gradle.properties'
@@ -14,7 +17,7 @@ on:
 
 concurrency:
   group: son-nobet-android-release
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   apk:
@@ -23,6 +26,15 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+      - name: Read and validate release metadata
+        run: |
+          node scripts/set-version.cjs
+          git diff --exit-code
+          node - <<'JS'
+          const fs=require('fs'),m=require('./release.json');
+          if(!/^Son Nöbet \d+\.\d+$/.test(m.label)||m.notesFile!=='release-notes.md'||/[\r\n]/.test(m.title))throw Error('Unsafe release metadata');
+          fs.appendFileSync(process.env.GITHUB_ENV,`RELEASE_VERSION=${m.version}\nRELEASE_TAG=v${m.version}\nRELEASE_APP_ID=${m.applicationId}\nRELEASE_LABEL=${m.label}\nRELEASE_TITLE=${m.title}\n`);
+          JS
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -35,7 +47,24 @@ jobs:
         with:
           gradle-version: '8.9'
       - name: Check FBT audit integrity and study flow
-        run: node test/audit-smoke.cjs && node test/upgrade-smoke.cjs && node test/quest115-smoke.cjs
+        run: node test/audit-smoke.cjs && node test/upgrade-smoke.cjs && node test/quest115-smoke.cjs && node test/curriculum-smoke.cjs
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser test runtime
+        run: |
+          npm install --no-save --package-lock=false playwright@1.58.2
+          npx playwright install --with-deps chromium
+      - name: Play every new quest on a mobile viewport and restore its backup
+        env:
+          QA_SCREENSHOT: /tmp/son-nobet-mobile.png
+        run: node test/browser-smoke.cjs
+      - name: Upload mobile test screenshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: son-nobet-mobile-qa
+          path: /tmp/son-nobet-mobile.png
+          if-no-files-found: error
       - name: Build debug APK
         run: gradle assembleDebug --no-daemon --stacktrace
       - name: Validate the APK before publishing
@@ -44,6 +73,7 @@ jobs:
           unzip -t "$APK" | tail -1
           unzip -p "$APK" assets/content-v02.js | grep -Fq "Potasyum Alarmı"
           unzip -p "$APK" assets/content-v115.js | grep -Fq "Dirençli Hipertansiyon"
+          unzip -p "$APK" assets/content-v116.js | grep -Fq "contentRevision"
           unzip -p "$APK" assets/quest-v115.js | grep -Fq "NOBET115"
           unzip -p "$APK" assets/game-v02.js | grep -Fq "gameOpen"
           unzip -p "$APK" assets/bank-10.js | grep -Fq "\"number\":443"
@@ -70,7 +100,7 @@ jobs:
           unzip -p "$APK" assets/release-center-v19.js | grep -Fq "son-nobet-progress"
           unzip -p "$APK" assets/slide-candidates-v12.js | grep -Fq "topicHits"
           "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$APK" | tee /tmp/son-nobet-badging.txt
-          grep -Fq "application-label:'Son Nöbet 1.15'" /tmp/son-nobet-badging.txt
+          grep -Fq "application-label:'$RELEASE_LABEL'" /tmp/son-nobet-badging.txt
           "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs "$APK" | tee /tmp/son-nobet-signing.txt
           # apksigner skips v1 verification for packages with minSdk >= 24 even if JAR signatures exist.
           unzip -Z1 "$APK" | grep -Fq "META-INF/CERT.RSA"
@@ -89,9 +119,9 @@ jobs:
           disable-animations: true
           script: |
             adb install -r app/build/outputs/apk/debug/app-debug.apk
-            adb shell am start -W -n com.huseyin.sonnobet.audit15/com.huseyin.sonnobet.MainActivity
+            adb shell am start -W -n "$RELEASE_APP_ID/com.huseyin.sonnobet.MainActivity"
             sleep 5
-            adb shell pidof com.huseyin.sonnobet.audit15
+            adb shell pidof "$RELEASE_APP_ID"
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
@@ -102,9 +132,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          cp app/build/outputs/apk/debug/app-debug.apk SonNobet-v1.15.0-debug.apk
-          if gh release view v1.15.0 >/dev/null 2>&1; then
-            gh release upload v1.15.0 SonNobet-v1.15.0-debug.apk --clobber
-          else
-            gh release create v1.15.0 SonNobet-v1.15.0-debug.apk --target "$GITHUB_SHA" --title "Son Nöbet 1.15 — FBT 17/18 kaynaklı klinik görev pilotu" --notes "442 FBT kaydı, 82 mekanizma kartı ve 322/442 PDF görsel denetimi korunuyor. FBT 17 ve 18 için yeni 3 ders/9 klinik karşılaşma/7 boss sınavı eklendi (ilk pilot; anlatımlar henüz FBT 16 kadar uzun değil). Ders PDF bağlantıları ve klinik açıklamalar eklendi. Ayrı Android paket; ilerleme yedek koduyla aktarılır. Debug APK." --prerelease
-          fi
+          APK_NAME="SonNobet-$RELEASE_TAG-debug.apk"
+          cp app/build/outputs/apk/debug/app-debug.apk "$APK_NAME"
+          sha256sum "$APK_NAME" > "$APK_NAME.sha256"
+          # Published binaries are immutable: use a new version for a new build.
+          gh release create "$RELEASE_TAG" "$APK_NAME" "$APK_NAME.sha256" --target "$GITHUB_SHA" --title "$RELEASE_TITLE" --notes-file release-notes.md --prerelease

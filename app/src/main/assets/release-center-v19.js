@@ -1,7 +1,7 @@
 /* SON NOBET 1.9 -- offline memory map and release manager */
 (function(){
 "use strict";
-const VERSION="1.15.0", BASE="https://github.com/huseyinozcanasta/son-nobet", STORE="son-nobet-mechanisms-v1";
+const VERSION="1.16.0", BASE="https://github.com/huseyinozcanasta/son-nobet", STORE="son-nobet-mechanisms-v1";
 const KEYS=["son-nobet-fbt-v1","son-nobet-v1","son-nobet-v2",STORE];
 const ITEMS=(window.SON_MECHANISMS||{}).diagrams||[];
 const BY={};ITEMS.forEach(x=>{BY[x.n]=x});
